@@ -6,7 +6,7 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 19:50:09 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/07/03 20:15:47 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/07/03 23:50:40 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ int	cmd_exit(t_data *data, char **arg)
 
 	if (arg[1])
 		return (ft_putstr_fd("too many args\n", 2), 1);
+	if (arg[0])
+	{
 	if (is_alldigit(arg[0]))
 	{
 		x = 255;
@@ -45,6 +47,7 @@ int	cmd_exit(t_data *data, char **arg)
 	}
 	else
 		x = ft_atoi(arg[0]) % 256;
+	}
 	fre_env(data->env);
 	free(data);
 	exit(x);

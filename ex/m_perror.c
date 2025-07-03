@@ -1,25 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ex_exc.h                                           :+:      :+:    :+:   */
+/*   m_perror.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/30 16:53:01 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/06/13 02:11:50 by oel-mado         ###   ########.fr       */
+/*   Created: 2025/07/03 23:52:30 by oel-mado          #+#    #+#             */
+/*   Updated: 2025/07/04 00:01:58 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef EX_EXC_H
-#define EX_EXC_H
+#include "../includes/header.h"
 
-#include "../m_exec.h"
-
-typedef struct s_data t_data;
-
-int	ex_rish(t_data *data, char **arg);
-int	ex_synau(t_data *data, char **arg);
-char    *ex_there(t_data *data, char *cmd);
-int	ex_cpro(t_data *data, char *cmd, char **arg);
-
-#endif // EX_EXC_H
+int	m_perror(char *cmd, char *arg, char *msg)
+{
+	ft_putstr_fd("tih: ", 2);
+	if (cmd)
+	{
+		ft_putstr_fd(cmd, 2);
+		ft_putstr_fd(": ", 2);
+	}
+	if (arg)
+	{
+		ft_putstr_fd(arg, 2);
+		ft_putstr_fd(": ", 2);
+	}
+	if (msg)
+		ft_putstr_fd(msg, 2);
+	ft_putstr_fd("\n", 2);
+	return (1);
+}

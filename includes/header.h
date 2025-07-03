@@ -10,10 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TOKEN_AND_LEX_H
-#define TOKEN_AND_LEX_H
-
-// #include "../ex/m_exec.h"
+#ifndef HEADER_H
+#define HEADER_H
 
 #include <unistd.h>
 #include <stdlib.h>
@@ -269,7 +267,7 @@ char	**int_chr_env(t_data *data);
 void	fre_chr_env(char **env);
 
 int	ex_rish(t_data *data, char **arg);
-int	ex_synau(t_data *data, char **arg);
+int	ex_bults(t_data *data, char **arg);
 char    *ex_there(t_data *data, char *cmd);
 int	ex_cpro(t_data *data, char *cmd, char **arg);
 
@@ -283,9 +281,10 @@ int main_exc(t_data *data, t_short *shart);
 int	int_pip(t_data *data, t_short *shart);
 void    clr_pip(t_data *data);
 
+int	m_perror(char *cmd, char *arg, char *msg);
 
 
 
 
 
-#endif
+#endif // HEADER_H
