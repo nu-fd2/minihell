@@ -6,7 +6,7 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 17:36:40 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/07/01 14:56:40 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/07/03 20:22:45 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	ex_synau(t_data *data, char **arg)
 	else if (ft_strncmp(arg[0], "pwd", 4) == 0)
 		cmd_pwd(data);
 	else if (ft_strncmp(arg[0], "exit", 5) == 0)
-		data->exm = 1;
+		cmd_exit(data, &arg[1]);
 	else
 		return (69);
 	return (0);

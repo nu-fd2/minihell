@@ -6,7 +6,7 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 13:16:23 by mdakni            #+#    #+#             */
-/*   Updated: 2025/07/03 18:05:43 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/07/03 20:23:28 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,11 +92,6 @@ int main(int ac, char **av, char **env)
     while(69)
     {
         ret = prompt_msg(data);
-        if (data->exm != 0)
-        {
-            ret = 0;
-            break;
-        }
         if (ret == 0)
             break;
     }

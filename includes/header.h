@@ -251,6 +251,7 @@ char	*ft_strndup(const char *s1, size_t n);
 int	cmd_export(t_data *data, char **arg);
 int	cmd_unset(t_data *data, char **arg);
 int	cmd_echo(t_data *data, char **arg);
+int	cmd_exit(t_data *data, char **arg);
 int	cmd_env(t_data *data);
 int	cmd_pwd(t_data *data);
 int cmd_cd(t_data *data, char **path);
