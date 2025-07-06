@@ -6,7 +6,7 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 16:17:57 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/07/01 21:59:03 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/07/04 12:30:23 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,11 +65,7 @@ int	cmd_export(t_data *data, char **arg)
 		if (!key)
 			ret = 1;
 		if (!ft_isalpha(arg[i][0]) && arg[i][0] != '_')
-		{
-			ft_putstr_fd(key, 2);
-			ft_putstr_fd("ts can't be\n", 2);
-			ret = 1;
-		}
+			ret = m_perror("export", arg[i], "not a valid identifier");
 		if (key && key[0] != '\0')
 		{
 			s = prt_gen(arg[i]);

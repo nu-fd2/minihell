@@ -6,39 +6,11 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 21:55:21 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/07/01 14:56:40 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/07/04 12:46:12 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/header.h"
-
-
-// int	ma_strcmp(const char *s1, const char *s2)
-// {
-// 	size_t			i;
-// 	unsigned char	*p1;
-// 	unsigned char	*p2;
-
-// 	i = 0;
-// 	if (s1 == NULL || s2 == NULL)
-// 	{
-// 		if (s1 == NULL && s2 == NULL)
-// 			return (0);
-// 		else if (s1 == NULL)
-// 			return (-1);
-// 		else
-// 			return (1);
-// 	}
-// 	p1 = (unsigned char *)s1;
-// 	p2 = (unsigned char *)s2;
-// 	while ((p1[i] || p2[i]))
-// 	{
-// 		if (p1[i] != p2[i])
-// 			return (p1[i] - p2[i]);
-// 		i++;
-// 	}
-// 	return (0);
-// }
 
 t_env	*cpy_env(t_env *env)
 {
@@ -119,10 +91,7 @@ int	prn_port_env(t_data *data)
 	h_env = srt_env(data->env);
 	n_env = h_env;
 	if (n_env == NULL)
-	{
-		write(2, "Error: prn_port_env\n", 20);
 		return (1);
-	}
 	else
 	{
 		while (n_env != NULL)

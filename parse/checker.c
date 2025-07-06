@@ -6,7 +6,7 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 17:27:46 by mdakni            #+#    #+#             */
-/*   Updated: 2025/07/01 14:56:40 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/07/05 17:38:30 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,4 +78,4 @@ void checker(char *line)
         // d_quote = check_d_quote(line[i], s_quote, d_quote);
         // printf("after : s=> %d, d=> %d\n", s_quote, d_quote);
 
-// NIGGER
+

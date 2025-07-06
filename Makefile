@@ -14,6 +14,7 @@ SRC = src/minishell.c parse/tokenize.c parse/delimiters.c \
 	  parse/last_lst_creater.c parse/lst_functions_2.c \
 	  \
 	  \
+ex/m_bul/cmd_exit.c \
 ex/m_bul/cmd_cd.c \
 ex/m_bul/cmd_echo.c \
 ex/m_bul/cmd_env.c \
@@ -32,15 +33,17 @@ ex/m_env/int_chr_env.c \
 ex/m_env/fre_chr_env.c \
 ex/m_env/prn_port_env.c \
 ex/m_exc/ex_rish.c \
-ex/m_exc/ex_synau.c \
+ex/m_exc/ex_bults.c \
 ex/m_exc/ex_cpro.c \
 ex/m_exc/ex_there.c \
+ex/m_exc/ex_waitkid.c \
 ex/m_red/src_red.c \
 ex/m_red/red_red.c \
 ex/m_red/apn_red.c \
 ex/m_red/inn_red.c \
 ex/m_red/man_red.c \
 ex/main_exc.c \
+ex/m_perror.c \
 	  \
 ex/libft/ft_atoi.c \
 ex/libft/ft_itoa.c \

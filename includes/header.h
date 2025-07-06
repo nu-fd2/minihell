@@ -70,16 +70,23 @@ typedef struct s_data t_data;
 
 typedef struct s_env t_env;
 
+typedef struct s_kids t_kids;
+
+typedef struct s_nodes t_input;
+
+typedef struct s_latest t_short;
+
 typedef struct s_data
 {
 	int				fd;
 	int				fd2;
 	int				ex;
 	int				exm;
-	pid_t			kid;
 	char			**chr_env;
 	t_env			*env;
-    // t_pips          *pips;
+    t_kids          *kids;
+    t_input         *input;
+    t_short         *shart;
 }					t_data;
 
 typedef struct s_env
@@ -89,6 +96,13 @@ typedef struct s_env
 	bool			ported;
 	struct s_env	*next;
 }					t_env;
+
+typedef struct s_kids
+{
+    pid_t           kid;
+    int             ex;
+    struct s_kids   *next;
+}                   t_kids;
 
 // typedef struct s_pips
 // {
@@ -115,7 +129,7 @@ typedef struct s_nodes
     struct s_nodes *tail;
 }   t_input;
 
-// this nigger
+// this
 typedef struct s_latest
 {
     char **args; // this mf
@@ -172,6 +186,7 @@ typedef struct s_star
     struct s_star *next;
     
 }   t_star;
+
 
 t_input *tokenize(char *line);
 void	*my_calloc(size_t count, size_t size);
@@ -280,6 +295,7 @@ int	inn_red(t_data *data, char *red);
 int main_exc(t_data *data, t_short *shart);
 int	int_pip(t_data *data, t_short *shart);
 void    clr_pip(t_data *data);
+int	ex_waitkid(t_kids *kids);
 
 int	m_perror(char *cmd, char *arg, char *msg);
 

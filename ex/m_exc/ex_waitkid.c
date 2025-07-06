@@ -1,36 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   prn_env.c                                          :+:      :+:    :+:   */
+/*   ex_waitkid.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/17 21:55:21 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/07/04 12:45:41 by oel-mado         ###   ########.fr       */
+/*   Created: 2025/07/04 13:23:22 by oel-mado          #+#    #+#             */
+/*   Updated: 2025/07/06 06:49:08 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/header.h"
 
-
-int	prn_env(t_data *data)
+int	ex_waitkid(t_kids *kids)
 {
-	t_env	*n_env;
+	t_kids	*ts;
+	int		sta;
 
-	n_env = data->env;
-	if (!data || !n_env)
-		return (1);
-	while (n_env != NULL)
+	ts = kids;
+	while (ts)
 	{
-		if (n_env->ported == 1)
-		{
-			ft_putstr_fd(n_env->key, data->fd);
-			ft_putstr_fd("=", data->fd);
-			if (n_env->value)
-				ft_putstr_fd(n_env->value, data->fd);
-			ft_putstr_fd("\n", data->fd);
-		}
-		n_env = n_env->next;
+		waitpid(ts->kid, &sta, 0);
+		if (WIFEXITED(sta))
+			ts->ex = WIFEXITED(sta);
+		else if (WEXITSTATUS(sta))
+			ts->ex = 128 + WEXITSTATUS(sta);
+		else
+			ts->ex = 1;
+		printf("%d\n", ts->ex);
+		ts = ts->next;
 	}
-	return (0);
+	return 1;
 }

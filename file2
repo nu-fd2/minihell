@@ -1,7 +1,12 @@
+.
+..
+.git
+.vscode
 Makefile
 README.md
 ex
 file
+file2
 includes
 minishell
 parse

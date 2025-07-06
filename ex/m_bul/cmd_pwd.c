@@ -6,7 +6,7 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 19:37:43 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/07/01 14:56:40 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/07/04 12:32:34 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,7 @@ int	cmd_pwd(t_data *data)
 
 	pwd = getcwd(NULL, 0);
 	if (!pwd)
-	{
-		write(2, "Error: getcwd()", 15);
-		return (1);
-	}
+		return (m_perror("pwd", "getcwd", "Error"));
 	ft_putstr_fd(pwd, data->fd);
 	ft_putstr_fd("\n", data->fd);
 	free(pwd);
