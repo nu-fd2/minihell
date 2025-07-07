@@ -36,6 +36,7 @@ ex/m_exc/ex_rish.c \
 ex/m_exc/ex_bults.c \
 ex/m_exc/ex_cpro.c \
 ex/m_exc/ex_there.c \
+ex/m_exc/ex_crnt.c \
 ex/m_exc/ex_waitkid.c \
 ex/m_red/src_red.c \
 ex/m_red/red_red.c \
