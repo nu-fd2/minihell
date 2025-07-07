@@ -284,6 +284,7 @@ void	fre_chr_env(char **env);
 int	ex_rish(t_data *data, char **arg);
 int	ex_bults(t_data *data, char **arg);
 char    *ex_there(t_data *data, char *cmd);
+char    *ex_crnt(t_data *data, char *cmd);
 int	ex_cpro(t_data *data, char *cmd, char **arg);
 
 int	man_red(t_data *data, char **red);
