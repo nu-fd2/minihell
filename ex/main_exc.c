@@ -6,22 +6,26 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 20:06:48 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/07/06 19:23:32 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/07/07 01:47:47 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/header.h"
 
-void clr_kids(t_kids *kids)
+int clr_kids(t_data *data)
 {
 	t_kids *ts;
 
-	while (kids)
+	data->exm = ex_waitkid(data->kids);
+	while (data->kids)
 	{
-		ts = kids;
-		kids = kids->next;
+		ts = data->kids;
+		data->kids = data->kids->next;
 		free(ts);
 	}
+	data->kids = NULL;
+	printf("%d\n", data->exm);
+	return 0;
 }
 
 int sec_exc(t_data *data, t_short *shart, int in, int ot)
@@ -40,20 +44,36 @@ int sec_exc(t_data *data, t_short *shart, int in, int ot)
 		close(data->fd);
 	if (data->fd2 != 0 && data->fd2 != in)
 		close(data->fd2);
+	if (in != 0)
+		close (in);
+	if (ot != 1)
+		close (ot);
 	data->fd = 1;
 	data->fd2 = 0;
 	return 0;
 }
 
+int	set_pipe(int s, int *pip1, int *pip2, t_short *fart)
+{
+	if (!s && fart->next)
+	{
+		pipe(pip1);
+		return pip1[1];
+	}
+	else if (s && fart->next)
+	{
+		pipe(pip2);
+		return pip2[1];
+	}
+	return 1;
+}
+
 int main_exc(t_data *data, t_short *shart)
 {
 	t_short *fart;
-	int pip1[2];
-	int pip2[2];
-	int     s;
-	int     in;
-	int     ot;
 
+	int (pip1[2]), (pip2[2]);
+	int (s), (in), (ot);
 	s = 0;
 	in = 0;
 	ot = 1;
@@ -61,32 +81,12 @@ int main_exc(t_data *data, t_short *shart)
 	if (!fart->next)
 	{
 		sec_exc(data, fart, in, ot);
-		ex_waitkid(data->kids);
-		clr_kids(data->kids);
-		data->kids = NULL;
-		return 0;
+		return clr_kids(data);
 	}
 	while (fart)
 	{
-		if (!s && fart->next)
-		{
-			pipe(pip1);
-			ot = pip1[1];
-		}
-		else if (s && fart->next)
-		{
-			pipe(pip2);
-			ot = pip2[1];
-		}
-		else
-			ot = 1;
-
+		ot = set_pipe(s, pip1, pip2, fart);
 		sec_exc(data, fart, in, ot);
-
-		if (in != 0)
-			close (in);
-		if (ot != 1)
-			close (ot);
 		if (!s && fart->next)
 			in = pip1[0];
 		else if (s && fart->next)
@@ -94,8 +94,5 @@ int main_exc(t_data *data, t_short *shart)
 		s = !s;
 		fart = fart->next;
 	}
-	ex_waitkid(data->kids);
-	clr_kids(data->kids);
-	data->kids = NULL;
-	return 0;
+	return clr_kids(data);
 }

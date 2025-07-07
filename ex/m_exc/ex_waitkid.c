@@ -6,7 +6,7 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 13:23:22 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/07/06 06:49:08 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/07/07 01:55:10 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,21 @@ int	ex_waitkid(t_kids *kids)
 {
 	t_kids	*ts;
 	int		sta;
+	int		x;
 
 	ts = kids;
+	x = 0;
 	while (ts)
 	{
 		waitpid(ts->kid, &sta, 0);
 		if (WIFEXITED(sta))
-			ts->ex = WIFEXITED(sta);
-		else if (WEXITSTATUS(sta))
-			ts->ex = 128 + WEXITSTATUS(sta);
+			ts->ex = WEXITSTATUS(sta);
+		else if (WIFSIGNALED(sta))
+			ts->ex = 128 + WTERMSIG(sta);
 		else
-			ts->ex = 1;
-		printf("%d\n", ts->ex);
+			ts->ex = 0;
+		x = ts->ex;
 		ts = ts->next;
 	}
-	return 1;
+	return x;
 }
