@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_exc.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 20:06:48 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/07/08 15:07:58 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/07/08 20:32:17 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int clr_kids(t_data *data)
 		free(ts);
 	}
 	data->kids = NULL;
-	printf("%d\n", data->exm);
+	// printf("%d\n", data->exm);
 	return 0;
 }
 
@@ -37,7 +37,7 @@ int sec_exc(t_data *data, t_short *shart, int in, int ot)
 	data->fd2 = in;
 	if (shart->reds)
 		ret = man_red(data, shart->reds);
-	printf("%d>%d\n", in, ot);
+	// printf("%d>%d\n", in, ot);
 	if (!ret)
 		ex_rish(data, shart->args);
 	if (data->fd != 1 && data->fd != ot)
@@ -78,21 +78,25 @@ int main_exc(t_data *data, t_short *shart)
 	ot = 1;
 	fart = shart;
 	// int_dog(data, shart);
-	if (!fart->next)
-	{
-		sec_exc(data, fart, in, ot);
-		return clr_kids(data);
+	if (shart->args != NULL)
+	{	
+		if (!fart->next)
+		{
+			sec_exc(data, fart, in, ot);
+			return clr_kids(data);
+		}
+		while (fart)
+		{
+			ot = set_pipe(s, pip1, pip2, fart);
+			sec_exc(data, fart, in, ot);
+			if (!s && fart->next)
+				in = pip1[0];
+			else if (s && fart->next)
+				in = pip2[0];
+			s = !s;
+			fart = fart->next;
+		}
+		clr_kids(data);
 	}
-	while (fart)
-	{
-		ot = set_pipe(s, pip1, pip2, fart);
-		sec_exc(data, fart, in, ot);
-		if (!s && fart->next)
-			in = pip1[0];
-		else if (s && fart->next)
-			in = pip2[0];
-		s = !s;
-		fart = fart->next;
-	}
-	return clr_kids(data);
+	return 0;
 }

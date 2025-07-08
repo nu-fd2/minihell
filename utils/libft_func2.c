@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft_func2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 17:59:49 by mdakni            #+#    #+#             */
-/*   Updated: 2025/07/01 14:56:40 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/07/08 20:56:04 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,6 +135,7 @@ char	*my_substr(char const *s, unsigned int start, size_t len)
 
 	j = 0;
 	i = start;
+	
 	if (!s)
 		return (NULL);
 	size = my_strlen(s);

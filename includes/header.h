@@ -276,7 +276,7 @@ int		prn_port_env(t_data *data);
 int		fre_env(t_env *env);
 int		del_env(t_env *env, char *key);
 t_env	*grp_env(t_env *env, char *key);
-char	*gky_env(t_env *env, char *key);
+char	*gky_env(t_data *data, char *key);
 t_env	*add_env(t_env *env, char *key, char *value, bool ported);
 int	lvl_env(t_data *data);
 char	**int_chr_env(t_data *data);
