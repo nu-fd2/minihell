@@ -6,7 +6,7 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 16:50:59 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/07/07 14:16:37 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/07/08 13:40:34 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,14 @@ int	ex_rish(t_data *data, char **arg)
 		return (0);
 	if (ex_bults(data, arg) != 69)
 		return (0);
-	cmd = ex_there(data, arg[0]);
-	if (!arg[0])
+	if (arg[0][0] == '.' && arg[0][1] == '/')
 		cmd = ex_crnt(data, arg[0]);
+	else
+		cmd = ex_there(data, arg[0]);
+	// if (cmd == NULL)
+	// 	prompt_msg(data);
 	if (cmd == NULL)
-		prompt_msg(data);
-	else if (cmd == NULL)
-		return (m_perror(arg[0], NULL, "command not found"));
+		return (1);
 	else
 	{
 		data->chr_env = int_chr_env(data);

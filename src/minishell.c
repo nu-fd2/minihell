@@ -6,7 +6,7 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 13:16:23 by mdakni            #+#    #+#             */
-/*   Updated: 2025/07/06 08:01:47 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/07/08 13:54:02 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void manager(t_data *data, char *line)
     striper(input);
     shart = last_lst_creater(input);
 
-    // lst_print2(shart);
+    lst_print2(shart);
 
     // TS AHHHHHHH
     //fnc(shart)
@@ -37,6 +37,9 @@ void manager(t_data *data, char *line)
     data->shart = shart;
 
     main_exc(data, shart);
+
+    write(1, "exih\n", 5);
+    printf("\e[1;32m%d\e[0m\n", data->exm);
 
     // lst_print(input);
     // printf("\e[1;32mCums!\e[0m\n");
@@ -95,6 +98,7 @@ int main(int ac, char **av, char **env)
 
     atexit(t);
 
+    write(1, "\e[1;31mstartin hell...!\e[0m\n", 28);
     while(69)
     {
         ret = prompt_msg(data);

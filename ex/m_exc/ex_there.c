@@ -6,7 +6,7 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 07:12:00 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/07/01 14:56:40 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/07/08 13:49:08 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ char    *ex_there(t_data *data, char *cmd)
 	int		i;
 
 	char (*ful_path), (*path), (*ult), (*n_cmd);
+	if (!cmd)
+		return (NULL);
 	s = 0;
 	i = 0;
 	ult = NULL;
@@ -46,6 +48,8 @@ char    *ex_there(t_data *data, char *cmd)
 		free(path);
 		i++;
 	}
+	if (!ult)
+		m_perror(cmd, NULL, "command not found");
 	free(n_cmd);
 	cln_splt(hed_path);
 	return (ult);
