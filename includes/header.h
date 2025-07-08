@@ -140,6 +140,7 @@ typedef struct s_latest
     bool ambiguous;
     int red_size;
     bool expanded;
+    int pip[2];
 }   t_short;
 
 typedef struct s_size

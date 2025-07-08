@@ -1,31 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   grp_env.c                                          :+:      :+:    :+:   */
+/*   dog_red.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/17 21:54:01 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/07/07 19:06:25 by oel-mado         ###   ########.fr       */
+/*   Created: 2025/07/07 19:07:05 by oel-mado          #+#    #+#             */
+/*   Updated: 2025/07/07 19:08:14 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/header.h"
 
-t_env	*grp_env(t_env *env, char *key)
+int dog_red(t_data *data, char *red)
 {
-	t_env	*tm_env;
-	int		l;
+	int neo;
 
-	if (key == NULL || env == NULL)
-		return (NULL);
-	tm_env = env;
-	l = ft_strlen(key);
-	while (tm_env != NULL)
+	neo = -1;
+	if (access(red, F_OK) == -1)
 	{
-		if (tm_env->key[l] == '\0' && ft_strncmp(tm_env->key, key, l) == 0)
-			return (tm_env);
-		tm_env = tm_env->next;
+		ft_putstr_fd(red, 2);
+		ft_putstr_fd(" not found\n", 2);
+		return 1;
 	}
-	return (NULL);
+	else if (access(red, R_OK) == -1)
+	{
+		write(2, "Permission denied\n", 19);
+		return 1;
+	}
+	else
+		neo = open(red, O_RDONLY);
+	data->fd2 = neo;
+	return 0;
 }

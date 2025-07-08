@@ -6,7 +6,7 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 20:06:48 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/07/07 01:47:47 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/07/08 01:13:45 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,12 +72,12 @@ int main_exc(t_data *data, t_short *shart)
 {
 	t_short *fart;
 
-	int (pip1[2]), (pip2[2]);
-	int (s), (in), (ot);
+	int (s), (in), (ot), (pip1[2]), (pip2[2]);
 	s = 0;
 	in = 0;
 	ot = 1;
 	fart = shart;
+	int_dog(data, shart);
 	if (!fart->next)
 	{
 		sec_exc(data, fart, in, ot);
