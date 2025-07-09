@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   grp_env.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 21:54:01 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/07/07 19:06:25 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/07/08 18:33:19 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,10 @@ t_env	*grp_env(t_env *env, char *key)
 	l = ft_strlen(key);
 	while (tm_env != NULL)
 	{
-		if (tm_env->key[l] == '\0' && ft_strncmp(tm_env->key, key, l) == 0)
+		if (ft_strncmp(tm_env->key, key, l) == 0)
+		{
 			return (tm_env);
+		}
 		tm_env = tm_env->next;
 	}
 	return (NULL);

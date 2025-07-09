@@ -219,7 +219,7 @@ int handle_word(t_input **list, char *line);
 bool check_limit(char *line, t_quotes *check);
 char	*my_substr(char const *s, unsigned int start, size_t len);
 
-void filter(t_input *list);
+int filter(t_input *list);
 void checker(char *line);
 void seperator(t_input *list);
 t_short *transformer(t_input *list);
@@ -277,7 +277,7 @@ int		prn_port_env(t_data *data);
 int		fre_env(t_env *env);
 int		del_env(t_env *env, char *key);
 t_env	*grp_env(t_env *env, char *key);
-char	*gky_env(t_env *env, char *key);
+char	*gky_env(t_data *data, char *key);
 t_env	*add_env(t_env *env, char *key, char *value, bool ported);
 int	lvl_env(t_data *data);
 char	**int_chr_env(t_data *data);

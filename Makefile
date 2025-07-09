@@ -2,8 +2,8 @@ NAME = minishell
 
 # CFLAGS = -Wall -Werror -Wextra -I./readline/include
 # CFLAGS = -fsanitize=address -g -I./readline/include
-# CFLAGS = -fsanitize=address -I./readline/include
-CFLAGS = -I./readline/include
+CFLAGS = -fsanitize=address -I./readline/include
+# CFLAGS = -I./readline/include
 
 RDFLAGS = -lreadline -lncurses
 
@@ -86,7 +86,10 @@ t:
 
 all:$(NAME)
 
-$(NAME):$(OBJ)
+# $(LBFT):
+# 	make -C ex/libft
+
+$(NAME):$(OBJ) $(LBFT)
 	$(CC) $(CFLAGS) $(OBJ) readline/libreadline.a readline/libhistory.a -o $(NAME) $(RDFLAGS)
 
 %.o: %.c includes/header.h

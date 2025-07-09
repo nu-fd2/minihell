@@ -6,7 +6,7 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 13:16:23 by mdakni            #+#    #+#             */
-/*   Updated: 2025/07/09 01:08:05 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/07/09 02:13:58 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,35 +19,56 @@ void manager(t_data *data, char *line)
 
     // checker(line);
     input = tokenize(line);
-    filter(input);
+	// printf("tokenize finished\n");
+    if(filter(input))
+        return(ft_lstfree(input));
+	// printf("filter finished\n");
     seperator(input);
+	// printf("seperator finished\n");
     input = money_expansion(input, data);
+	// printf("money_expansion finished\n");
     input = star_expansion(input);
+	// printf("star_expansion finished\n");
     striper(input);
+	// printf("striper finished\n");
     shart = last_lst_creater(input);
+	// printf("last_lst_creater finished\n");
 
     lst_print2(shart);
+	// printf("lst_print2 finished\n");
 
     // TS AHHHHHHH
     //fnc(shart)
 
     write(1, "parsih\n", 7);
 
-    // if((!shart->args || !shart->args[0]) && !shart->reds)
-    //     return;
+    if((!shart->args || !shart->args[0]) && !shart->reds)
+        return;
     data->input = input;
     data->shart = shart;
 
     main_exc(data, shart);
 
-    write(1, "exih\n", 5);
-    printf("\e[1;32m%d\e[0m\n", data->exm);
+    // write(1, "exih\n", 5);
+    // printf("\e[1;32m%d\e[0m\n", data->exm);
 
     // lst_print(input);
     // printf("\e[1;32mCums!\e[0m\n");
     // shart = transformer(input);
     ft_lstfree(input);
     ft_lstfree_2(shart);
+}
+
+int ft_skip_spaces(char *line)
+{
+    int i;
+
+    i = 0;
+	while(is_space(line[i]) && line[i])
+		i++;
+	if(line[i] == '\0')
+		return 1;
+	return 0;
 }
 
 int prompt_msg(t_data *data)
@@ -61,13 +82,14 @@ int prompt_msg(t_data *data)
         // exit(0);
         return 0;
     }
-    if (!line[0])
+    if (ft_skip_spaces(line))
         return (free(line), 1);
     add_history(line);
     manager(data, line);
     free(line);
     return 1;
 }
+
 void t()
 {
     system("leaks minishell");
@@ -98,7 +120,7 @@ int main(int ac, char **av, char **env)
     signal(SIGINT, hnd_sig);
 	signal(SIGQUIT, SIG_IGN);
 
-    atexit(t);
+    // atexit(t);
 
     write(1, "\e[1;31mstartin hell...!\e[0m\n", 28);
     while(69)

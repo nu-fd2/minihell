@@ -3,19 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   money_expansion.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 14:50:07 by skully            #+#    #+#             */
-/*   Updated: 2025/07/01 14:56:40 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/07/08 21:29:39 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/header.h"
 
+char *handle_tmp2(t_data *data, t_input *list, char *tmp3, t_flags *check)
+{
+    char *tmp;
+
+    tmp = my_substr(list->value, check->start, (check->end) - check->start);
+    check->start = check->end;
+    if(tmp[0] == '?')
+        return(ft_itoa(data->exm));
+    else
+        tmp3 = gky_env(data, tmp);
+    if(!tmp3)
+        return(free(tmp), NULL);
+    return(free(tmp), my_strdup(tmp3));
+}
+
 void expand_and_append(t_input *list, t_flags *check, t_data *data)
 {
-    //append what was previously read from outside $, then read until finishing $ then append what was read, then continue reading and appending
-    char *tmp;
     char *tmp2;
     char *tmp3;
 
@@ -24,21 +37,24 @@ void expand_and_append(t_input *list, t_flags *check, t_data *data)
     check->start = check->end;
     if(!my_isalpha(list->value[check->end]) && list->value[check->end] != '_')
     {
-        check->string = my_strnjoin(check->string, "$", 1);
-        // check->string = NULL;
-        return;
+        if(list->value[check->end] != '?')
+        {
+            check->string = my_strnjoin(check->string, "$", 1);
+                return;
+        }
     }
     while(my_isalnum(list->value[check->end]) || list->value[check->end] == '_')
         check->end++;
-    tmp = my_substr(list->value, check->start, (check->end) - check->start);
-    check->start = check->end;
-    tmp3 = gky_env(data->env, tmp);
-    if(!tmp3)
-        return(free(tmp));
-    tmp2 = my_strdup(tmp3);
-    free(tmp);
+    if(list->value[check->end] == '?')
+        check->end++;
+    tmp2 = handle_tmp2(data, list, tmp3, check);
+    if(tmp2 == NULL)
+    {
+        printf("\ntmp2 : %s\n", tmp2);
+        return;
+    }
     check->string = my_strnjoin(check->string, tmp2, my_strlen(tmp2));
-    free(tmp2);
+    return(free(tmp2));
 }
 
 void node_check(t_input *list, t_flags *check, t_data *data)
@@ -105,7 +121,9 @@ t_input *split_and_add(t_input **list, t_input **iter)
     lst_tmp = NULL;
     i = 0;
     tmp = my_split((*iter)->value);
-    if(!tmp || !tmp[0] || tmp[1] == NULL)
+    if(tmp && !tmp[0])
+        return(free((*iter)->value), (*iter)->value = NULL, *list);
+    if(!tmp || tmp[1] == NULL)
         return(free_split(tmp) ,*list);
     while(tmp[i])
     {

@@ -6,7 +6,7 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 07:32:17 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/07/01 14:56:40 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/07/09 02:38:53 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	red_red(t_data *data, char *red)
 		return 1;
 	}
 	else
-		neo = open(red, O_WRONLY);
+		neo = open(red, O_WRONLY | O_TRUNC);
 	data->fd = neo;
 	return 0;
 }
