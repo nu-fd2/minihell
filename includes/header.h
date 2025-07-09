@@ -218,7 +218,7 @@ int handle_word(t_input **list, char *line);
 bool check_limit(char *line, t_quotes *check);
 char	*my_substr(char const *s, unsigned int start, size_t len);
 
-void filter(t_input *list);
+int filter(t_input *list);
 void checker(char *line);
 void seperator(t_input *list);
 t_short *transformer(t_input *list);

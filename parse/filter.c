@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   filter.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 12:37:25 by mdakni            #+#    #+#             */
-/*   Updated: 2025/07/01 14:56:40 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/07/09 01:13:53 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void syntax_error(t_token type, t_input *list, t_input *iter)
 }
 
 // this function manages the first level of syntax checking (words, operators, delimiters)
-void filter(t_input *list)
+int filter(t_input *list)
 {
     t_input *iter;
 
@@ -41,22 +41,23 @@ void filter(t_input *list)
     while(iter)
     {
         if(iter->type == TOKEN_PIPE && iter->next->type == TOKEN_PIPE)
-            return(syntax_error(TOKEN_PIPE, list, iter));
+            return(syntax_error(TOKEN_PIPE, list, iter), 1);
         if((iter->type == TOKEN_R_RED || iter->type == TOKEN_L_RED) && !(iter->next->value))
-            return(printf("3 : %d\n", iter->index) ,syntax_error(iter->type, list, iter));
+            return(syntax_error(iter->type, list, iter), 1);
         if((iter->type == TOKEN_R_APP || iter->type == TOKEN_HEREDOC) && !(iter->next->value))
-            return(printf("4 : %d\n", iter->index) ,syntax_error(iter->type, list, iter));
+            return(syntax_error(iter->type, list, iter), 1);
         if(iter->type == TOKEN_PIPE && (!(iter->prev) || !(iter->next->value)))
-            return(printf("1 : %d\n", iter->index) ,syntax_error(iter->type, list, iter));
+            return(syntax_error(iter->type, list, iter), 1);
         if(iter->category == TOKEN_RED_APP && iter->next->category != TOKEN_WORD)
-            return(printf("5 : %d\n", iter->index) ,syntax_error(iter->type, list, iter));
+            return(syntax_error(iter->type, list, iter), 1);
         iter = iter->next;
     }
     if(list->quotes != 0)
     {
         if(list->quotes == 1)
-            printf("Open Single Quote Error\n");
+            return(printf("Open Single Quote Error\n"), 1);
         if(list->quotes == 2)
-            printf("Open Double Quote Error\n");
+            return(printf("Open Double Quote Error\n"), 1);
     }
+    return 0;
 }

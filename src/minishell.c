@@ -6,7 +6,7 @@
 /*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 13:16:23 by mdakni            #+#    #+#             */
-/*   Updated: 2025/07/08 21:34:28 by mdakni           ###   ########.fr       */
+/*   Updated: 2025/07/09 01:15:08 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ void manager(t_data *data, char *line)
     // checker(line);
     input = tokenize(line);
 	// printf("tokenize finished\n");
-    filter(input);
+    if(filter(input))
+        return(ft_lstfree(input));
 	// printf("filter finished\n");
     seperator(input);
 	// printf("seperator finished\n");
