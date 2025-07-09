@@ -6,7 +6,7 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 20:06:48 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/07/09 03:00:40 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/07/09 06:25:44 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ int clr_kids(t_data *data)
 		free(ts);
 	}
 	data->kids = NULL;
-	// printf("%d\n", data->exm);
 	return 0;
 }
 
@@ -37,10 +36,8 @@ int sec_exc(t_data *data, t_short *shart, int in, int ot)
 	data->fd2 = in;
 	if (shart->reds)
 		ret = man_red(data, shart, shart->reds);
-	printf("%d>%d\n", in, ot);
 	if (!ret)
 	{
-		printf("im here!\n");
 		if (shart->args)
 		{
 			if (shart->args[0])

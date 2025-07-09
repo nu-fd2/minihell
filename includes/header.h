@@ -65,6 +65,8 @@ typedef enum s_tokens
 // gmtime_r[GK;k E pr3 
 // OFLWGK HR;JL ]
 
+int pmo;
+
 typedef struct s_latest t_short;
 
 typedef struct s_data t_data;
@@ -83,6 +85,7 @@ typedef struct s_data
 	int				fd2;
 	int				ex;
 	int				exm;
+	int				pmo;
 	char			**chr_env;
 	t_env			*env;
     t_kids          *kids;

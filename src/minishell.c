@@ -6,7 +6,7 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 13:16:23 by mdakni            #+#    #+#             */
-/*   Updated: 2025/07/09 02:13:58 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/07/09 06:37:23 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,13 @@ void manager(t_data *data, char *line)
     shart = last_lst_creater(input);
 	// printf("last_lst_creater finished\n");
 
-    lst_print2(shart);
+    // lst_print2(shart);
 	// printf("lst_print2 finished\n");
 
     // TS AHHHHHHH
     //fnc(shart)
 
-    write(1, "parsih\n", 7);
+    // write(1, "parsih\n", 7);
 
     if((!shart->args || !shart->args[0]) && !shart->reds)
         return;
@@ -79,7 +79,6 @@ int prompt_msg(t_data *data)
     {
         write(1, "exit\n", 5);
         free(line);
-        // exit(0);
         return 0;
     }
     if (ft_skip_spaces(line))
@@ -90,14 +89,15 @@ int prompt_msg(t_data *data)
     return 1;
 }
 
-void t()
-{
-    system("leaks minishell");
-}
+// void t()
+// {
+//     system("leaks minishell");
+// }
 
 static void hnd_sig(int sig)
 {
 	(void)sig;
+    pmo = 1;
 	write(1, "\n", 1);
 	rl_replace_line("", 0);
 	rl_on_new_line();
@@ -115,6 +115,7 @@ int main(int ac, char **av, char **env)
     data->fd = 1;
     data->fd2 = 0;
     data->exm = 0;
+    pmo = 0;
     data->kids = NULL;
     lvl_env(data);
     signal(SIGINT, hnd_sig);
@@ -122,7 +123,7 @@ int main(int ac, char **av, char **env)
 
     // atexit(t);
 
-    write(1, "\e[1;31mstartin hell...!\e[0m\n", 28);
+    // write(1, "\e[1;31mstartin hell...!\e[0m\n", 28);
     while(69)
     {
         ret = prompt_msg(data);
