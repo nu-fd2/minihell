@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   money_expansion.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
+/*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 14:50:07 by skully            #+#    #+#             */
-/*   Updated: 2025/07/08 21:29:39 by mdakni           ###   ########.fr       */
+/*   Updated: 2025/07/09 16:25:37 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ void expand_and_append(t_input *list, t_flags *check, t_data *data)
     tmp2 = handle_tmp2(data, list, tmp3, check);
     if(tmp2 == NULL)
     {
-        printf("\ntmp2 : %s\n", tmp2);
         return;
     }
     check->string = my_strnjoin(check->string, tmp2, my_strlen(tmp2));

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_cd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
+/*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 10:47:13 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/07/08 19:56:24 by mdakni           ###   ########.fr       */
+/*   Updated: 2025/07/09 15:39:26 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ char	*n_path(t_data *data, char *opeth)
 		return (path);
 	}
 	home = gky_env(data, "HOME");
+	if (!home)
+		return NULL;
 	if (opeth[1] == '/')
 		path = ft_sstrjoin(home, &opeth[1]);
 	else
@@ -51,6 +53,8 @@ int cmd_cd(t_data *data, char **arg)
 	if (!arg[0] || arg[0][0] == '\0')
 	{
 		pmt = getenv("HOME");
+		if (!pmt)
+			return 1;
 		tmp = ft_strdup(pmt);
 	}
 	else

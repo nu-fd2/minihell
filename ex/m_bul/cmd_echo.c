@@ -6,7 +6,7 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 10:35:49 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/07/09 06:48:05 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/07/09 15:37:01 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,33 @@ void	prn_all(int fd, char **arg)
 	}
 }
 
+int chk_n(char *arg)
+{
+	int i;
+
+	i = 1;
+	if (!arg)
+		return 0;
+	if (arg[0] != '-')
+		return 0;
+	if (arg[1] != 'n')
+		return 0;
+	while (arg[i])
+	{
+		i++;
+		if (arg[i] != 'n')
+			break;
+	}
+	if (arg[i] != '\0')
+		return 0;
+	return 1;
+}
+
 int	cmd_echo(t_data *data, char **arg)
 {
-	int (i), (n);
+	int (i), (j), (n);
 	i = 0;
+	j = 0;
 	n = 0;
 	if (!data || !arg)
 		return (1);
@@ -40,17 +63,16 @@ int	cmd_echo(t_data *data, char **arg)
 		ft_putstr_fd("\n", data->fd);
 		return (0);
 	}
-	if (arg[0][i++] == '-')
+	if (chk_n(arg[j]) == 1)
+		n = 1;
+	while (arg[j])
 	{
-		while (arg[0][i] == 'n')
-		{
-			i++;
-			if (arg[0][i] == '\0')
-				n = 1;
-		}
+		if (chk_n(arg[j]) != 1)
+			break;
+		j++;
 	}
-	if (arg[n])
-		prn_all(data->fd, &arg[n]);
+	if (arg[j])
+		prn_all(data->fd, &arg[j]);
 	if (!n)
 		ft_putstr_fd("\n", data->fd);
 	return (0);

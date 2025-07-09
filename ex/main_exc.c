@@ -6,7 +6,7 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 20:06:48 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/07/09 06:25:44 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/07/09 16:23:58 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,9 @@ int sec_exc(t_data *data, t_short *shart, int in, int ot)
 	{
 		if (shart->args)
 		{
-			if (shart->args[0])
+			if (!shart->args[0] && !shart->expanded)
+				m_perror(NULL, "", "command not found");
+			else if (!shart->expanded || shart->args[0])
 				ex_rish(data, shart->args);
 		}
 	}

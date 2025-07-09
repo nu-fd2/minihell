@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ex_there.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
+/*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 07:12:00 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/07/08 19:56:35 by mdakni           ###   ########.fr       */
+/*   Updated: 2025/07/09 16:39:09 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ char    *ex_there(t_data *data, char *cmd)
 	i = 0;
 	ult = NULL;
 	ful_path = gky_env(data, "PATH");
+	if (!ful_path)
+		return (m_perror(cmd, NULL, "No such file or directory"), NULL);
 	hed_path = ft_ssplit(ful_path, ':');
 	n_cmd = ft_sstrjoin("/", cmd);
 	while (hed_path[i] && !s)

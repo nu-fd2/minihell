@@ -6,7 +6,7 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 13:16:23 by mdakni            #+#    #+#             */
-/*   Updated: 2025/07/09 06:37:23 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/07/09 16:03:56 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ void manager(t_data *data, char *line)
 
     // write(1, "parsih\n", 7);
 
-    if((!shart->args || !shart->args[0]) && !shart->reds)
-        return;
+    // if((!shart->args || (!shart->args[0] && !shart->expanded)) && !shart->reds)
+    //     return;
     data->input = input;
     data->shart = shart;
 
