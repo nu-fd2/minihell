@@ -44,6 +44,7 @@ ex/m_red/red_red.c \
 ex/m_red/apn_red.c \
 ex/m_red/inn_red.c \
 ex/m_red/man_red.c \
+ex/m_red/int_dog.c \
 ex/main_exc.c \
 ex/m_perror.c \
 	  \
@@ -69,6 +70,8 @@ ex/libft/ft_isalpha.c \
 ex/libft/ft_memset.c \
 ex/libft/ft_strcmp.c \
 	\
+get_next_line/get_next_line_bonus.c \
+get_next_line/get_next_line_utils_bonus.c \
 	\
 
 OBJ = $(SRC:.c=.o)

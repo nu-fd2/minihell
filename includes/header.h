@@ -33,6 +33,7 @@
 #include "../readline/readline.h"
 #endif
 
+#include "../get_next_line/get_next_line_bonus.h"
 
 // Tokens used to categorise each word in the input string.
 // R : right, L : left, S : single, D : double, O : opened, C : closed.
@@ -288,11 +289,12 @@ char    *ex_there(t_data *data, char *cmd);
 char    *ex_crnt(t_data *data, char *cmd);
 int	ex_cpro(t_data *data, char *cmd, char **arg);
 
-int	man_red(t_data *data, char **red);
-int	src_red(t_data *data, char **red);
+int	man_red(t_data *data, t_short *shart, char **red);
+int	src_red(t_data *data, t_short *shart, char **red);
 int	red_red(t_data *data, char *red);
 int	apn_red(t_data *data, char *red);
 int	inn_red(t_data *data, char *red);
+int int_dog(t_data *data, t_short *shart);
 
 int main_exc(t_data *data, t_short *shart);
 int	int_pip(t_data *data, t_short *shart);

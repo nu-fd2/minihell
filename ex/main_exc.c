@@ -6,7 +6,7 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 20:06:48 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/07/08 15:07:58 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/07/08 21:23:57 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int sec_exc(t_data *data, t_short *shart, int in, int ot)
 	data->fd = ot;
 	data->fd2 = in;
 	if (shart->reds)
-		ret = man_red(data, shart->reds);
+		ret = man_red(data, shart, shart->reds);
 	printf("%d>%d\n", in, ot);
 	if (!ret)
 		ex_rish(data, shart->args);
@@ -77,7 +77,7 @@ int main_exc(t_data *data, t_short *shart)
 	in = 0;
 	ot = 1;
 	fart = shart;
-	// int_dog(data, shart);
+	int_dog(data, shart);
 	if (!fart->next)
 	{
 		sec_exc(data, fart, in, ot);
