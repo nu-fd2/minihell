@@ -6,7 +6,7 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 20:06:48 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/07/09 16:23:58 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/07/10 22:31:13 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,11 @@
 int clr_kids(t_data *data)
 {
 	t_kids *ts;
+	int x;
 
-	data->exm = ex_waitkid(data->kids);
+	x = ex_waitkid(data->kids);
+	if (x != 0)
+		data->exm = x;
 	while (data->kids)
 	{
 		ts = data->kids;

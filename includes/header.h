@@ -65,7 +65,7 @@ typedef enum s_tokens
 // gmtime_r[GK;k E pr3 
 // OFLWGK HR;JL ]
 
-int pmo;
+extern int pmo;
 
 typedef struct s_latest t_short;
 

@@ -6,11 +6,13 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 13:16:23 by mdakni            #+#    #+#             */
-/*   Updated: 2025/07/09 16:03:56 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/07/09 22:28:45 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/header.h"
+
+int pmo = 0;
 
 void manager(t_data *data, char *line)
 {

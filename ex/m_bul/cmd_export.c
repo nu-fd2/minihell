@@ -6,23 +6,44 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 16:17:57 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/07/09 16:56:22 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/07/10 22:46:56 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/header.h"
 
-
 char *key_gen(char *arg)
 {
 	int	i;
+	int s;
+	char *key;
 
 	i = 0;
+	s = 0;
+	key = NULL;
 	if (!arg)
 		return NULL;
+	if (arg[0] == '=')
+		return (m_perror("export", arg, "not a valid identifier"), NULL);
 	while (arg[i] != '=' && arg[i] != '\0')
 		i++;
-	return (ft_strndup(arg, i));
+	key = ft_strndup(arg, i);
+	i = 0;
+	if (key)
+	{
+		if (!ft_isalpha(key[0]) && key[0] != '_')
+			s = m_perror("export", key, "not a valid identifier");
+		else
+		{
+			while (key[i] && (ft_isalnum(key[i]) || key[i] == '_'))
+				i++;
+			if (key[i] != '=' && key[i] != '\0')
+				s = m_perror("export", key, "not a valid identifier");
+		}
+		if (s)
+			return (free(key), NULL);
+	}
+	return (key);
 }
 
 char	*val_gen(char *arg)
@@ -58,11 +79,8 @@ int	cmd_export(t_data *data, char **arg)
 	int (i), (s), (j), (ret);
 	char (*key), (*val);
 	i = 0;
-	j = 0;
 	ret = 0;
-	if (!data || !data->env)
-		return (1);
-	if (!arg || !arg[0])
+	if (!arg[0])
 		return (prn_port_env(data), 0);
 	while (arg[i])
 	{
@@ -70,21 +88,23 @@ int	cmd_export(t_data *data, char **arg)
 		key = NULL;
 		val = NULL;
 		key = key_gen(arg[i]);
-		if (!key)
-			ret = 1;
-		if (!ft_isalpha(arg[i][0]) && arg[i][0] != '_')
-			ret = m_perror("export", arg[i], "not a valid identifier");
-		while (ft_isalnum(arg[i][j]) || arg[i][j] != '_')
-			j++;
-		if (!(arg[i][j] != '\0' || arg[i][j] != '\0'))
-			ret = m_perror("export", arg[i], "not a valid identifier");
-		if (key && key[0] != '\0')
+		if (key)
 		{
 			s = prt_gen(arg[i]);
 			val = val_gen(arg[i]);
 			add_env(data->env, key, val, s);
+			// free(val);
 		}
+		else
+			ret = 1;
 		i++;
 	}
 	return (free(key), free(val), ret);
 }
+
+
+
+
+
+
+
