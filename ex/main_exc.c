@@ -6,7 +6,7 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 20:06:48 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/07/10 22:31:13 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/07/11 10:32:50 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ int sec_exc(t_data *data, t_short *shart, int in, int ot)
 				ex_rish(data, shart->args);
 		}
 	}
+	else
+		data->exm = ret;
 	if (data->fd != 1 && data->fd != ot)
 		close(data->fd);
 	if (data->fd2 != 0 && data->fd2 != in)

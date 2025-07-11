@@ -6,7 +6,7 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 19:50:09 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/07/08 13:58:13 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/07/10 23:43:48 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,14 @@ int	cmd_exit(t_data *data, char **arg)
 	if (arg[0] != NULL)
 	{
 		if (is_alldigit(arg[0]))
-			m_perror("exit", arg[0], "numeric arg required");
+		{
+			x = 2;
+			m_perror("exit", arg[0], "numeric argument required");
+		}
 		else if (arg[1] != NULL)
 		{
 			x = 255;
-			return (m_perror("exit", NULL, "too many args"));
+			return (m_perror("exit", NULL, "too many arguments"));
 		}
 		else
 			x = ft_atoi(arg[0]) % 256;

@@ -6,7 +6,7 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 10:47:13 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/07/09 15:39:26 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/07/10 23:39:37 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ int cmd_cd(t_data *data, char **arg)
 			return 1;
 		tmp = ft_strdup(pmt);
 	}
+	else if (arg[1])
+		return (m_perror("cd", NULL, "too many arguments"));
 	else
 		tmp = n_path(data, arg[0]);
 	pwd = grp_env(data->env, "PWD");

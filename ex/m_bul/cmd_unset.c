@@ -6,7 +6,7 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 21:48:51 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/07/05 22:26:42 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/07/10 23:31:46 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	cmd_unset(t_data *data, char **arg)
 		if (!ft_isalpha(arg[i][0]) && arg[i][0] != '_')
 			s = m_perror("unset", arg[i], "not a valid identifier");
 		else
-			del_env(data->env, arg[i]);
+			del_env(data, arg[i]);
 		i++;
 	}
 	return (s);
