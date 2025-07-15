@@ -6,22 +6,31 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 21:55:17 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/07/01 14:56:40 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/07/14 10:34:21 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/header.h"
 
+// t_env	*tmp_env()
+// {
+// 	t_env	*neo;
+// 	t_env	*hed;
+
+	
+// }
 
 t_env	*int_env(char **env)
 {
-	int		i;
-	int		j;
+	t_env	*hd_env;
+	t_env	*nu_env;
+	t_env	*tm_env;
 
-	t_env (*hd_env), (*nu_env), (*tm_env);
-	nu_env = NULL;
+	int (i), (j);
+	// if (!env)
+	// 	return (tmp_env());
 	i = 0;
-	while(env[i])
+	while (env[i])
 	{
 		j = 0;
 		while (env[i][j] != '=' && env[i][j] != '\0')

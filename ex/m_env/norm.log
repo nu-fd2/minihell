@@ -1,0 +1,64 @@
+Norminette Check Log
+====================
+
+add_env.c
+add_env.c: Error!
+Error: TOO_FEW_TAB          (line:  17, col:  22):	Missing tabs for indent level
+Error: SPACE_AFTER_KW       (line:  42, col:   5):	Missing space after keyword
+Error: SPC_BFR_PAR          (line:  42, col:  11):	Missing space before parenthesis (brace/bracket)
+Error: TOO_MANY_LINES       (line:  43, col:   1):	Function has more than 25 lines
+
+del_env.c
+del_env.c: OK!
+
+fre_chr_env.c
+fre_chr_env.c: Error!
+Error: CONSECUTIVE_NEWLINES (line:  15, col:   1):	Consecutive newlines
+Error: MISALIGNED_VAR_DECL  (line:  19, col:   9):	Misaligned variable declaration
+Error: SPACE_AFTER_KW       (line:  23, col:   5):	Missing space after keyword
+Error: SPC_BFR_PAR          (line:  23, col:  10):	Missing space before parenthesis (brace/bracket)
+
+fre_env.c
+fre_env.c: Error!
+Error: CONSECUTIVE_NEWLINES (line:  15, col:   1):	Consecutive newlines
+
+gky_env.c
+gky_env.c: OK!
+
+grp_env.c
+grp_env.c: OK!
+
+int_chr_env.c
+int_chr_env.c: OK!
+
+int_env.c
+int_env.c: Error!
+Error: CONSECUTIVE_NEWLINES (line:  20, col:   1):	Consecutive newlines
+Error: SPACE_EMPTY_LINE     (line:  20, col:   1):	Space on empty line
+Error: WRONG_SCOPE_COMMENT  (line:  30, col:   5):	Comment is invalid in this scope
+Error: WRONG_SCOPE_COMMENT  (line:  31, col:   5):	Comment is invalid in this scope
+Error: TOO_MANY_LINES       (line:  51, col:   1):	Function has more than 25 lines
+
+lvl_env.c
+lvl_env.c: Error!
+Error: CONSECUTIVE_NEWLINES (line:  57, col:   1):	Consecutive newlines
+Error: CONSECUTIVE_NEWLINES (line:  58, col:   1):	Consecutive newlines
+Error: CONSECUTIVE_NEWLINES (line:  59, col:   1):	Consecutive newlines
+Error: CONSECUTIVE_NEWLINES (line:  60, col:   1):	Consecutive newlines
+Error: CONSECUTIVE_NEWLINES (line:  61, col:   1):	Consecutive newlines
+Error: EMPTY_LINE_EOF       (line:  61, col:   1):	Empty line at end of file
+
+prn_env.c
+prn_env.c: Error!
+Error: CONSECUTIVE_NEWLINES (line:  15, col:   1):	Consecutive newlines
+
+prn_port_env.c
+prn_port_env.c: Error!
+Error: SPACE_REPLACE_TAB    (line:  17, col:   8):	Found space when expecting tab
+Error: TOO_FEW_TAB          (line:  20, col:  22):	Missing tabs for indent level
+Error: SPACE_AFTER_KW       (line:  25, col:   5):	Missing space after keyword
+Error: SPC_BFR_PAR          (line:  25, col:  10):	Missing space before parenthesis (brace/bracket)
+Error: LINE_TOO_LONG        (line:  76, col:  82):	line too long
+Error: TAB_INSTEAD_SPC      (line:  89, col:  10):	Found tab when expecting space
+Error: TOO_FEW_TAB          (line:  89, col:  23):	Missing tabs for indent level
+Error: EMPTY_LINE_FUNCTION  (line:  90, col:   1):	Empty line in function

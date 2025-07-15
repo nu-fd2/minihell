@@ -6,12 +6,11 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 21:09:54 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/07/01 14:56:40 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/07/14 10:13:58 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/header.h"
-
 
 int	env_len(t_env *env)
 {
@@ -20,7 +19,7 @@ int	env_len(t_env *env)
 
 	i = 0;
 	ennnv = env;
-	while(ennnv != NULL)
+	while (ennnv != NULL)
 	{
 		if (ennnv->ported == 1)
 			i++;

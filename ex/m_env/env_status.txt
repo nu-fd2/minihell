@@ -1,0 +1,37 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                            ENV MANAGEMENT STATUS                           */
+/*                                                                            */
+/* ************************************************************************** */
+
+/* 📘 Legend:
+**
+**  [X] number             – Uses integer counters, indexes, or loop vars
+**  [L] leak               – Potential memory leak (malloc with no free)
+**  [B] buffer overflow    – Dangerous function usage (e.g., strcpy, strcat)
+**  [F] SIGEV              – Handles signals or async events
+**  [G] good               – Logic reviewed and looks correct
+**  [N] norminette         – Passed Norminette (no style errors)
+**  [🧪] need testing       – Needs to be manually tested
+**
+** ✅ How to use:
+**  - As you review files, add G (good) if logic looks fine.
+**  - After Norminette check, add N.
+**  - After writing/using tests, replace 🧪 with ✅ tested.
+*/
+
+File Status:
+────────────
+add_env.c      : X          // 🧪 need testing
+del_env.c      : X N        // 🧪 need testing
+fre_chr_env.c  : X          // 🧪 need testing
+fre_env.c      : X          // 🧪 need testing
+gky_env.c      : X N        // 🧪 need testing
+grp_env.c      : X N        // 🧪 need testing
+int_chr_env.c  : X N        // 🧪 need testing
+int_env.c      : G          // 🧪 need testing
+lvl_env.c      : X          // 🧪 need testing
+prn_env.c      : X          // 🧪 need testing
+prn_port_env.c : X          // 🧪 need testing
+
+
