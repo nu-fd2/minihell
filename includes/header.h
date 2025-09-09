@@ -58,13 +58,13 @@ typedef enum s_tokens
     TOKEN_EOF
 }   t_token;
 
-// exehshahahuwyghksp 3flwcs    py8asty7         qt;tuiow   es
-// rl_kill_full_lineef s
-// FJes f F SEGKLHSJS
-// gmtime_r[GK;k E pr3 
-// OFLWGK HR;JL ]
+// AaaaaaaaaaaaaaaaaaaaaA
 
 extern int pmo;
+
+// volatile sig_atomic_t g_sig = 0;
+
+// extern int g_sig;
 
 typedef struct s_latest t_short;
 
@@ -87,6 +87,7 @@ typedef struct s_data
 	int				pmo;
     int             p_in;
     int             p_ot;
+    int             dog_kid;
 	char			**chr_env;
 	t_env			*env;
     t_kids          *kids;
@@ -294,7 +295,7 @@ int	src_red(t_data *data, t_short *shart, char **red);
 int	red_red(t_data *data, char *red);
 int	apn_red(t_data *data, char *red);
 int	inn_red(t_data *data, char *red);
-int int_dog(t_data *data, t_short *shart);
+int frk_dog(t_data *data, t_short *shart, int m_pip_1);
 
 int main_exc(t_data *data, t_short *shart);
 int	int_pip(t_data *data, t_short *shart);
