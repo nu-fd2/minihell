@@ -21,8 +21,8 @@
 #include <dirent.h>
 #include <string.h>
 #include <fcntl.h>
-# include <limits.h>
-# include <stdint.h>
+#include <limits.h>
+#include <stdint.h>
 #include <sys/wait.h>
 
 #ifdef linux
@@ -58,7 +58,6 @@ typedef enum s_tokens
     TOKEN_EOF
 }   t_token;
 
-
 // exehshahahuwyghksp 3flwcs    py8asty7         qt;tuiow   es
 // rl_kill_full_lineef s
 // FJes f F SEGKLHSJS
@@ -81,11 +80,13 @@ typedef struct s_latest t_short;
 
 typedef struct s_data
 {
-	int				fd;
-	int				fd2;
+	int				fd; // out 1
+	int				fd2; // in 0
 	int				ex;
 	int				exm;
 	int				pmo;
+    int             p_in;
+    int             p_ot;
 	char			**chr_env;
 	t_env			*env;
     t_kids          *kids;
@@ -133,7 +134,6 @@ typedef struct s_nodes
     struct s_nodes *tail;
 }   t_input;
 
-// this
 typedef struct s_latest
 {
     char **args; // this mf
@@ -185,13 +185,13 @@ typedef struct s_blah
     int size;
     bool expanded;
 } t_blah;
+
 typedef struct s_star
 {
     struct dirent *data;
     struct s_star *next;
     
 }   t_star;
-
 
 t_input *tokenize(char *line);
 void	*my_calloc(size_t count, size_t size);
@@ -234,13 +234,6 @@ void lst_print2(t_short *list);
 int ft_checker(char c, int quote_flag);
 t_short *last_lst_creater(t_input *lst);
 void handle_clear(t_input *list, t_blah *blah);
-
-
-
-
-
-
-
 
 //================================================
 
@@ -287,10 +280,14 @@ char	**int_chr_env(t_data *data);
 void	fre_chr_env(char **env);
 
 int	ex_rish(t_data *data, char **arg);
+int	ex_rish_pip(t_data *data, char **arg);
 int	ex_bults(t_data *data, char **arg);
+int	ex_bults_pip(t_data *data, char **arg, int bc);
+int	ex_bults_chk(t_data *data, char **arg);
 char    *ex_there(t_data *data, char *cmd);
 char    *ex_crnt(t_data *data, char *cmd);
 int	ex_cpro(t_data *data, char *cmd, char **arg);
+int	ex_cpro_bult(t_data *data, char **arg, int bc);
 
 int	man_red(t_data *data, t_short *shart, char **red);
 int	src_red(t_data *data, t_short *shart, char **red);
@@ -302,12 +299,9 @@ int int_dog(t_data *data, t_short *shart);
 int main_exc(t_data *data, t_short *shart);
 int	int_pip(t_data *data, t_short *shart);
 void    clr_pip(t_data *data);
-int	ex_waitkid(t_kids *kids);
+int	ex_waitkid(t_data *data);
+int clr_kids(t_data *data);
 
 int	m_perror(char *cmd, char *arg, char *msg);
-
-
-
-
 
 #endif // HEADER_H

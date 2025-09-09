@@ -6,23 +6,27 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/14 21:04:24 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/07/06 06:43:08 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/07/24 12:24:16 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/header.h"
 
-
 void	fre_chr_env(char **env)
 {
-	char	**ts;
 	int	i;
 
 	i = 0;
-	ts = env;
-	while(ts[i])
+	if (!env)
+		return ;
+	if (!env[0])
 	{
-		free(ts[i]);
+		free(env);
+		return ;
+	}
+	while (env[i])
+	{
+		free(env[i]);
 		i++;
 	}
 	free(env);

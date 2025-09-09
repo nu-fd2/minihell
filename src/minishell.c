@@ -6,7 +6,7 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 13:16:23 by mdakni            #+#    #+#             */
-/*   Updated: 2025/07/09 22:28:45 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/08/04 23:09:13 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,12 @@ int ft_skip_spaces(char *line)
 int prompt_msg(t_data *data)
 {
     char *line;
-    line = readline("\e[1;32m❯ \e[0m");
+    // printf("\e[1;33m%d \e[0m", data->exm);
+    // if (!data->exm)
+        line = readline("\e[1;32m❯ \e[0m");
+    // else
+    //     line = readline("\e[1;31m✖ \e[0m");
+    // data->exm = 0;
     if (!line)
     {
         write(1, "exit\n", 5);
@@ -116,6 +121,8 @@ int main(int ac, char **av, char **env)
     data->env = int_env(env);
     data->fd = 1;
     data->fd2 = 0;
+    data->p_in = 0;
+    data->p_ot = 1;
     data->exm = 0;
     pmo = 0;
     data->kids = NULL;

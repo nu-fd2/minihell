@@ -6,7 +6,7 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 21:52:25 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/07/14 10:18:48 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/07/24 12:26:52 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,10 @@ int	del_env(t_data *data, char *key)
 	t_env	*pr_env;
 	int		l;
 
-	if (data->env == NULL)
+	if (!data || !data->env)
 		return (1);
+	if (!key)
+		return (0);
 	pr_env = NULL;
 	tm_env = data->env;
 	l = ft_strlen(key);
@@ -31,9 +33,7 @@ int	del_env(t_data *data, char *key)
 				data->env = tm_env->next;
 			else
 				pr_env->next = tm_env->next;
-			free(tm_env->key);
-			free(tm_env->value);
-			return (free(tm_env), 0);
+			return (free(tm_env->key), free(tm_env->value), free(tm_env), 0);
 		}
 		pr_env = tm_env;
 		tm_env = tm_env->next;

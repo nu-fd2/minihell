@@ -6,22 +6,22 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 21:55:21 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/07/10 22:14:13 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/07/25 23:19:18 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/header.h"
 
-t_env	*cpy_env(t_env *env)
+t_env	*cpy_env(t_data *data)
 {
 	int i;
-
+	
 	i = 0;
 	t_env (*hd_env), (*nu_env), (*tm_env), (*og_env);
 	nu_env = NULL;
-	if (!env || !env->key)
+	if (!data || !data->env || !data->env->key)
 		return (NULL);
-	og_env = env;
+	og_env = data->env;
 	while(og_env)
 	{
 		nu_env = ft_calloc(sizeof(t_env), 1);
@@ -57,13 +57,13 @@ void	swp_env(t_env *a, t_env *b)
 	b->ported = port;
 }
 
-t_env	*srt_env(t_env *env)
+t_env	*srt_env(t_data *data)
 {
 	t_env	*n_env;
 	t_env	*c_env;
 	int		s;
 
-	n_env = cpy_env(env);
+	n_env = cpy_env(data);
 	if (!n_env)
 		return (NULL);
 	s = 0;
@@ -88,7 +88,9 @@ int	prn_port_env(t_data *data)
 {
 	t_env	(*h_env), (*n_env);
 
-	h_env = srt_env(data->env);
+	h_env = srt_env(data);
+	if (!h_env)
+		return (1);
 	n_env = h_env;
 	if (n_env == NULL)
 		return (1);

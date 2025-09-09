@@ -17,21 +17,21 @@
 ** ✅ How to use:
 **  - As you review files, add G (good) if logic looks fine.
 **  - After Norminette check, add N.
-**  - After writing/using tests, replace 🧪 with ✅ tested.
+**  - After writing/using tests, replace 🧪 with ✅ tested, ❌ for bad ones.
 */
 
 File Status:
 ────────────
-add_env.c      : X          // 🧪 need testing
-del_env.c      : X N        // 🧪 need testing
-fre_chr_env.c  : X          // 🧪 need testing
-fre_env.c      : X          // 🧪 need testing
-gky_env.c      : X N        // 🧪 need testing
-grp_env.c      : X N        // 🧪 need testing
-int_chr_env.c  : X N        // 🧪 need testing
-int_env.c      : G          // 🧪 need testing
-lvl_env.c      : X          // 🧪 need testing
-prn_env.c      : X          // 🧪 need testing
+add_env.c      : G N        // ✅ tested
+del_env.c      : G N        // ✅ tested
+fre_chr_env.c  : G N        // ✅ tested
+fre_env.c      : G N        // ✅ tested
+gky_env.c      : G N        // ✅ tested
+grp_env.c      : G N        // ✅ tested
+int_chr_env.c  : G N        // ✅ tested
+int_env.c      : G N        // ✅ tested
+lvl_env.c      : G          // ✅ tested
+prn_env.c      : G N        // ✅ tested
 prn_port_env.c : X          // 🧪 need testing
 
 

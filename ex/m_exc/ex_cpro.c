@@ -6,16 +6,16 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 01:56:16 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/07/06 07:53:12 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/08/04 20:44:37 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/header.h"
 
-int lastkid(t_data *data, pid_t kid)
+int	lastkid(t_data *data, pid_t kid)
 {
-	t_kids *neo;
-	t_kids *old;
+	t_kids	*neo;
+	t_kids	*old;
 
 	old = data->kids;
 	neo = ft_calloc(sizeof(t_kids), 1);
@@ -30,7 +30,7 @@ int lastkid(t_data *data, pid_t kid)
 			old = old->next;
 		old->next = neo;
 	}
-	return neo->ex;
+	return (neo->ex);
 }
 
 int	ex_cpro(t_data *data, char *cmd, char **arg)
@@ -39,19 +39,60 @@ int	ex_cpro(t_data *data, char *cmd, char **arg)
 
 	kid = fork();
 	if (kid < 0)
-		return (m_perror(NULL, NULL, "can't fork"));
+		return (m_perror(NULL, NULL, "forkn't"));
 	if (kid == 0)
 	{
-		dup2(data->fd, 1);
 		dup2(data->fd2, 0);
+		dup2(data->fd, 1);
+		if (data->fd2 != data->p_in && data->p_in != 0)
+			close(data->p_in);
+		if (data->fd != data->p_ot && data->p_ot != 1)
+			close(data->p_ot);
 		execve(cmd, arg, data->chr_env);
-		m_perror("execve", NULL, "can't");
+		if (data->fd2 != 0)
+			close(data->fd2);
+		if (data->fd != 1)
+			close(data->fd);
+		m_perror(NULL , NULL, "Exec format error");
 		exit(1);
 	}
 	else
 	{
+		if (data->fd2 != 0)
+			close(data->fd2);
+		if (data->fd != 1)
+			close(data->fd);
 		lastkid(data, kid);
-		return kid;
+		return (kid);
+	}
+	return (0);
+}
+
+int	ex_cpro_bult(t_data *data, char **arg, int bc)
+{
+	pid_t	kid;
+	int		out;
+
+	out = 1;
+	kid = fork();
+	if (kid < 0)
+		return (m_perror(NULL, NULL, "forkn't"));
+	if (kid == 0)
+	{
+		dup2(data->fd, 1);
+		dup2(data->fd2, 0);
+		out = ex_bults_pip(data, arg, bc);
+	    ft_lstfree(data->input);
+    	ft_lstfree_2(data->shart);
+		clr_kids(data);
+		fre_env(data->env);
+		free(data);
+		exit(out);
+	}
+	else
+	{
+		lastkid(data, kid);
+		return (kid);
 	}
 	return (0);
 }

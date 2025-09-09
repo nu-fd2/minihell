@@ -6,7 +6,7 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 19:50:09 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/07/10 23:43:48 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/08/01 10:37:25 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ int	cmd_exit(t_data *data, char **arg)
 		else if (arg[1] != NULL)
 		{
 			x = 255;
-			return (m_perror("exit", NULL, "too many arguments"));
+			m_perror("exit", NULL, "too many arguments");
+			return (2);
 		}
 		else
 			x = ft_atoi(arg[0]) % 256;

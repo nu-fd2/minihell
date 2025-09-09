@@ -2,6 +2,9 @@ NAME	= tst
 
 SRC = tst.c \
 	add_env.c grp_env.c int_env.c fre_env.c \
+	del_env.c prn_env.c lvl_env.c \
+	int_chr_env.c fre_chr_env.c \
+	prn_port_env.c \
 	../libft/ft_strlen.c \
 	../libft/ft_calloc.c \
 	../libft/ft_bzero.c \
@@ -9,12 +12,21 @@ SRC = tst.c \
 	../libft/ft_strdup.c \
 	../libft/ft_strndup.c \
 	../libft/ft_strncmp.c \
-	../libft/ft_strlcpy.c
+	../libft/ft_strlcpy.c \
+	../libft/ft_putstr_fd.c \
+	../libft/ft_putchar_fd.c \
+	../libft/ft_itoa.c \
+	../libft/ft_isdigit.c \
+	../libft/ft_strjoin.c \
+	../libft/ft_strlcat.c \
+	../libft/ft_strcmp.c \
+	../m_perror.c \
+	\
 
 OBJ = $(SRC:.c=.o)
 
 # ========== COMPILER SETTINGS ==========
-CC			= cc
+CC			= cc -g
 CFLAGS		= -Wall -Wextra -Werror
 FSANITIZE	= -fsanitize=address -g
 
@@ -31,10 +43,13 @@ noflags: run_status $(NAME)
 sanitize: CFLAGS := $(CFLAGS) $(FSANITIZE)
 sanitize: run_status $(NAME)
 
+v: re
+	valgrind --leak-check=full ./tst
+
 $(NAME): $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
 
-%.o: %.c`
+%.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
@@ -47,7 +62,7 @@ re: fclean all
 
 # ========== PYTHON STATUS SCRIPT ==========
 run_status:
-	@echo "🔄 Running env_auto_status.py..."
+	@echo "Running env_auto_status.py..."
 	@python env_auto_status.py > /dev/null 2>&1 || echo "⚠️ Python error: check env_auto_status.py"
 
 .PHONY: all norm noflags sanitize clean fclean re run_status

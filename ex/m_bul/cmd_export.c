@@ -6,7 +6,7 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 16:17:57 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/07/10 22:46:56 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/08/01 12:52:43 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ char	*val_gen(char *arg)
 		return NULL;
 	while (arg[i] != '=' && arg[i] != '\0')
 		i++;
+	if (!arg[i])
+		return (NULL);
 	return (ft_strdup(&arg[i + 1]));
 }
 
@@ -101,10 +103,3 @@ int	cmd_export(t_data *data, char **arg)
 	}
 	return (free(key), free(val), ret);
 }
-
-
-
-
-
-
-

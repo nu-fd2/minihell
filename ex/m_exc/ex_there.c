@@ -6,7 +6,7 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 07:12:00 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/07/09 16:39:09 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/07/30 10:11:19 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	cln_splt(char **spltd)
 	free(spltd);
 }
 
-char    *ex_there(t_data *data, char *cmd)
+char	*ex_there(t_data *data, char *cmd)
 {
 	char	**hed_path;
 	int		s;

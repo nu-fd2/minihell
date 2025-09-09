@@ -6,7 +6,7 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 16:50:59 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/07/10 22:38:03 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/08/04 04:54:37 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,16 @@ int	is_allspace(char *arg)
 	while (arg[i])
 	{
 		if (arg[i] != ' ' && !(arg[i] > 9 && arg[i] < 13))
-			return 1;
+			return (1);
 		i++;
 	}
-	return 0;
+	return (0);
 }
 
 int	ex_rish(t_data *data, char **arg)
 {
-	int	i;
-	char *cmd;
+	int		i;
+	char	*cmd;
 	t_kids	*kids;
 
 	cmd = NULL;
@@ -52,6 +52,49 @@ int	ex_rish(t_data *data, char **arg)
 	{
 		data->chr_env = int_chr_env(data);
 		ex_cpro(data, cmd, arg);
+		fre_chr_env(data->chr_env);
+	}
+	return (free(cmd), 0);
+}
+
+int	ex_rish_pip(t_data *data, char **arg)
+{
+	int		bc;
+	char	*cmd;
+	t_kids	*kids;
+
+	cmd = NULL;
+	bc = 0;
+	// if (!arg[0])
+	// 	prompt_msg(data);
+	if (!is_allspace(arg[0]))
+		return (0);
+	bc = ex_bults_chk(data, arg);
+	if (bc)
+		return (ex_cpro_bult(data, arg, bc));
+	if (arg[0][0] == '.' && arg[0][1] == '/')
+		cmd = ex_crnt(data, arg[0]);
+	else
+		cmd = ex_there(data, arg[0]);
+	// if (cmd == NULL)
+	// 	prompt_msg(data);
+	if (cmd == NULL)
+		return (1);
+	else
+	{
+		data->chr_env = int_chr_env(data);
+		ex_cpro(data, cmd, arg);
+		// fprintf(stderr, "kid sala 0 %s %d %d\n", cmd, data->fd2, data->fd);
+		if (data->fd2 != 0)
+		{
+			close(data->fd2);
+			data->fd2 = 0;
+		}
+		if (data->fd != 1)
+		{
+			close(data->fd);
+			data->fd = 1;
+		}
 		fre_chr_env(data->chr_env);
 	}
 	return (free(cmd), 0);

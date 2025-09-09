@@ -6,7 +6,7 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 21:50:36 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/07/15 14:16:09 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/07/16 00:12:34 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ t_env	*mak_env(char *key, char *value, bool ported)
 	t_env	*nu_env;
 
 	nu_env = ft_calloc(sizeof(t_env), 1);
-	if (!nu_env);
+	if (!nu_env)
 		return (NULL);
 	nu_env->key = ft_strdup(key);
 	if (!nu_env->key)
@@ -55,5 +55,5 @@ t_env	*add_env(t_env *env, char *key, char *value, bool ported)
 	free(tm_env->value);
 	tm_env->value = ft_strdup(value);
 	tm_env->ported = 1;
-	return(tm_env);
+	return (tm_env);
 }

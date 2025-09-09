@@ -6,7 +6,7 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 17:50:11 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/07/07 19:07:12 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/08/04 23:19:48 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,7 @@ int	apn_red(t_data *data, char *red)
 	if (access(red, F_OK) == -1)
 		neo = open(red, O_CREAT | O_WRONLY, 0644);
 	else if (access(red, W_OK) == -1)
-	{
-		write(2, "Permission denied\n", 19);
-		return 1;
-	}
+		return (m_perror(NULL, red, "Permission denied"));
 	else
 		neo = open(red, O_APPEND | O_WRONLY);
 	data->fd = neo;
