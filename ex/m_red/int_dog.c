@@ -6,7 +6,7 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 01:14:22 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/09/09 19:59:39 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/09/10 22:08:56 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int open_dog(t_data *data, t_short *fart, char *key)
     pipe(pip);
 	while (1)
 	{
-        put = readline("\e[1;34m>\e[0m ");
+        put = readline("\e[1;34m\e[0m ");
 		if (!put)
 			break;
 		if (ft_strcmp(key, put) == 0)
@@ -44,20 +44,20 @@ int int_dog(t_data *data, t_short *shart, int m_pip_1)
 
     fart = shart;
     pip_0 = 0;
-    printf("-%d-\n", m_pip_1);
     while (fart)
     {
         i = 0;
-        if (!fart->reds)
-            return 0;
-        while (fart->reds[i])
+        if (fart->reds)
         {
-        	if (ft_strncmp(fart->reds[i], "<<", 3) == 0)
+            while (fart->reds[i])
             {
+                if (ft_strncmp(fart->reds[i], "<<", 3) == 0)
+                {
+                    i++;
+                    pip_0 = open_dog(data, fart, fart->reds[i]);
+                }
                 i++;
-                pip_0 = open_dog(data, fart, fart->reds[i]);
             }
-            i++;
         }
         fart = fart->next;
     }
@@ -66,7 +66,6 @@ int int_dog(t_data *data, t_short *shart, int m_pip_1)
         s = get_next_line(pip_0);
         while (s)
         {
-            // ft_putstr_fd(s, 1);
             ft_putstr_fd(s, m_pip_1);
             free(s);
             s = get_next_line(pip_0);
@@ -182,5 +181,4 @@ int frk_dog(t_data *data, t_short *shart, int m_pip_1)
 //         data->dog_kid = pid;
 //     return pid;
 // }
-
 

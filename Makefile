@@ -45,6 +45,7 @@ ex/m_red/apn_red.c \
 ex/m_red/inn_red.c \
 ex/m_red/man_red.c \
 ex/m_red/int_dog.c \
+ex/m_red/dog_pip.c \
 ex/main_exc.c \
 ex/m_perror.c \
 	  \
