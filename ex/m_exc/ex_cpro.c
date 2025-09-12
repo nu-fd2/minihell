@@ -6,7 +6,7 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 01:56:16 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/08/04 20:44:37 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/09/11 18:02:48 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,8 @@ int	ex_cpro_bult(t_data *data, char **arg, int bc)
 		dup2(data->fd, 1);
 		dup2(data->fd2, 0);
 		out = ex_bults_pip(data, arg, bc);
-	    ft_lstfree(data->input);
-    	ft_lstfree_2(data->shart);
+		ft_lstfree(data->input);
+		ft_lstfree_2(data->shart);
 		clr_kids(data);
 		fre_env(data->env);
 		free(data);

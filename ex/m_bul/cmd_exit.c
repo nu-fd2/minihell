@@ -6,7 +6,7 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 19:50:09 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/08/01 10:37:25 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/09/11 17:20:33 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	is_alldigit(char *arg)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (arg[i] == '-' || arg[i] == '+')
@@ -22,17 +22,15 @@ int	is_alldigit(char *arg)
 	while (arg[i])
 	{
 		if (arg[i] > '9' || arg[i] < '0')
-			return 1;
+			return (1);
 		i++;
 	}
-	return 0;
+	return (0);
 }
 
 int	cmd_exit(t_data *data, char **arg)
 {
-	int	x;
-	int i;
-
+	int (x), (i);
 	i = 0;
 	x = data->exm;
 	if (arg[0] != NULL)
@@ -51,8 +49,8 @@ int	cmd_exit(t_data *data, char **arg)
 		else
 			x = ft_atoi(arg[0]) % 256;
 	}
-    ft_lstfree(data->input);
-    ft_lstfree_2(data->shart);
+	ft_lstfree(data->input);
+	ft_lstfree_2(data->shart);
 	fre_env(data->env);
 	free(data);
 	exit(x);

@@ -6,12 +6,11 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 19:37:43 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/08/01 10:31:27 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/09/11 17:26:57 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/header.h"
-
 
 int	cmd_pwd(t_data *data)
 {

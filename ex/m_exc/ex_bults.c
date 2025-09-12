@@ -6,7 +6,7 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 17:36:40 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/08/01 10:31:46 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/09/11 18:01:31 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	ex_bults(t_data *data, char **arg)
 		data->exm = cmd_exit(data, &arg[1]);
 	else
 		return (69);
-	return 0;
+	return (0);
 }
 
 int	ex_bults_pip(t_data *data, char **arg, int bc)

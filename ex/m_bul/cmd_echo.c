@@ -6,7 +6,7 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 10:35:49 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/07/18 10:28:57 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/09/11 17:17:27 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,26 +28,26 @@ void	prn_all(int fd, char **arg)
 	}
 }
 
-int chk_n(char *arg)
+int	chk_n(char *arg)
 {
-	int i;
+	int	i;
 
 	i = 1;
 	if (!arg)
-		return 0;
+		return (0);
 	if (arg[0] != '-')
-		return 0;
+		return (0);
 	if (arg[1] != 'n')
-		return 0;
+		return (0);
 	while (arg[i])
 	{
 		i++;
 		if (arg[i] != 'n')
-			break;
+			break ;
 	}
 	if (arg[i] != '\0')
-		return 0;
-	return 1;
+		return (0);
+	return (1);
 }
 
 int	cmd_echo(t_data *data, char **arg)
@@ -68,7 +68,7 @@ int	cmd_echo(t_data *data, char **arg)
 	while (arg[j])
 	{
 		if (chk_n(arg[j]) != 1)
-			break;
+			break ;
 		j++;
 	}
 	if (arg[j])

@@ -37,29 +37,23 @@ int open_dog(t_data *data, t_short *fart, char *key)
 
 int int_dog(t_data *data, t_short *shart, int m_pip_1)
 {
-    t_short	*fart;
     int		i;
     int     pip_0;
     char    *s;
 
-    fart = shart;
     pip_0 = 0;
-    while (fart)
+    i = 0;
+    if (shart->reds)
     {
-        i = 0;
-        if (fart->reds)
+        while (shart->reds[i])
         {
-            while (fart->reds[i])
+            if (ft_strncmp(shart->reds[i], "<<", 3) == 0)
             {
-                if (ft_strncmp(fart->reds[i], "<<", 3) == 0)
-                {
-                    i++;
-                    pip_0 = open_dog(data, fart, fart->reds[i]);
-                }
                 i++;
+                pip_0 = open_dog(data, shart, shart->reds[i]);
             }
+            i++;
         }
-        fart = fart->next;
     }
     if (i)
     {
@@ -71,8 +65,8 @@ int int_dog(t_data *data, t_short *shart, int m_pip_1)
             s = get_next_line(pip_0);
         }
     }
-    if (pip_0 != 0)
-        close(pip_0);
+//    if (pip_0 != 0)
+//        close(pip_0);
     return 0;
 }
 

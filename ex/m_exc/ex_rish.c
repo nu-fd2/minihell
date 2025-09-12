@@ -6,7 +6,7 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 16:50:59 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/08/04 04:54:37 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/09/11 18:04:44 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	is_allspace(char *arg)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (arg[i])
@@ -34,8 +34,6 @@ int	ex_rish(t_data *data, char **arg)
 
 	cmd = NULL;
 	i = 0;
-	// if (!arg[0])
-	// 	prompt_msg(data);
 	if (!is_allspace(arg[0]))
 		return (0);
 	if (ex_bults(data, arg) != 69)
@@ -44,8 +42,6 @@ int	ex_rish(t_data *data, char **arg)
 		cmd = ex_crnt(data, arg[0]);
 	else
 		cmd = ex_there(data, arg[0]);
-	// if (cmd == NULL)
-	// 	prompt_msg(data);
 	if (cmd == NULL)
 		return (1);
 	else
@@ -65,8 +61,6 @@ int	ex_rish_pip(t_data *data, char **arg)
 
 	cmd = NULL;
 	bc = 0;
-	// if (!arg[0])
-	// 	prompt_msg(data);
 	if (!is_allspace(arg[0]))
 		return (0);
 	bc = ex_bults_chk(data, arg);
@@ -76,15 +70,12 @@ int	ex_rish_pip(t_data *data, char **arg)
 		cmd = ex_crnt(data, arg[0]);
 	else
 		cmd = ex_there(data, arg[0]);
-	// if (cmd == NULL)
-	// 	prompt_msg(data);
 	if (cmd == NULL)
 		return (1);
 	else
 	{
 		data->chr_env = int_chr_env(data);
 		ex_cpro(data, cmd, arg);
-		// fprintf(stderr, "kid sala 0 %s %d %d\n", cmd, data->fd2, data->fd);
 		if (data->fd2 != 0)
 		{
 			close(data->fd2);

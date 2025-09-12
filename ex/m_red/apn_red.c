@@ -6,7 +6,7 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 17:50:11 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/08/04 23:19:48 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/09/11 18:12:22 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,5 @@ int	apn_red(t_data *data, char *red)
 	else
 		neo = open(red, O_APPEND | O_WRONLY);
 	data->fd = neo;
-	return 0;
+	return (0);
 }

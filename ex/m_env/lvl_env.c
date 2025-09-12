@@ -6,7 +6,7 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 12:20:09 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/09/03 13:45:23 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/09/11 17:31:34 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	lvl_env(t_data *data)
 
 	lvl = 1;
 	if (!data)
-		return 1;
+		return (1);
 	if (!data->env)
 	{
 		data->env = add_env(data->env, "SHLVL", "1", 1);

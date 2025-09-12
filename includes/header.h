@@ -298,11 +298,9 @@ int	inn_red(t_data *data, char *red);
 int frk_dog(t_data *data, t_short *shart, int m_pip_1);
 int man_dog(t_data *data, t_short *shart);
 void cls_dog_pip(t_short *shart);
-int cnt_dog(t_short *shart);
+int cnt_dog(t_data *data, t_short *shart);
 
 int main_exc(t_data *data, t_short *shart);
-int	int_pip(t_data *data, t_short *shart);
-void    clr_pip(t_data *data);
 int	ex_waitkid(t_data *data);
 int clr_kids(t_data *data);
 

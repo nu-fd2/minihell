@@ -6,23 +6,22 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 16:17:57 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/08/01 12:52:43 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/09/11 17:25:34 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/header.h"
 
-char *key_gen(char *arg)
+char	*key_gen(char *arg)
 {
-	int	i;
-	int s;
-	char *key;
+	char	*key;
 
+	int (s), (i);
 	i = 0;
 	s = 0;
 	key = NULL;
 	if (!arg)
-		return NULL;
+		return (NULL);
 	if (arg[0] == '=')
 		return (m_perror("export", arg, "not a valid identifier"), NULL);
 	while (arg[i] != '=' && arg[i] != '\0')
@@ -52,7 +51,7 @@ char	*val_gen(char *arg)
 
 	i = 0;
 	if (!arg)
-		return NULL;
+		return (NULL);
 	while (arg[i] != '=' && arg[i] != '\0')
 		i++;
 	if (!arg[i])
@@ -66,7 +65,7 @@ int	prt_gen(char *arg)
 
 	i = 0;
 	if (!arg)
-		return 0;
+		return (0);
 	while (arg[i])
 	{
 		if (arg[i] == '=')
@@ -78,8 +77,11 @@ int	prt_gen(char *arg)
 
 int	cmd_export(t_data *data, char **arg)
 {
-	int (i), (s), (j), (ret);
-	char (*key), (*val);
+	char	*key;
+	char	*val;
+
+	int (i), (s);
+	int (j), (ret);
 	i = 0;
 	ret = 0;
 	if (!arg[0])
@@ -95,7 +97,6 @@ int	cmd_export(t_data *data, char **arg)
 			s = prt_gen(arg[i]);
 			val = val_gen(arg[i]);
 			add_env(data->env, key, val, s);
-			// free(val);
 		}
 		else
 			ret = 1;

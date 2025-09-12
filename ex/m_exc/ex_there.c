@@ -6,7 +6,7 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 07:12:00 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/07/30 10:11:19 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/09/11 18:07:12 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	cln_splt(char **spltd)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (spltd[i])
@@ -25,9 +25,8 @@ void	cln_splt(char **spltd)
 char	*ex_there(t_data *data, char *cmd)
 {
 	char	**hed_path;
-	int		s;
-	int		i;
 
+	int (s), (i);
 	char (*ful_path), (*path), (*ult), (*n_cmd);
 	if (!cmd)
 		return (NULL);

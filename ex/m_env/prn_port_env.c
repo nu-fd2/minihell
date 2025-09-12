@@ -6,7 +6,7 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 21:55:21 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/07/25 23:19:18 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/09/11 17:38:16 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 t_env	*cpy_env(t_data *data)
 {
-	int i;
-	
+	int	i;
+
 	i = 0;
 	t_env (*hd_env), (*nu_env), (*tm_env), (*og_env);
 	nu_env = NULL;
 	if (!data || !data->env || !data->env->key)
 		return (NULL);
 	og_env = data->env;
-	while(og_env)
+	while (og_env)
 	{
 		nu_env = ft_calloc(sizeof(t_env), 1);
 		nu_env->key = ft_strdup(og_env->key);
@@ -73,7 +73,8 @@ t_env	*srt_env(t_data *data)
 		c_env = n_env;
 		while (c_env && c_env->next)
 		{
-			if (c_env->next->key && (ft_strcmp(c_env->key, c_env->next->key) > 0))
+			if (c_env->next->key
+				&& (ft_strcmp(c_env->key, c_env->next->key) > 0))
 			{
 				swp_env(c_env, c_env->next);
 				s = 0;
@@ -86,8 +87,7 @@ t_env	*srt_env(t_data *data)
 
 int	prn_port_env(t_data *data)
 {
-	t_env	(*h_env), (*n_env);
-
+	t_env (*h_env), (*n_env);
 	h_env = srt_env(data);
 	if (!h_env)
 		return (1);

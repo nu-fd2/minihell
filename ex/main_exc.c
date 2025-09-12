@@ -6,7 +6,7 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 20:06:48 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/09/10 15:46:26 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/09/12 07:22:44 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,9 +131,8 @@ int main_exc(t_data *data, t_short *shart)
 	ot = 1;
 	fart = shart;
 	data->dog_kid = 0;
-	pipe(shart->pip);
-	int_dog_pip(shart);
-	frk_dog(data, shart, shart->pip[1]);
+	cnt_dog(data, shart);
+	man_dog(data, shart);
 	if (data->dog_kid)
 		waitpid(data->dog_kid, &data->exm, 0);
 	pmo = 0;

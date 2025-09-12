@@ -6,7 +6,7 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 10:47:13 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/08/01 10:35:57 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/09/11 17:13:04 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 char	*n_path(t_data *data, char *opeth)
 {
-	char *path;
-	char *tmpp;
-	char *home;
+	char	*path;
+	char	*tmpp;
+	char	*home;
 
 	tmpp = NULL;
 	if (opeth[0] != '~')
@@ -26,7 +26,7 @@ char	*n_path(t_data *data, char *opeth)
 	}
 	home = gky_env(data, "HOME");
 	if (!home)
-		return NULL;
+		return (NULL);
 	if (opeth[1] == '/')
 		path = ft_sstrjoin(home, &opeth[1]);
 	else
@@ -41,7 +41,7 @@ char	*n_path(t_data *data, char *opeth)
 	return (path);
 }
 
-int cmd_cd(t_data *data, char **arg)
+int	cmd_cd(t_data *data, char **arg)
 {
 	t_env	*pwd;
 
@@ -49,15 +49,12 @@ int cmd_cd(t_data *data, char **arg)
 	if (!data || !data->env)
 		return (1);
 	if (arg[1])
-	{
-		m_perror("cd", NULL, "too many arguments");
-		return (2);
-	}
+		return (m_perror("cd", NULL, "too many arguments"), 2);
 	if (!arg[0] || arg[0][0] == '\0')
 	{
 		pmt = getenv("HOME");
 		if (!pmt)
-			return 1;
+			return (1);
 		tmp = ft_strdup(pmt);
 	}
 	else if (arg[1])
@@ -71,6 +68,5 @@ int cmd_cd(t_data *data, char **arg)
 		return (m_perror("cd", tmp, "No such file or directory"), free(tmp), 1);
 	add_env(data->env, "OLDPWD", pwd->value, 1);
 	add_env(data->env, "PWD", tmp, 1);
-	free(tmp);
-	return (0);
+	return (free(tmp), 0);
 }
