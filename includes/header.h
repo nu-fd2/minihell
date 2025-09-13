@@ -66,34 +66,34 @@ extern int pmo;
 
 // extern int g_sig;
 
-typedef struct s_latest t_short;
+// typedef struct s_latest t_short;
 
-typedef struct s_data t_data;
+// typedef struct s_data t_data;
 
-typedef struct s_env t_env;
+// typedef struct s_env t_env;
 
-typedef struct s_kids t_kids;
+// typedef struct s_kids t_kids;
 
-typedef struct s_nodes t_input;
+// typedef struct s_nodes t_input;
 
-typedef struct s_latest t_short;
+// typedef struct s_latest t_short;
 
-typedef struct s_data
-{
-	int				fd; // out 1
-	int				fd2; // in 0
-	int				ex;
-	int				exm;
-	int				pmo;
-    int             p_in;
-    int             p_ot;
-    int             dog_kid;
-	char			**chr_env;
-	t_env			*env;
-    t_kids          *kids;
-    t_input         *input;
-    t_short         *shart;
-}					t_data;
+// typedef struct s_data
+// {
+// 	int				fd; // out 1
+// 	int				fd2; // in 0
+// 	int				ex;
+// 	int				exm;
+// 	int				pmo;
+//     int             p_in;
+//     int             p_ot;
+//     int             dog_kid;
+// 	char			**chr_env;
+// 	t_env			*env;
+//     t_kids          *kids;
+//     t_input         *input;
+//     t_short         *shart;
+// }					t_data;
 
 typedef struct s_env
 {
@@ -193,6 +193,32 @@ typedef struct s_star
     struct s_star *next;
     
 }   t_star;
+
+
+//////////////////////////////////////////////////////////
+
+
+typedef struct s_data
+{
+	int				fd; // out 1
+	int				fd2; // in 0
+	int				ex;
+	int				exm;
+	int				pmo;
+    int             p_in;
+    int             p_ot;
+    int             dog_kid;
+	char			**chr_env;
+	t_env			*env;
+    t_kids          *kids;
+    t_input         *input;
+    t_short         *shart;
+}					t_data;
+
+
+///////////////////////////////////////////////////////////
+
+
 
 t_input *tokenize(char *line);
 void	*my_calloc(size_t count, size_t size);
