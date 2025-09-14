@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lst_functions.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 13:42:16 by mdakni            #+#    #+#             */
-/*   Updated: 2025/07/01 14:56:40 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/09/14 19:15:11 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,10 @@ void lst_print2(t_short *list)
 				printf("    \e[1;34m ├──\e[0m");
 				while(list->args[i])
 				{
-					printf("\e[1;31m─\e[0m\e[1;31m[%s]\e[0m", list->args[i]);
+					if (list->args[i][0])
+						printf("\e[1;31m─\e[0m\e[1;31m[%s]\e[0m", list->args[i]);
+					else
+						printf("\e[1;31m─\e[0m\e[1;31m[NULL]\e[0m");
 					i++;
 				}
 			}

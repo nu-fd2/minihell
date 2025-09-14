@@ -6,7 +6,7 @@
 /*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 13:16:23 by mdakni            #+#    #+#             */
-/*   Updated: 2025/07/09 01:15:08 by mdakni           ###   ########.fr       */
+/*   Updated: 2025/09/14 18:32:03 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void manager(t_data *data, char *line)
 	// printf("striper finished\n");
     shart = last_lst_creater(input);
 	// printf("last_lst_creater finished\n");
-
+    lst_print(input);
     lst_print2(shart);
 	// printf("lst_print2 finished\n");
 
