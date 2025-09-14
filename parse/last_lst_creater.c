@@ -6,7 +6,7 @@
 /*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 13:35:00 by mdakni            #+#    #+#             */
-/*   Updated: 2025/09/14 20:39:12 by mdakni           ###   ########.fr       */
+/*   Updated: 2025/09/14 22:04:10 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,29 +54,19 @@ void assign_strings(t_blah *blah, t_input *lst)
     while(lst->next && lst->type != EOF)
     {
         if(lst->type == TOKEN_CMD && blah->args2 != NULL)
-        {
-            printf("its here 1, lst : %s\n", lst->value);
             blah->args2[blah->args_i++] = ft_strdup(lst->value);
-        }
         else if(lst->type == TOKEN_ARG && blah->args2 != NULL)
-        {
-            printf("its here 2, lst : %s\n", lst->value);
             blah->args2[blah->args_i++] = ft_strdup(lst->value);
-        }
         else if(lst->red_app == true && blah->reds2 != NULL)
         {
-            printf("its here 3, lst : %s\n", lst->value);
             blah->reds2[blah->reds_i++] = ft_strdup(lst->value);
             blah->size++;
         }
         else if(lst->type == TOKEN_FILE && blah->reds2 != NULL)
         {
-            printf("its here 4, lst : %s\n", lst->value);
             blah->reds2[blah->reds_i++] = ft_strdup(lst->value);
             blah->size++;
         }
-        else
-            printf("its here 5, lst : %s\n", lst->value);
         lst = lst->next;
     }
     if(blah->args2)

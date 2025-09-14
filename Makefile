@@ -2,8 +2,8 @@ NAME = minishell
 
 # CFLAGS = -Wall -Werror -Wextra -I./readline/include
 # CFLAGS = -fsanitize=address -g -I./readline/include
-CFLAGS = -fsanitize=address -I./readline/include
-# CFLAGS = -I./readline/include
+# CFLAGS = -fsanitize=address -I./readline/include
+CFLAGS = -I./readline/include
 
 RDFLAGS = -lreadline -lncurses
 

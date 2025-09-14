@@ -6,7 +6,7 @@
 /*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 14:50:07 by skully            #+#    #+#             */
-/*   Updated: 2025/07/08 21:29:39 by mdakni           ###   ########.fr       */
+/*   Updated: 2025/09/15 00:05:19 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@ char *handle_tmp2(t_data *data, t_input *list, char *tmp3, t_flags *check)
     tmp = my_substr(list->value, check->start, (check->end) - check->start);
     check->start = check->end;
     if(tmp[0] == '?')
-        return(ft_itoa(data->exm));
+        return(free(tmp), ft_itoa(data->exm));
     else
         tmp3 = gky_env(data, tmp);
-    if(!tmp3)
-        return(free(tmp), NULL);
-    return(free(tmp), my_strdup(tmp3));
+    // if(!tmp3)
+    //     return(free(tmp), ft_strdup(""));
+    return(free(tmp), ft_strdup(tmp3));
 }
 
 void expand_and_append(t_input *list, t_flags *check, t_data *data)
@@ -51,9 +51,11 @@ void expand_and_append(t_input *list, t_flags *check, t_data *data)
     if(tmp2 == NULL)
     {
         printf("\ntmp2 : %s\n", tmp2);
+        // return(free(check->string));
         return;
     }
     check->string = my_strnjoin(check->string, tmp2, my_strlen(tmp2));
+    // printf("string : %c\n", check->string[0]);
     return(free(tmp2));
 }
 

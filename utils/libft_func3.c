@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft_func3.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 20:22:32 by skully            #+#    #+#             */
-/*   Updated: 2025/07/01 14:56:40 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/09/15 00:23:39 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,7 +145,7 @@
 // }
 static int	word_count(const char *s)
 {
-	int i = 0, count = 0;
+	int i = 0, count = 2;
 	bool in_word = false, in_quote = false;
 	char quote = 0;
 
@@ -188,7 +188,7 @@ char	*copy_word(const char *s, int *i)
 		(*i)++;
 	}
 	len = *i - start;
-	char *word = malloc(len + 1);
+	char *word = ft_calloc(len + 1, 1);
 	if (!word)
 		return (NULL);
 	for (int j = 0; j < len; j++)
@@ -201,7 +201,8 @@ char	**my_split(const char *s)
 	char **result;
 	int i = 0, j = 0;
 
-	result = malloc(sizeof(char *) * (word_count(s) + 1));
+	result = ft_calloc(sizeof(char *), (word_count(s) + 1));
+	printf("word_count : %d\n", word_count(s));
 	if (!result)
 		return (NULL);
 	while (s[i])
@@ -210,6 +211,11 @@ char	**my_split(const char *s)
 			i++;
 		if (s[i])
 			result[j++] = copy_word(s, &i);
+	}
+	if(s[0] == '\0')
+	{
+		result[j] = ft_strdup(s);
+		j++;
 	}
 	result[j] = NULL;
 	return (result);
