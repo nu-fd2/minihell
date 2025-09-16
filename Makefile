@@ -1,9 +1,9 @@
 NAME = minishell
 
 # CFLAGS = -Wall -Werror -Wextra -I./readline/include
-CFLAGS = -fsanitize=address -g -I./readline/include
+# CFLAGS = -fsanitize=address -g -I./readline/include
 # CFLAGS = -fsanitize=address -I./readline/include
-# CFLAGS = -I./readline/include
+CFLAGS = -I./readline/include
 
 RDFLAGS = -lreadline -lncurses
 
@@ -44,7 +44,7 @@ ex/m_red/red_red.c \
 ex/m_red/apn_red.c \
 ex/m_red/inn_red.c \
 ex/m_red/man_red.c \
-ex/m_red/int_dog.c \
+ex/m_red/man_dog.c \
 ex/m_red/dog_pip.c \
 ex/main_exc.c \
 ex/m_perror.c \

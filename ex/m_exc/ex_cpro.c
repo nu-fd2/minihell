@@ -6,7 +6,7 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 01:56:16 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/09/11 18:02:48 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/09/16 22:47:58 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,16 @@ int	ex_cpro(t_data *data, char *cmd, char **arg)
 		return (m_perror(NULL, NULL, "forkn't"));
 	if (kid == 0)
 	{
+		//???????????
+		// char *s;
+		// s = get_next_line(data->fd2);
+		// while (s)
+		// {
+		// 	ft_putstr_fd(s, 1);
+		// 	free(s);
+		// 	s = get_next_line(data->fd2);
+		// }
+		//???????????
 		dup2(data->fd2, 0);
 		dup2(data->fd, 1);
 		if (data->fd2 != data->p_in && data->p_in != 0)
@@ -76,9 +86,12 @@ int	ex_cpro_bult(t_data *data, char **arg, int bc)
 	out = 1;
 	kid = fork();
 	if (kid < 0)
-		return (m_perror(NULL, NULL, "forkn't"));
+		return (m_perror(NULL, NULL, "forkn't"), -1);
 	if (kid == 0)
 	{
+		ft_putstr_fd("ts-", 1);
+		ft_putstr_fd(arg[0], 1);
+		ft_putstr_fd("\n", 1);
 		dup2(data->fd, 1);
 		dup2(data->fd2, 0);
 		out = ex_bults_pip(data, arg, bc);

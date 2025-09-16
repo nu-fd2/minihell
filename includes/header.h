@@ -146,6 +146,7 @@ typedef struct s_latest
     int red_size;
     bool expanded;
     int pip[2];
+    int has_dog;
 }   t_short;
 
 typedef struct s_size
@@ -279,7 +280,7 @@ char		*ft_strdup(const char *s1);//
 char		**ft_ssplit(char const *s, char c);//
 void		*ft_calloc(size_t count, size_t size);//
 char		*ft_ssubstr(char const *s, unsigned int start, size_t len);//
-char		*ft_sstrjoin(char const *s1, char const *s2);//
+char		*ft_sstrjoin(char const *s1, char const *s2);//                                                                                                             
 void		ft_putchar_fd(char c, int fd);//
 void		ft_putstr_fd(char *s, int fd);//
 int	ft_isalpha(int c);
@@ -321,7 +322,7 @@ int	src_red(t_data *data, t_short *shart, char **red);
 int	red_red(t_data *data, char *red);
 int	apn_red(t_data *data, char *red);
 int	inn_red(t_data *data, char *red);
-int frk_dog(t_data *data, t_short *shart, int m_pip_1);
+int frk_dog(t_data *data, t_short *shart);
 int man_dog(t_data *data, t_short *shart);
 void cls_dog_pip(t_short *shart);
 int cnt_dog(t_data *data, t_short *shart);

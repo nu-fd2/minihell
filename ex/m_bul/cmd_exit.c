@@ -6,7 +6,7 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 19:50:09 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/09/11 17:20:33 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/09/16 18:04:30 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ int	cmd_exit(t_data *data, char **arg)
 			return (2);
 		}
 		else
-			x = ft_atoi(arg[0]) % 256;
+			// x = ft_atoi(arg[0]) % 256;
+			x = ft_atoi(arg[0]);
 	}
 	ft_lstfree(data->input);
 	ft_lstfree_2(data->shart);
