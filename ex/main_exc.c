@@ -6,7 +6,7 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 20:06:48 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/09/16 22:42:49 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/09/16 23:38:32 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,6 @@ int sec_exc(t_data *data, t_short *shart, int in, int ot)
 		ret = man_red(data, shart, shart->reds);
 	if (!ret)
 	{
-	ft_putstr_fd("sup vro\n", 1);
 		if (shart->args)
 		{
 			if (!shart->args[0] && !shart->expanded)
@@ -138,51 +137,14 @@ int main_exc(t_data *data, t_short *shart)
 	cnt_dog(data, shart);
 	man_dog(data, shart);
 	pmo = 0;
-
-    // t_short *ts;
-    // ts = shart;
-    // while (ts)
-    // {
-    //     char *s;
-    //     if (ts->has_dog)
-    //     {
-	// 		s = get_next_line(ts->pip[0]);
-	// 		while (s)
-	// 		{
-	// 			ft_putstr_fd(s, 1);
-	// 			free(s);
-	// 			s = get_next_line(ts->pip[0]);
-	// 		}
-    //     }
-    //     ts = ts->next;
-    // }
-
-
-	// printf("aaaaaaaaaaaaa%d\n", shart->pip[0]);
-	// char *tamm;
-	// tamm = get_next_line(shart->pip[0]);
-	// if (!tamm)
-	// 	printf("N");
-	// while (tamm)
-	// {
-	// 	printf("wil\n");
-	// 	ft_putstr_fd(tamm, 1);
-	// 	ft_putstr_fd("\n", 1);
-	// 	free(tamm);
-	// 	tamm = get_next_line(shart->pip[1]);
-	// }
-	// printf("nnnn\n");
-
 	if (!fart->next)
 	{
-		// printf("hi\n");
 		sec_exc(data, fart, in, ot);
 		cls_dog_pip(shart);
 		return clr_kids(data);
 	}
 	while (fart)
 	{
-		// printf("hi\n");
 		ot = set_pipe(data, s, pip1, pip2, fart);
 		if (pip_exc(data, fart, in, ot) == 1)
 			break ;
@@ -193,7 +155,6 @@ int main_exc(t_data *data, t_short *shart)
 		s = !s;
 		fart = fart->next;
 	}
-	// printf("by\n");
 	cls_dog_pip(shart);
 	clr_kids(data);
 	return 0;

@@ -6,7 +6,7 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 06:41:04 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/09/16 22:49:41 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/09/16 23:45:20 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,16 @@
 
 void exer(t_data *data, t_short *shart, int stat)
 {
+    int ex;
+
+    ex = data->exm;
     if (!stat)
         return ;
     ft_lstfree(data->input);
 	ft_lstfree_2(data->shart);
 	fre_env(data->env);
 	free(data);
-	exit(data->exm);
+	exit(ex);
 }
 
 void f_dog_pip(t_data *data, t_short *ts, int p_in)
@@ -46,8 +49,6 @@ int red_dog(t_data *data, t_short *ts, char *key)
     while (1)
     {
         s = readline("\e[1;34m>\e[0m ");
-        // ft_putstr_fd("\e[1;34m>\e[0m ", 1);
-        // s = get_next_line(0);
         if (!s)
             break;
         if (ft_strcmp(key, s) == 0)
@@ -67,7 +68,6 @@ int hot_dog(t_data *data, t_short *ts)
 {
     int i;
     int p_in;
-    // char *s;
 
     i = 0;
     p_in = 0;
@@ -88,13 +88,6 @@ int hot_dog(t_data *data, t_short *ts)
         }
         f_dog_pip(data, ts, p_in);
     }
-    // s = get_next_line(ts->pip[0]);
-    // while (s)
-    // {
-    //     ft_putstr_fd(s, 1);
-    //     free(s);
-    //     s = get_next_line(ts->pip[0]);
-    // }
     return 0;
 }
 
@@ -140,16 +133,6 @@ int man_dog(t_data *data, t_short *shart)
             frk_dog(data, ts);
             close(ts->pip[1]);
         }
-        // ft_putstr_fd("SUP\n", 1);
-        // char *s;
-        // s = get_next_line(ts->pip[0]);
-        // while (s)
-        // {
-        //     ft_putstr_fd(s, 1);
-        //     ft_putstr_fd("\n", 1);
-        //     free(s);
-        //     s = get_next_line(ts->pip[0]);
-        // }
         ts = ts->next;
     }
     return 0;
