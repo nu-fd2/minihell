@@ -6,7 +6,7 @@
 /*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 20:35:13 by mdakni            #+#    #+#             */
-/*   Updated: 2025/09/18 16:50:02 by mdakni           ###   ########.fr       */
+/*   Updated: 2025/09/18 19:09:57 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ t_input *striper(t_input *list)
     while(list_tmp && list_tmp->value)
     {
         size = calculate_size_blyat(list_tmp->value);
-        if(size == 0 || ((list_tmp->prev && list_tmp->prev->type == TOKEN_HEREDOC)))
+        if(size == 0) // HEREDOC WORD AFTER IT EITHER EMPTY STRING OR NULL POINTER BASED ON OMARS TS black african american individual AKA nigger
         {
             list_tmp = list_tmp->next;
            continue;
@@ -124,6 +124,6 @@ t_input *striper(t_input *list)
         list_tmp->value = tmp;
         list_tmp = list_tmp->next;
     }
-    ft_clear_empty(list);
+    // ft_clear_empty(list);
     return (list);
 }

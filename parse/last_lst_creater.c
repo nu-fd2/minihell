@@ -6,7 +6,7 @@
 /*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 13:35:00 by mdakni            #+#    #+#             */
-/*   Updated: 2025/09/18 16:46:55 by mdakni           ###   ########.fr       */
+/*   Updated: 2025/09/18 20:06:31 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,9 @@ void assign_strings(t_blah *blah, t_input *lst)
     blah->reds_i = 0;
     while(lst->next && lst->type != EOF)
     {
-        if(lst->type == TOKEN_CMD && blah->args2 != NULL)
+        if(lst->type == TOKEN_CMD && lst->value && blah->args2 != NULL)
             blah->args2[blah->args_i++] = ft_strdup(lst->value);
-        else if(lst->type == TOKEN_ARG && blah->args2 != NULL)
+        else if(lst->type == TOKEN_ARG  && lst->value && blah->args2 != NULL)
             blah->args2[blah->args_i++] = ft_strdup(lst->value);
         else if(lst->red_app == true && blah->reds2 != NULL)
         {
@@ -76,6 +76,34 @@ void assign_strings(t_blah *blah, t_input *lst)
     if(blah->reds2)
         blah->reds2[blah->reds_i] = NULL;
 }
+
+// void assign_strings(t_blah *blah, t_input *lst)
+// {
+//     blah->args_i = 0;
+//     blah->reds_i = 0;
+//     while(lst->next && lst->type != EOF)
+//     {
+//         if(lst->type == TOKEN_CMD && blah->args2 != NULL)
+//             blah->args2[blah->args_i++] = ft_strdup(lst->value);
+//         else if(lst->type == TOKEN_ARG && blah->args2 != NULL)
+//             blah->args2[blah->args_i++] = ft_strdup(lst->value);
+//         else if(lst->red_app == true && blah->reds2 != NULL)
+//         {
+//             blah->reds2[blah->reds_i++] = ft_strdup(lst->value);
+//             blah->size++;
+//         }
+//         else if(lst->type == TOKEN_FILE && blah->reds2 != NULL)
+//         {
+//             blah->reds2[blah->reds_i++] = ft_strdup(lst->value);
+//             blah->size++;
+//         }
+//         lst = lst->next;
+//     }
+//     if(blah->args2)
+//         blah->args2[blah->args_i] = NULL;
+//     if(blah->reds2)
+//         blah->reds2[blah->reds_i] = NULL;
+// }
 
 void create_node(t_blah *blah, t_input *head)
 {
