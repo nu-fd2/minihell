@@ -217,6 +217,8 @@ int handle_quotes(t_input **list, char *line);
 int handle_word(t_input **list, char *line);
 bool check_limit(char *line, t_quotes *check);
 char	*my_substr(char const *s, unsigned int start, size_t len);
+void remove_middle_node(t_input **list, t_input **list_tmp);
+void ft_clear_empty(t_input *list);
 
 int filter(t_input *list);
 void checker(char *line);

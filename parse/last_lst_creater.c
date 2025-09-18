@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   last_lst_creater.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
+/*   By: skully <skully@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 13:35:00 by mdakni            #+#    #+#             */
-/*   Updated: 2025/09/14 22:04:10 by mdakni           ###   ########.fr       */
+/*   Updated: 2025/09/17 21:20:17 by skully           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 t_blah check_ambiguous(t_input *lst, t_blah blah)
 {
     blah.size = 0;
+    if(lst->type == TOKEN_R_RED && lst->next->value == NULL)
+        blah.ambiguous = true;
     if(lst->type == TOKEN_FILE && lst->next)
     {
         if(lst->next->type == TOKEN_FILE)
