@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   striper.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skully <skully@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 20:35:13 by mdakni            #+#    #+#             */
-/*   Updated: 2025/09/17 21:50:16 by skully           ###   ########.fr       */
+/*   Updated: 2025/09/18 16:50:02 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ void remove_middle_node(t_input **list, t_input **list_tmp)
 
     if((*list_tmp)->prev)
     {
-        printf("its here 1\n");
         (*list_tmp)->prev->next = (*list_tmp)->next;
         if((*list_tmp)->next)
             (*list_tmp)->next->prev = (*list_tmp)->prev;
@@ -82,7 +81,6 @@ void remove_middle_node(t_input **list, t_input **list_tmp)
     }
     else
     {
-        printf("its here 2\n");
         (*list_tmp) = (*list_tmp)->next;
         if(((*list)->next))
             (*list)->next->prev = NULL;
@@ -101,6 +99,7 @@ int remove_or_ignore(char* tmp, t_input **list, t_input **list_tmp)
         return ((*list_tmp) = (*list_tmp)->next, free(tmp), 0);
     return 1;
 }
+
 
 t_input *striper(t_input *list)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft_func3.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skully <skully@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 20:22:32 by skully            #+#    #+#             */
-/*   Updated: 2025/09/17 21:40:11 by skully           ###   ########.fr       */
+/*   Updated: 2025/09/18 16:56:10 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,8 +96,18 @@ void ft_clear_empty(t_input *list)
 	lst_tmp = list;
     while(lst_tmp)
     {
-		if(lst_tmp->type != TOKEN_FILE && lst_tmp->value == NULL)
+		if(lst_tmp->type != TOKEN_FILE && lst_tmp->type != TOKEN_EOF && lst_tmp->value == NULL)
+		{
+			printf("before 1\n");
 			remove_middle_node(&list, &lst_tmp);
-		lst_tmp = lst_tmp->next;
+			printf("after 2\n");
+		}
+		else
+		{
+			printf("before 3\n");
+			lst_tmp = lst_tmp->next;
+			printf("after 4\n");
+		}
     }
+	lst_print(list);
 }
