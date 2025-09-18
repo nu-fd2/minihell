@@ -25,6 +25,8 @@
 #include <stdint.h>
 #include <sys/wait.h>
 
+#include <termios.h>
+
 #ifdef linux
 #include <readline/history.h>
 #include <readline/readline.h>

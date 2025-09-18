@@ -6,7 +6,7 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 13:16:23 by mdakni            #+#    #+#             */
-/*   Updated: 2025/09/16 23:42:05 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/09/18 16:09:31 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ void manager(t_data *data, char *line)
     input = star_expansion(input);
     striper(input);
     shart = last_lst_creater(input);
-        // lst_print(input);
-        // lst_print2(shart);
+        lst_print(input);
+        lst_print2(shart);
     data->input = input;
     data->shart = shart;
     main_exc(data, shart);
@@ -63,6 +63,7 @@ int prompt_msg(t_data *data)
         free(line);
         return 0;
     }
+    // pmo = 0;
     if (ft_skip_spaces(line))
         return (free(line), 1);
     add_history(line);
@@ -70,18 +71,35 @@ int prompt_msg(t_data *data)
     free(line);
     return 1;
 }
+// void disable_echoctl(void)
+// {
+//     struct termios term;
+
+//     tcgetattr(STDIN_FILENO, &term);
+//     term.c_lflag &= ~ECHOCTL;  // disable printing ^C
+//     tcsetattr(STDIN_FILENO, TCSANOW, &term);
+// }
 
 static void hnd_sig(int sig)
 {
 	(void)sig;
 
     if (pmo == 1)
+    {
+        pmo = 0;
         return ;
+    }
+    // disable_echoctl();
 	write(1, "\n", 1);
 	rl_replace_line("", 0);
 	rl_on_new_line();
 	rl_redisplay();
 }
+
+// void t()
+// {
+//     system("leaks minishell");
+// }
 
 int main(int ac, char **av, char **env)
 {

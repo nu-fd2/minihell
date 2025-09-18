@@ -6,7 +6,7 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 20:06:48 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/09/16 23:38:32 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/09/18 17:01:15 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,16 +45,23 @@ int pip_exc(t_data *data, t_short *shart, int in, int ot)
 		ret = man_red(data, shart, shart->reds);
 	if (!ret)
 	{
-		if (shart->args)
+		write(2, "pip_exc\n", 8);
+		printf("A:%d\n", shart->ambiguous);
+		if (!shart->ambiguous)
 		{
-			if (!shart->args[0] && !shart->expanded)
-				m_perror(NULL, "", "command not found");
-			else if (!shart->expanded || shart->args[0])
+			if (shart->args)
 			{
-				if (ex_rish_pip(data, shart->args) == -1)
-					ret = 1;
+				if (!shart->args[0] && !shart->expanded)
+					m_perror(NULL, "", "command not found");
+				else if (!shart->expanded || shart->args[0])
+				{
+					if (ex_rish_pip(data, shart->args) == -1)
+						ret = 1;
+				}
 			}
 		}
+		else
+			m_perror(NULL, shart->args[1], "ambiguous redirect");
 	}
 	else
 		data->exm = ret;
@@ -82,13 +89,20 @@ int sec_exc(t_data *data, t_short *shart, int in, int ot)
 		ret = man_red(data, shart, shart->reds);
 	if (!ret)
 	{
-		if (shart->args)
+		write(2, "sec_exc\n", 8);
+		printf("A:%d\n", shart->ambiguous);
+		if (!shart->ambiguous)
 		{
-			if (!shart->args[0] && !shart->expanded)
-				m_perror(NULL, "", "command not found");
-			else if (!shart->expanded || shart->args[0])
-				ex_rish(data, shart->args);
+			if (shart->args)
+			{
+				if (!shart->args[0] && !shart->expanded)
+					m_perror(NULL, "", "command not found");
+				else if (!shart->expanded || shart->args[0])
+					ex_rish(data, shart->args);
+			}
 		}
+		else
+			m_perror(NULL, shart->args[1], "ambiguous redirect");
 	}
 	else
 		data->exm = ret;
@@ -136,18 +150,30 @@ int main_exc(t_data *data, t_short *shart)
 	data->dog_kid = 0;
 	cnt_dog(data, shart);
 	man_dog(data, shart);
-	pmo = 0;
+			write(2, "MAN_exc\n", 8);
+		printf("T:%d\n", shart->ambiguous);
 	if (!fart->next)
 	{
-		sec_exc(data, fart, in, ot);
-		cls_dog_pip(shart);
-		return clr_kids(data);
+		if (!fart->ambiguous)
+		{
+			sec_exc(data, fart, in, ot);
+			pmo = 0;
+			cls_dog_pip(shart);
+			return clr_kids(data);
+		}
+		else
+			return (m_perror(NULL, shart->args[1], "ambiguous redirect"));
 	}
 	while (fart)
 	{
 		ot = set_pipe(data, s, pip1, pip2, fart);
-		if (pip_exc(data, fart, in, ot) == 1)
-			break ;
+		if (!fart->ambiguous)
+		{
+			if (pip_exc(data, fart, in, ot) == 1)
+				break ;
+		}
+		else
+			data->exm = m_perror(NULL, shart->args[1], "ambiguous redirect");
 		if (!s && fart->next)
 			in = pip1[0];
 		else if (s && fart->next)
@@ -155,6 +181,7 @@ int main_exc(t_data *data, t_short *shart)
 		s = !s;
 		fart = fart->next;
 	}
+	pmo = 0;
 	cls_dog_pip(shart);
 	clr_kids(data);
 	return 0;
