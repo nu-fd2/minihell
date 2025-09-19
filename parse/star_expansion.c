@@ -6,7 +6,7 @@
 /*   By: skully <skully@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 15:41:23 by mdakni            #+#    #+#             */
-/*   Updated: 2025/09/19 05:09:38 by skully           ###   ########.fr       */
+/*   Updated: 2025/09/19 17:01:41 by skully           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,13 +157,15 @@ void create_and_replace(t_input **iter, t_input **list)
         return;
     if((*iter)->prev)
     {
-        printf("%p\n", *iter);
+        // printf("%p\n", *iter);
         ih = (*iter)->prev;
-        // lst_print(*iter);
-        printf("%p\n", *iter);
-        printf("iter->value : %s\n", (*iter)->prev->value);
-        printf("iter->type : %d\n", ih->type);
-        if(ih->type)
+        // printf("before star\n");
+        // lst_print(ih);
+        // printf("after star\n");
+        // printf("%p\n", *iter);
+        // printf("iter->value : %s\n", (*iter)->prev->value);
+        // printf("iter->type : %d\n", ih->type);
+        if(ih && ih->type)
         {
             if((*iter)->prev->type == TOKEN_HEREDOC)
                 return;
@@ -187,7 +189,7 @@ t_input *star_expansion(t_input *list)
     t_input *tmp;
 
     tmp = list;
-    lst_print(list);
+    // lst_print(list);
     while(tmp->value)
     {
         // printf("\nbefore iter : %s\n", tmp->value);

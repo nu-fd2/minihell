@@ -6,7 +6,7 @@
 /*   By: skully <skully@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 13:16:23 by mdakni            #+#    #+#             */
-/*   Updated: 2025/09/19 05:51:29 by skully           ###   ########.fr       */
+/*   Updated: 2025/09/19 16:55:10 by skully           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,22 @@ void manager(t_data *data, char *line)
     input = tokenize(line);
 	// printf("tokenize finished\n");
     if(filter(input))
-        return(ft_lstfree(input));
+    return(ft_lstfree(input));
 	// printf("filter finished\n");
     seperator(input);
-	// printf("seperator finished\n");
-    // input = money_expansion(input, data);
+	// printf("before money\n");
+    // lst_print(input);
+    input = money_expansion(input, data);
+	// printf("after money\n");
+    // lst_print(input);
 	// // printf("money_expansion finished\n");
-    // input = star_expansion(input);
+    input = star_expansion(input);
 	// printf("star_expansion finished\n");
     striper(input);
 	// printf("striper finished\n");
     shart = last_lst_creater(input);
 	// printf("last_lst_creater finished\n");
-    lst_print(input);
+    // lst_print(input);
     lst_print2(shart);
 	// printf("lst_print2 finished\n");
 

@@ -6,7 +6,7 @@
 /*   By: skully <skully@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 14:50:07 by skully            #+#    #+#             */
-/*   Updated: 2025/09/19 05:13:43 by skully           ###   ########.fr       */
+/*   Updated: 2025/09/19 17:06:48 by skully           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,12 @@ t_input *split_and_add(t_input **list, t_input **iter)
     lst_tmp = NULL;
     i = 0;
     tmp = my_split((*iter)->value);
+    while(tmp[i])
+    {
+        printf("tmp[%d] = %s, ", i, tmp[i]);
+        i++;
+    }
+    i = 0;
     if(tmp && !tmp[0])
         return(free((*iter)->value), (*iter)->value = NULL, *list);
     if(!tmp || tmp[1] == NULL)
@@ -145,6 +151,9 @@ t_input *split_and_add(t_input **list, t_input **iter)
     lst_tmp = ft_lstlast(lst_tmp);
     lst_tmp->next = (*iter)->next;
     (*iter)->next = NULL;
+    // lst_print(*list);
+    // printf("the node/nodes we will remove are : ");
+    // lst_print(*iter);
     ft_lstfree(*iter);
     *iter = NULL;
     return ((*iter) = lst_tmp, *list);
@@ -162,7 +171,11 @@ t_input *money_expansion(t_input *list, t_data *data)
             iter = iter->next->next;
             continue;
         }
+        // printf("before nod_mod : \n");
+        // lst_print(iter);
         node_mod(iter, data);
+        // printf("after nod_mod : \n");
+        // lst_print(iter);
         list = split_and_add(&list, &iter);
         iter = iter->next;
     }
