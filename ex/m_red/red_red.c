@@ -6,7 +6,7 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 07:32:17 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/09/18 17:11:22 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/09/19 07:34:14 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int	red_red(t_data *data, char *red)
 	int neo;
 
 	neo = -1;
+	
 	if (!red)
 		return (m_perror(NULL, NULL, "ambiguous redirect"));
 	if (access(red, F_OK) == -1)

@@ -6,7 +6,7 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 20:06:48 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/09/18 17:01:15 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/09/19 07:48:25 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int clr_kids(t_data *data)
 	t_kids *ts;
 	int x;
 
+	pmo = 0;
 	x = ex_waitkid(data);
 	if (x != 0)
 		data->exm = x;
@@ -45,8 +46,6 @@ int pip_exc(t_data *data, t_short *shart, int in, int ot)
 		ret = man_red(data, shart, shart->reds);
 	if (!ret)
 	{
-		write(2, "pip_exc\n", 8);
-		printf("A:%d\n", shart->ambiguous);
 		if (!shart->ambiguous)
 		{
 			if (shart->args)
@@ -89,8 +88,6 @@ int sec_exc(t_data *data, t_short *shart, int in, int ot)
 		ret = man_red(data, shart, shart->reds);
 	if (!ret)
 	{
-		write(2, "sec_exc\n", 8);
-		printf("A:%d\n", shart->ambiguous);
 		if (!shart->ambiguous)
 		{
 			if (shart->args)
@@ -149,15 +146,14 @@ int main_exc(t_data *data, t_short *shart)
 	fart = shart;
 	data->dog_kid = 0;
 	cnt_dog(data, shart);
-	man_dog(data, shart);
-			write(2, "MAN_exc\n", 8);
-		printf("T:%d\n", shart->ambiguous);
+	if (man_dog(data, shart) == -1)
+		return 1;
 	if (!fart->next)
 	{
 		if (!fart->ambiguous)
 		{
 			sec_exc(data, fart, in, ot);
-			pmo = 0;
+			// pmo = 0;
 			cls_dog_pip(shart);
 			return clr_kids(data);
 		}
@@ -178,10 +174,11 @@ int main_exc(t_data *data, t_short *shart)
 			in = pip1[0];
 		else if (s && fart->next)
 			in = pip2[0];
+		// pmo = 0;
 		s = !s;
 		fart = fart->next;
 	}
-	pmo = 0;
+	// pmo = 0;
 	cls_dog_pip(shart);
 	clr_kids(data);
 	return 0;

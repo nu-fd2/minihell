@@ -6,7 +6,7 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 06:41:04 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/09/16 23:45:20 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/09/19 07:47:23 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ int frk_dog(t_data *data, t_short *ts)
     pmo = 1;
     lil_vro = fork();
     if (lil_vro < 0)
-        return (m_perror(NULL, NULL, "forknt"));
+        return (m_perror(NULL, NULL, "forknt"), -1);
     else if (lil_vro == 0)
     {
         signal(SIGINT, SIG_DFL);
@@ -130,7 +130,11 @@ int man_dog(t_data *data, t_short *shart)
         if (ts->has_dog)
         {
             pipe(ts->pip);
-            frk_dog(data, ts);
+            if (frk_dog(data, ts) == -1)
+            {
+                close(ts->pip[1]);
+                return -1;
+            }
             close(ts->pip[1]);
         }
         ts = ts->next;
