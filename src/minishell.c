@@ -3,14 +3,44 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sel <sel@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 13:16:23 by mdakni            #+#    #+#             */
-/*   Updated: 2025/09/19 06:58:30 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/09/19 09:07:20 by sel              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/header.h"
+
+    // Look ahead
+    // char next = exp->input[exp->i_index + 1];
+
+    // Case 1: end of string → keep it as literal '$'
+    // if (next == '\0') {
+    //     exp->i_index++;
+    //     continue;
+    // }
+
+    // Case 2: $$ → special case (bash = PID, for you maybe just keep "$$")
+    // if (next == '$') {
+        // here you can either:
+        //   - expand to PID if you want full bash behavior
+        //   - or just leave "$$"
+    //     exp->i_index += 2; 
+    //     continue;
+    // }
+
+    // Case 3: invalid var char after '$' (like space, punctuation, etc.)
+    // if (!(isalpha((unsigned char)next) || next == '_')) {
+        // not a valid var name start → keep '$'
+    //     exp->i_index++;
+    //     continue;
+    // }
+
+    // Case 4: valid variable name → collect and expand (your original logic)
+    // exp->i_index++; // skip '$'
+    // start = exp->i_index;
+    // key_len = 0;
 
 typedef struct s_expansion
 {
@@ -34,11 +64,11 @@ void	init_expansion(t_expansion *exp, char *input)
     exp->output = NULL;
 }
 
-const char *get_env_value(t_env *env, const char *key) {
-    const char *value = NULL;
+char *get_env_value(t_env *env, const char *key) {
+    char *value = NULL;
 
     while (env) {
-        if (strcmp(env->key, key)) {
+        if (!strcmp(env->key, key)) {
             value = strdup(env->value);
             break;
         }
@@ -49,46 +79,124 @@ const char *get_env_value(t_env *env, const char *key) {
 
 int get_var_len(t_env *env, char *key) {
     char *tmp_value;
+    int len;
 
     tmp_value = get_env_value(env, key);
-    if (tmp_value)
-        return strlen(tmp_value);
+    if (tmp_value) {
+        len = strlen(tmp_value);
+        free(tmp_value);
+        return len;
+    }
     return 0;
 }
 
-void process_input(t_expansion *exp) {
+void process_input(t_expansion *exp, t_env *env) {
     char *tmp_key;
-    int key_len = 0;
+    int key_len;
+    int start;
 
     while (exp->input[exp->i_index]) {
-        // not sure about the conditions: look up the valid vars namings in man bash
-        if ( exp->input[exp->i_index] == '$' ) {
-            exp->len--;
-            exp->i_index ++;
-            while (!is_space(exp->input[exp->i_index])) {
-                exp->i_index ++;
-                exp->len--;
-                key_len ++;
-            }
-            // copy a tmp key to get it len to be added to the total len
-        }
+        // Quotes d zeb once again : btw this could be a function i did a lot of non DRY coding here sorry Skully
+        if (exp->input[exp->i_index] == '\'')
+            exp->s_quote = !exp->s_quote;
+        else if (exp->input[exp->i_index] == '\"')
+            exp->d_quote = !exp->d_quote;
 
-        exp->i_index++;
+        if (!exp->s_quote && exp->input[exp->i_index] == '$') {
+            start = ++exp->i_index;
+            exp->len--;
+            key_len = 0;
+            while (exp->input[exp->i_index] &&
+                    (isalnum((unsigned char)exp->input[exp->i_index]) ||
+                    exp->input[exp->i_index] == '_')) {
+                exp->i_index++;
+                exp->len--;
+                key_len++;
+            }
+            if (key_len > 0) {
+                tmp_key = malloc(key_len + 1);
+                if (!tmp_key)
+                    return;
+                strncpy(tmp_key, exp->input + start, key_len);
+                tmp_key[key_len] = '\0';
+                exp->len += get_var_len(env, tmp_key);
+                free(tmp_key);
+            } else {
+                exp->len++;
+            }
+        }
+        else
+            exp->i_index++;
     }
+    exp->i_index = 0;
 }
+
+void fill_output(t_expansion *exp, t_env *env) {
+    while (exp->input[exp->i_index]) {
+        char c = exp->input[exp->i_index];
+        // Quotes d zeb once again : quotes d zeb again you better implement a function that does update the state of the quotes i aint doing it for u nigga (literally copy this code some where else)
+        if (c == '\'' && !exp->d_quote)
+            exp->s_quote = !exp->s_quote;
+        else if (c == '"' && !exp->s_quote)
+            exp->d_quote = !exp->d_quote;
+            
+        if (!exp->s_quote && c == '$') {
+            int start = ++exp->i_index;
+            int key_len = 0;
+            while (exp->input[exp->i_index] && 
+                    (isalnum((unsigned char)exp->input[exp->i_index]) || 
+                    exp->input[exp->i_index] == '_')) {
+                exp->i_index++;
+                key_len++;
+            }
+            if (key_len > 0) {
+                char *tmp_key = malloc(key_len + 1);
+                if (tmp_key) {
+                    strncpy(tmp_key, exp->input + start, key_len);
+                    tmp_key[key_len] = '\0';
+                    char *val = get_env_value(env, tmp_key);
+                    if (val) {
+                        int vlen = strlen(val);
+                        memcpy(exp->output + exp->o_index, val, vlen);
+                        exp->o_index += vlen;
+                        free(val);
+                    }
+                    free(tmp_key);
+                }
+            } else {
+                exp->output[exp->o_index++] = '$';
+            }
+        } else
+            exp->output[exp->o_index++] = exp->input[exp->i_index++];
+    }
+    exp->output[exp->o_index] = '\0';
+}
+
 
 // Should take the raw input and do a search and replace for each env var
 char *expand_env_vars(char *raw_line, t_env *env) {
     t_expansion expansion;
 
     init_expansion(&expansion, raw_line);
+
     // get expected len
-
-    // allocate the new_line
-
-    // iterate and replace
+    process_input(&expansion, env);
     
+    // allocate the new_line
+    expansion.output = malloc(expansion.len + 1);
+    if (!expansion.output)
+        return NULL;
 
+    // maybe a function for this and wrap the whole expansion in a diff file : this shit AHHHH
+    expansion.i_index = 0;
+    expansion.o_index = 0;
+    expansion.s_quote = 0;
+    expansion.d_quote = 0;
+    
+    // iterate and replace
+    fill_output(&expansion, env);
+
+    free(expansion.input);
     return expansion.output;
 }
 
@@ -97,8 +205,7 @@ void manager(t_data *data, char *line)
 {
     t_input *input;
     t_short *shart;
-
-    line = expand_env_vars(line, data->env);
+    
     // checker(line);
     input = tokenize(line);
 	// printf("tokenize finished\n");
@@ -166,6 +273,9 @@ int prompt_msg(t_data *data)
     if (ft_skip_spaces(line))
         return (free(line), 1);
     add_history(line);
+    printf("old input: %s\n", line);
+    line = expand_env_vars(line, data->env);
+    printf("new input: %s\n", line);
     manager(data, line);
     free(line);
     return 1;
