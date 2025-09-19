@@ -6,7 +6,7 @@
 /*   By: skully <skully@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 15:41:23 by mdakni            #+#    #+#             */
-/*   Updated: 2025/09/17 21:11:16 by skully           ###   ########.fr       */
+/*   Updated: 2025/09/19 05:09:38 by skully           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,14 +147,29 @@ void create_and_replace(t_input **iter, t_input **list)
     int quote_flag;
     int star_flag;
     int slash_flag;
+    t_input *ih;
 
     i = 0;
     quote_flag = 0;
     star_flag = 0;
     slash_flag = 0;
-    if((*iter)->value[i] == '.' || ((*iter)->prev && (*iter)->prev->type == TOKEN_HEREDOC))
+    if((*iter)->value[i] == '.')
         return;
-    while((*iter)->value[i])
+    if((*iter)->prev)
+    {
+        printf("%p\n", *iter);
+        ih = (*iter)->prev;
+        // lst_print(*iter);
+        printf("%p\n", *iter);
+        printf("iter->value : %s\n", (*iter)->prev->value);
+        printf("iter->type : %d\n", ih->type);
+        if(ih->type)
+        {
+            if((*iter)->prev->type == TOKEN_HEREDOC)
+                return;
+        }
+    }
+        while((*iter)->value[i])
     {
         quote_flag = ft_checker((*iter)->value[i], quote_flag);
         if((*iter)->value[i] == '*' && quote_flag == 0)
@@ -172,6 +187,7 @@ t_input *star_expansion(t_input *list)
     t_input *tmp;
 
     tmp = list;
+    lst_print(list);
     while(tmp->value)
     {
         // printf("\nbefore iter : %s\n", tmp->value);

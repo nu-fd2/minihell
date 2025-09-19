@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   money_expansion.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
+/*   By: skully <skully@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 14:50:07 by skully            #+#    #+#             */
-/*   Updated: 2025/09/15 00:05:19 by mdakni           ###   ########.fr       */
+/*   Updated: 2025/09/19 05:13:43 by skully           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,6 +146,7 @@ t_input *split_and_add(t_input **list, t_input **iter)
     lst_tmp->next = (*iter)->next;
     (*iter)->next = NULL;
     ft_lstfree(*iter);
+    *iter = NULL;
     return ((*iter) = lst_tmp, *list);
 }
 
