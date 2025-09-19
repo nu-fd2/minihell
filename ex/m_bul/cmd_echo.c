@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_echo.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sel <sel@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 10:35:49 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/07/01 14:56:40 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/09/19 09:32:41 by sel              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	cmd_echo(t_data *data, char **arg)
 		return (1);
 	if (!arg[0])
 	{
-		ft_putstr_fd("\\n\n", data->fd);
+		ft_putstr_fd("\\n\n", data->fd); // ? what the fuck is this
 		return (0);
 	}
 	if (arg[0][i++] == '-')

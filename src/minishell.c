@@ -6,7 +6,7 @@
 /*   By: sel <sel@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 13:16:23 by mdakni            #+#    #+#             */
-/*   Updated: 2025/09/19 09:07:20 by sel              ###   ########.fr       */
+/*   Updated: 2025/09/19 09:34:27 by sel              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,14 +44,14 @@
 
 typedef struct s_expansion
 {
-	char					*input;
-	char					*output;
-	int						s_quote;
-	int						d_quote;
-	int						i_index;
-	int						o_index;
-	int						len;
-}							t_expansion;
+    char	*input;
+    char	*output;
+    int		s_quote;
+    int		d_quote;
+    int		i_index;
+    int		o_index;
+    int		len;
+} t_expansion;
 
 void	init_expansion(t_expansion *exp, char *input)
 {
