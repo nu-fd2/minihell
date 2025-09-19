@@ -6,7 +6,7 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 01:56:16 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/09/19 07:45:16 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/09/19 15:27:07 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int	lastkid(t_data *data, pid_t kid)
 			old = old->next;
 		old->next = neo;
 	}
+	// pmo = 0;
 	return (neo->ex);
 }
 

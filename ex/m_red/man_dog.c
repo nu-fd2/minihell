@@ -6,7 +6,7 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 06:41:04 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/09/19 07:47:23 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/09/19 15:13:11 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void f_dog_pip(t_data *data, t_short *ts, int p_in)
     while (s)
     {
         ft_putstr_fd(s, ts->pip[1]);
+        free(s);
         s = get_next_line(p_in);
     }
     close(p_in);
@@ -45,7 +46,8 @@ int red_dog(t_data *data, t_short *ts, char *key)
     char *s;
     int pip[2];
 
-    pipe(pip);
+    if (pipe(pip) == -1)
+        return -1;
     while (1)
     {
         s = readline("\e[1;34m>\e[0m ");
@@ -67,9 +69,11 @@ int red_dog(t_data *data, t_short *ts, char *key)
 int hot_dog(t_data *data, t_short *ts)
 {
     int i;
+    int ret;
     int p_in;
 
     i = 0;
+    ret = 0;
     p_in = 0;
     if (ts->reds)
     {
@@ -83,12 +87,17 @@ int hot_dog(t_data *data, t_short *ts)
                 if (p_in != 0)
                     close(p_in);
                 p_in = red_dog(data, ts, ts->reds[i]);
+                if (p_in == -1)
+                {
+                    ret = 1;
+                    break;
+                }
             }
             i++;
         }
         f_dog_pip(data, ts, p_in);
     }
-    return 0;
+    return ret;
 }
 
 int frk_dog(t_data *data, t_short *ts)
@@ -103,7 +112,7 @@ int frk_dog(t_data *data, t_short *ts)
     else if (lil_vro == 0)
     {
         signal(SIGINT, SIG_DFL);
-        data->exm = 1;
+        // data->exm = 1;
         data->exm = hot_dog(data, ts);
         exer(data, ts, 1);
     }
@@ -113,9 +122,13 @@ int frk_dog(t_data *data, t_short *ts)
         if (WIFEXITED(stat))
 			data->exm = WEXITSTATUS(stat);
 		else if (WIFSIGNALED(stat))
-			data->exm = 128 + WTERMSIG(stat);
+        {
+			data->exm = 1;
+            return 1;
+        }
 		else
 			data->exm = 0;
+        // data->exm = stat;
     }
     return 0;
 }
@@ -123,17 +136,20 @@ int frk_dog(t_data *data, t_short *ts)
 int man_dog(t_data *data, t_short *shart)
 {
     t_short *ts;
+    int ret;
 
     ts = shart;
+    ret = 0;
     while (ts)
     {
         if (ts->has_dog)
         {
             pipe(ts->pip);
-            if (frk_dog(data, ts) == -1)
+            ret = frk_dog(data, ts);
+            if ( ret == -1 || ret == 1)
             {
                 close(ts->pip[1]);
-                return -1;
+                return ret;
             }
             close(ts->pip[1]);
         }

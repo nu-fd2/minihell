@@ -6,7 +6,7 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 20:06:48 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/09/19 07:48:25 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/09/19 15:28:10 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int clr_kids(t_data *data)
 	t_kids *ts;
 	int x;
 
-	pmo = 0;
 	x = ex_waitkid(data);
 	if (x != 0)
 		data->exm = x;
@@ -28,6 +27,7 @@ int clr_kids(t_data *data)
 		free(ts);
 	}
 	data->kids = NULL;
+	// pmo = 0;
 	return 0;
 }
 
@@ -140,14 +140,17 @@ int main_exc(t_data *data, t_short *shart)
 	t_short *fart;
 
 	int (s), (in), (ot), (pip1[2]), (pip2[2]);
+	int d;
 	s = 0;
 	in = 0;
 	ot = 1;
+	d = 0;
 	fart = shart;
 	data->dog_kid = 0;
 	cnt_dog(data, shart);
-	if (man_dog(data, shart) == -1)
-		return 1;
+	d = man_dog(data, shart);
+	if (d == 1 || d == -1)
+		return d;
 	if (!fart->next)
 	{
 		if (!fart->ambiguous)

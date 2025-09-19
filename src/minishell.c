@@ -6,7 +6,7 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 13:16:23 by mdakni            #+#    #+#             */
-/*   Updated: 2025/09/18 16:09:31 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/09/19 15:33:35 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,9 @@ void manager(t_data *data, char *line)
         lst_print2(shart);
     data->input = input;
     data->shart = shart;
+    pmo = 1;
     main_exc(data, shart);
+    pmo = 0;
     ft_lstfree(input);
     ft_lstfree_2(shart);
 }
@@ -51,19 +53,13 @@ int ft_skip_spaces(char *line)
 int prompt_msg(t_data *data)
 {
     char *line;
-    // printf("\e[1;33m%d \e[0m", data->exm);
-    // if (!data->exm)
         line = readline("\e[1;32m❯ \e[0m");
-    // else
-    //     line = readline("\e[1;31m✖ \e[0m");
-    // data->exm = 0;
     if (!line)
     {
         write(1, "exit\n", 5);
         free(line);
         return 0;
     }
-    // pmo = 0;
     if (ft_skip_spaces(line))
         return (free(line), 1);
     add_history(line);
@@ -71,14 +67,14 @@ int prompt_msg(t_data *data)
     free(line);
     return 1;
 }
-// void disable_echoctl(void)
-// {
-//     struct termios term;
+void disable_echoctl(void)
+{
+    struct termios term;
 
-//     tcgetattr(STDIN_FILENO, &term);
-//     term.c_lflag &= ~ECHOCTL;  // disable printing ^C
-//     tcsetattr(STDIN_FILENO, TCSANOW, &term);
-// }
+    tcgetattr(STDIN_FILENO, &term);
+    term.c_lflag &= ~ECHOCTL;  // disable printing ^C
+    tcsetattr(STDIN_FILENO, TCSANOW, &term);
+}
 
 static void hnd_sig(int sig)
 {
@@ -86,10 +82,10 @@ static void hnd_sig(int sig)
 
     if (pmo == 1)
     {
-        pmo = 0;
+        // pmo = 0;
         return ;
     }
-    // disable_echoctl();
+    disable_echoctl();
 	write(1, "\n", 1);
 	rl_replace_line("", 0);
 	rl_on_new_line();
