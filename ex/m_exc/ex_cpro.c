@@ -6,7 +6,7 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 01:56:16 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/09/19 15:27:07 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/09/19 18:15:16 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ int	lastkid(t_data *data, pid_t kid)
 			old = old->next;
 		old->next = neo;
 	}
-	// pmo = 0;
 	return (neo->ex);
 }
 
@@ -44,6 +43,8 @@ int	ex_cpro(t_data *data, char *cmd, char **arg)
 		return (m_perror(NULL, NULL, "forkn't"), -1);
 	if (kid == 0)
 	{
+		signal(SIGQUIT, SIG_DFL);
+		// signal(SIGINT, SIG_DFL);
 		dup2(data->fd2, 0);
 		dup2(data->fd, 1);
 		if (data->fd2 != data->p_in && data->p_in != 0)
@@ -82,6 +83,8 @@ int	ex_cpro_bult(t_data *data, char **arg, int bc)
 		return (m_perror(NULL, NULL, "forkn't"), -1);
 	if (kid == 0)
 	{
+		signal(SIGQUIT, SIG_DFL);
+		// signal(SIGINT, SIG_DFL);
 		dup2(data->fd, 1);
 		dup2(data->fd2, 0);
 		out = ex_bults_pip(data, arg, bc);

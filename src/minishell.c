@@ -6,7 +6,7 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 13:16:23 by mdakni            #+#    #+#             */
-/*   Updated: 2025/09/19 15:33:35 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/09/19 22:06:39 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void manager(t_data *data, char *line)
     ft_lstfree_2(shart);
 }
 
-int ft_skip_spaces(char *line)
+int ft_skip_spaces(t_data *data, char *line)
 {
     int i;
 
@@ -46,7 +46,10 @@ int ft_skip_spaces(char *line)
     while (is_space(line[i]) && line[i])
         i++;
     if (line[i] == '\0')
+    {
+        data->exm = 0;
         return 1;
+    }
     return 0;
 }
 
@@ -60,7 +63,7 @@ int prompt_msg(t_data *data)
         free(line);
         return 0;
     }
-    if (ft_skip_spaces(line))
+    if (ft_skip_spaces(data, line))
         return (free(line), 1);
     add_history(line);
     manager(data, line);
@@ -81,10 +84,7 @@ static void hnd_sig(int sig)
 	(void)sig;
 
     if (pmo == 1)
-    {
-        // pmo = 0;
         return ;
-    }
     disable_echoctl();
 	write(1, "\n", 1);
 	rl_replace_line("", 0);
