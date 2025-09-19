@@ -6,7 +6,7 @@
 /*   By: sel-mlil <sel-mlil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 13:16:23 by mdakni            #+#    #+#             */
-/*   Updated: 2025/09/19 06:53:03 by sel-mlil         ###   ########.fr       */
+/*   Updated: 2025/09/19 06:58:30 by sel-mlil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,10 @@ void process_input(t_expansion *exp) {
             exp->i_index ++;
             while (!is_space(exp->input[exp->i_index])) {
                 exp->i_index ++;
+                exp->len--;
                 key_len ++;
             }
-            
+            // copy a tmp key to get it len to be added to the total len
         }
 
         exp->i_index++;
@@ -97,6 +98,7 @@ void manager(t_data *data, char *line)
     t_input *input;
     t_short *shart;
 
+    line = expand_env_vars(line, data->env);
     // checker(line);
     input = tokenize(line);
 	// printf("tokenize finished\n");
