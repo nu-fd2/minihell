@@ -6,7 +6,7 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 13:55:27 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/07/30 10:08:01 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/09/20 16:09:57 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ char	*ex_crnt(t_data *data, char *cmd)
 {
 	char	*ult;
 
+    (void)data;
 	ult = NULL;
 	if (access(cmd, F_OK) == -1)
 		m_perror(NULL, cmd, "no such file or directory");

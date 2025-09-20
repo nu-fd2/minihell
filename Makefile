@@ -3,17 +3,17 @@ NAME = minishell
 # CFLAGS = -Wall -Werror -Wextra -I./readline/include
 # CFLAGS = -fsanitize=address -g -I./readline/include
 # CFLAGS = -fsanitize=address -I./readline/include
-CFLAGS = -I./readline/include/
+CFLAGS = -I./readline/include
 
 RDFLAGS = -lreadline -lncurses
 
 SRC = src/minishell.c parse/tokenize.c parse/delimiters.c \
 	  parse/filter.c parse/checker.c parse/lst_functions.c \
 	  parse/operators.c utils/libft_func.c utils/libft_func2.c \
-	  parse/seperator.c parse/transformer.c parse/money_expansion.c \
+	  parse/seperator.c parse/money_expansion.c \
 	  utils/libft_func3.c parse/star_expansion.c parse/striper.c \
 	  parse/last_lst_creater.c parse/lst_functions_2.c \
-	  \
+	  utils/libft_func4.c utils/libft_func5.c  utils/libft_func6.c\
 	  \
 ex/m_bul/cmd_exit.c \
 ex/m_bul/cmd_cd.c \

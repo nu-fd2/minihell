@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   libft_func.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 13:47:16 by mdakni            #+#    #+#             */
-/*   Updated: 2025/07/01 14:56:40 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/09/20 14:26:22 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/header.h"
 
-bool is_space(char c)
+bool	is_space(char c)
 {
-	return(c == ' ' || (c >= 9 && c <= 13));
+	return (c == ' ' || (c >= 9 && c <= 13));
 }
 
 size_t	my_strlen(const char *s)
@@ -22,8 +22,8 @@ size_t	my_strlen(const char *s)
 	size_t	i;
 
 	i = 0;
-	if(!s)
-		return(0);
+	if (!s)
+		return (0);
 	while (s[i])
 		i++;
 	return (i);
@@ -52,8 +52,8 @@ char	*my_strdup(const char *s1)
 	char	*str;
 	int		i;
 
-	if(!s1)
-		return NULL;
+	if (!s1)
+		return (NULL);
 	str = malloc(my_strlen(s1) + 1);
 	if (str == NULL)
 		return (NULL);
@@ -66,8 +66,9 @@ char	*my_strdup(const char *s1)
 	str[i] = '\0';
 	return (str);
 }
-char *my_realloc(char *ptr, const char *new)
+
+char	*my_realloc(char *ptr, const char *new)
 {
-    free(ptr);
-    return(my_strdup(new));
+	free(ptr);
+	return (my_strdup(new));
 }

@@ -6,7 +6,7 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 16:50:59 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/09/19 14:41:01 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/09/20 16:30:49 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	ex_rish(t_data *data, char **arg)
 {
 	int		i;
 	char	*cmd;
-	t_kids	*kids;
+	t_kids	* kids;
 
 	cmd = NULL;
 	i = 0;

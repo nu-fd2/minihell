@@ -3,84 +3,67 @@
 /*                                                        :::      ::::::::   */
 /*   tokenize.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 16:52:37 by mdakni            #+#    #+#             */
-/*   Updated: 2025/07/01 14:56:40 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/09/20 14:26:09 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/header.h"
 
-int skip_spaces(char *line, int i)
+bool	check_limit(char *line, t_quotes *check)
 {
-	while(is_space(line[i]) && line[i])
-		i++;
-	return i;
-}
-
-void check_additionals(char *line, t_quotes *check)
-{
-	if(check->quotes != 1 && line[check->i] == '$')
+	if (line[(check->i)] == '"' && (check->quotes) != 1)
 	{
-		check->expand = true;
-		check->remove = check->quotes;
-	}
-}
-
-bool check_limit(char *line, t_quotes *check)
-{
-	if(line[(check->i)] == '"' && (check->quotes) != 1)
-	{
-		if(check->quotes == 2)
+		if (check->quotes == 2)
 			check->quotes = 0;
 		else
 			check->quotes = 2;
 	}
-	else if(line[check->i] == '\'' && (check->quotes) != 2)
+	else if (line[check->i] == '\'' && (check->quotes) != 2)
 	{
-		if(check->quotes == 1)
+		if (check->quotes == 1)
 			check->quotes = 0;
 		else
 			check->quotes = 1;
 	}
 	check_additionals(line, check);
-	if((check->quotes != 0))
+	if ((check->quotes != 0))
 		return (false);
-	if(line[check->i] == '<' || line[check->i] == '>')
+	if (line[check->i] == '<' || line[check->i] == '>')
 		return (true);
-	else if(line[check->i] == '|' || is_space(line[check->i]))
+	else if (line[check->i] == '|' || is_space(line[check->i]))
 		return (true);
 	return (false);
 }
-void edge_check(char *line, t_quotes check, t_input **list)
+
+void	edge_check(char *line, t_quotes check, t_input **list)
 {
-	if(!line[check.i])
+	if (!line[check.i])
 	{
 		ft_lstadd_back(list, NULL);
 		ft_lstlast(*list)->type = TOKEN_EOF;
 	}
-	(*list)->quotes = check.quotes;		
-	// if((*list)->quotes != 0)
-	// 	printf("OPEN QUOTE : %d\n", (*list)->quotes);
+	(*list)->quotes = check.quotes;
 }
 
-int handle_word(t_input **list, char *line)
+int	handle_word(t_input **list, char *line)
 {
-	t_quotes check;
-	t_input *tmp;
+	t_quotes	check;
+	t_input		*tmp;
 
 	check.expand = false;
 	check.remove = 0;
 	check.quotes = 0;
 	check.i = 0;
-	while(line[check.i])
+	while (line[check.i])
 	{
 		if (check_limit(line, &check))
-			break;
+			break ;
 		check.i++;
 	}
-	if(check.i > 0)
+	if (check.i > 0)
 	{
 		ft_lstadd_back(list, my_strndup(line, check.i));
 		tmp = ft_lstlast(*list);
@@ -89,15 +72,15 @@ int handle_word(t_input **list, char *line)
 		tmp->strip = check.remove;
 	}
 	edge_check(line, check, list);
-	return check.i;
+	return (check.i);
 }
 
-void assign_tokens(t_input **list, char *line)
+void	assign_tokens(t_input **list, char *line)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	while(line[i])
+	while (line[i])
 	{
 		i = skip_spaces(line, i);
 		i += handle_pipe(list, line + i);
@@ -107,23 +90,21 @@ void assign_tokens(t_input **list, char *line)
 	}
 }
 
-t_input *tokenize(char *line)
+t_input	*tokenize(char *line)
 {
-    t_input *list;
-    int i;
+	t_input	*list;
+	int		i;
+	t_input	*tmp;
 
-    list = NULL;
+	list = NULL;
 	assign_tokens(&list, line);
-    i = 0;
-	t_input *tmp = list;
-	while(tmp)
+	i = 0;
+	tmp = list;
+	while (tmp)
 	{
 		tmp->index = i;
 		tmp = tmp->next;
 		i++;
 	}
-    return (list);
+	return (list);
 }
-
-
-// ls -la | (echo "test" | cat -e) && (yes 5 || ls -la)
