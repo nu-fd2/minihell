@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ex_rish.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 16:50:59 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/07/08 15:06:17 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/09/20 12:53:01 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ int	ex_rish(t_data *data, char **arg)
 {
 	int	i;
 	char *cmd;
-	t_kids	*kids;
 
 	cmd = NULL;
 	i = 0;

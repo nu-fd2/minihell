@@ -6,7 +6,7 @@
 /*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 22:13:20 by mdakni            #+#    #+#             */
-/*   Updated: 2025/09/14 15:55:43 by mdakni           ###   ########.fr       */
+/*   Updated: 2025/09/20 12:52:20 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void handle_clear(t_input *list, t_blah *blah)
     t_input *tmp;
 
     tmp = list;
-    while(tmp->next && tmp->type != EOF)
+    while(tmp->next)
     {
         if(tmp->type == TOKEN_ARG || tmp->type == TOKEN_CMD)
             tmp->type = TOKEN_WORD;

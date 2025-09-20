@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skully <skully@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 13:16:23 by mdakni            #+#    #+#             */
-/*   Updated: 2025/09/19 16:55:10 by skully           ###   ########.fr       */
+/*   Updated: 2025/09/20 12:54:41 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,7 @@ int main(int ac, char **av, char **env)
     signal(SIGINT, hnd_sig);
 	signal(SIGQUIT, SIG_IGN);
 
-    // atexit(t);
+    atexit(t);
 
     write(1, "\e[1;31mstartin hell...!\e[0m\n", 28);
     while(69)

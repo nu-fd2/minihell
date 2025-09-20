@@ -6,7 +6,7 @@
 /*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 13:35:00 by mdakni            #+#    #+#             */
-/*   Updated: 2025/09/18 20:06:31 by mdakni           ###   ########.fr       */
+/*   Updated: 2025/09/20 12:52:42 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ t_blah check_ambiguous(t_input *lst, t_blah blah)
 
 void check_token_sizes(t_input *lst, t_blah *blah)
 {
-    while(lst->next && lst->type != EOF)
+    while(lst->next)
     {
         if(lst->value && lst->value[0] == '\0')
         {
@@ -53,7 +53,7 @@ void assign_strings(t_blah *blah, t_input *lst)
 {
     blah->args_i = 0;
     blah->reds_i = 0;
-    while(lst->next && lst->type != EOF)
+    while(lst->next)
     {
         if(lst->type == TOKEN_CMD && lst->value && blah->args2 != NULL)
             blah->args2[blah->args_i++] = ft_strdup(lst->value);

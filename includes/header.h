@@ -233,13 +233,6 @@ int ft_checker(char c, int quote_flag);
 t_short *last_lst_creater(t_input *lst);
 void handle_clear(t_input *list, t_blah *blah);
 
-
-
-
-
-
-
-
 //================================================
 
 size_t		ft_strlen(const char *who);//

@@ -3,18 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   money_expansion.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skully <skully@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 14:50:07 by skully            #+#    #+#             */
-/*   Updated: 2025/09/19 17:06:48 by skully           ###   ########.fr       */
+/*   Updated: 2025/09/20 12:49:50 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/header.h"
 
-char *handle_tmp2(t_data *data, t_input *list, char *tmp3, t_flags *check)
+char *handle_tmp2(t_data *data, t_input *list, t_flags *check)
 {
     char *tmp;
+    char *tmp3;
 
     tmp = my_substr(list->value, check->start, (check->end) - check->start);
     check->start = check->end;
@@ -30,7 +31,6 @@ char *handle_tmp2(t_data *data, t_input *list, char *tmp3, t_flags *check)
 void expand_and_append(t_input *list, t_flags *check, t_data *data)
 {
     char *tmp2;
-    char *tmp3;
 
     check->string = my_strnjoin(check->string, list->value + check->start, (check->end - 1) - check->start);
     check->end++;
@@ -47,7 +47,7 @@ void expand_and_append(t_input *list, t_flags *check, t_data *data)
         check->end++;
     if(list->value[check->end] == '?')
         check->end++;
-    tmp2 = handle_tmp2(data, list, tmp3, check);
+    tmp2 = handle_tmp2(data, list, check);
     if(tmp2 == NULL)
     {
         printf("\ntmp2 : %s\n", tmp2);
@@ -123,11 +123,6 @@ t_input *split_and_add(t_input **list, t_input **iter)
     lst_tmp = NULL;
     i = 0;
     tmp = my_split((*iter)->value);
-    while(tmp[i])
-    {
-        printf("tmp[%d] = %s, ", i, tmp[i]);
-        i++;
-    }
     i = 0;
     if(tmp && !tmp[0])
         return(free((*iter)->value), (*iter)->value = NULL, *list);

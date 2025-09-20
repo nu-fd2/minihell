@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   star_expansion.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skully <skully@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 15:41:23 by mdakni            #+#    #+#             */
-/*   Updated: 2025/09/19 17:01:41 by skully           ###   ########.fr       */
+/*   Updated: 2025/09/20 12:39:18 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,38 +141,27 @@ int ft_checker(char c, int quote_flag)
     }
     return quote_flag;
 }
-void create_and_replace(t_input **iter, t_input **list)
-{
+void create_and_replace(t_input **iter, t_input **list) {
     int i;
     int quote_flag;
     int star_flag;
     int slash_flag;
-    t_input *ih;
 
     i = 0;
     quote_flag = 0;
     star_flag = 0;
     slash_flag = 0;
+    
     if((*iter)->value[i] == '.')
         return;
-    if((*iter)->prev)
+        
+    // Store the prev type BEFORE any modifications
+    if((*iter)->type == TOKEN_HEREDOC)
     {
-        // printf("%p\n", *iter);
-        ih = (*iter)->prev;
-        // printf("before star\n");
-        // lst_print(ih);
-        // printf("after star\n");
-        // printf("%p\n", *iter);
-        // printf("iter->value : %s\n", (*iter)->prev->value);
-        // printf("iter->type : %d\n", ih->type);
-        if(ih && ih->type)
-        {
-            if((*iter)->prev->type == TOKEN_HEREDOC)
-                return;
-        }
+        (*iter) = (*iter)->next;
+        return;
     }
-        while((*iter)->value[i])
-    {
+    while((*iter)->value[i]) {
         quote_flag = ft_checker((*iter)->value[i], quote_flag);
         if((*iter)->value[i] == '*' && quote_flag == 0)
             star_flag = 1;
@@ -180,9 +169,55 @@ void create_and_replace(t_input **iter, t_input **list)
             slash_flag = 1;
         i++;
     }
+    
     if(star_flag == 1)
         read_and_create(iter, quote_flag, slash_flag, list);
 }
+
+
+// void create_and_replace(t_input **iter, t_input **list)
+// {
+//     int i;
+//     int quote_flag;
+//     int star_flag;
+//     int slash_flag;
+//     t_input *ih;
+
+//     i = 0;
+//     quote_flag = 0;
+//     star_flag = 0;
+//     slash_flag = 0;
+//     if((*iter)->value[i] == '.')
+//         return;
+//     if((*iter)->prev)
+//     {
+//         ih = (*iter)->prev;
+//         if(ih == NULL)
+//         {
+//             printf("ih is NULL\n");
+//         }
+//         printf("\nbefore print nig : \n");
+//         lst_print(*iter);
+//         printf("after print nig : \n");
+//         printf("value : %s\n", ih->value);
+//         if(ih && ih->type)
+//         {
+//             if(ih->type == TOKEN_HEREDOC)
+//                 return;
+//         }
+//     }
+//         while((*iter)->value[i])
+//     {
+//         quote_flag = ft_checker((*iter)->value[i], quote_flag);
+//         if((*iter)->value[i] == '*' && quote_flag == 0)
+//             star_flag = 1;
+//         else if((*iter)->value[i] == '/' && (*iter)->value[i + 1] == '\0')
+//             slash_flag = 1;
+//         i++;
+//     }
+//     if(star_flag == 1)
+//         read_and_create(iter, quote_flag, slash_flag, list);
+// }
 
 t_input *star_expansion(t_input *list)
 {

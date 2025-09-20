@@ -6,7 +6,7 @@
 /*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 20:35:13 by mdakni            #+#    #+#             */
-/*   Updated: 2025/09/18 19:09:57 by mdakni           ###   ########.fr       */
+/*   Updated: 2025/09/20 12:50:52 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ void remove_middle_node(t_input **list, t_input **list_tmp)
     }
 }
 
-int remove_or_ignore(char* tmp, t_input **list, t_input **list_tmp)
+int remove_or_ignore(char* tmp, t_input **list_tmp)
 {   
     // if(tmp == NULL)
     //     return (remove_middle_node( list , list_tmp), 0);
@@ -118,7 +118,7 @@ t_input *striper(t_input *list)
            continue;
         }
         tmp = tmp_assignment(list_tmp, size + 1);
-        if(remove_or_ignore(tmp ,&list, &list_tmp) == 0)
+        if(remove_or_ignore(tmp , &list_tmp) == 0)
             continue;
         free(list_tmp->value);
         list_tmp->value = tmp;
