@@ -6,7 +6,7 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 10:47:13 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/09/11 17:13:04 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/09/20 01:55:45 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,6 @@ int	cmd_cd(t_data *data, char **arg)
 	char (*tmp), (*pmt);
 	if (!data || !data->env)
 		return (1);
-	if (arg[1])
-		return (m_perror("cd", NULL, "too many arguments"), 2);
 	if (!arg[0] || arg[0][0] == '\0')
 	{
 		pmt = getenv("HOME");
@@ -58,7 +56,7 @@ int	cmd_cd(t_data *data, char **arg)
 		tmp = ft_strdup(pmt);
 	}
 	else if (arg[1])
-		return (m_perror("cd", NULL, "too many arguments"));
+		return (m_perror("cd", NULL, "too many arguments"), 2);
 	else
 		tmp = n_path(data, arg[0]);
 	pwd = grp_env(data->env, "PWD");
