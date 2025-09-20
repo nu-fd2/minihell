@@ -6,7 +6,7 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 16:50:59 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/09/20 16:30:49 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/09/20 23:45:01 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,13 @@ int	ex_rish(t_data *data, char **arg)
 int	ex_rish_pip(t_data *data, char **arg)
 {
 	int		bc;
+	int		ret;
 	char	*cmd;
 	t_kids	*kids;
 
 	cmd = NULL;
 	bc = 0;
+	ret = 0;
 	if (!is_allspace(arg[0]))
 		return (0);
 	bc = ex_bults_chk(data, arg);
@@ -77,7 +79,7 @@ int	ex_rish_pip(t_data *data, char **arg)
 	else
 	{
 		data->chr_env = int_chr_env(data);
-		ex_cpro(data, cmd, arg);
+		ret = ex_cpro(data, cmd, arg);
 		if (data->fd2 != 0)
 		{
 			close(data->fd2);
@@ -90,5 +92,5 @@ int	ex_rish_pip(t_data *data, char **arg)
 		}
 		fre_chr_env(data->chr_env);
 	}
-	return (free(cmd), 0);
+	return (free(cmd), ret);
 }
