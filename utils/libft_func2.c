@@ -6,7 +6,7 @@
 /*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 17:59:49 by mdakni            #+#    #+#             */
-/*   Updated: 2025/09/14 22:21:49 by mdakni           ###   ########.fr       */
+/*   Updated: 2025/09/20 14:27:39 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ char	*my_strjoin(char *s1, char *s2)
 	str[j] = '\0';
 	return (free(s1), free(s2), str);
 }
+
 char	*my_strnjoin(char *s1, char *s2, int n)
 {
 	int		i;
@@ -103,51 +104,12 @@ char	*my_strnjoin(char *s1, char *s2, int n)
 		return (my_strdup(""));
 	str = malloc((my_strlen(s1) + my_strlen(s2)) + 1);
 	if (str == NULL)
-	return (NULL);
+		return (NULL);
 	while (s1 && s1[i])
-	str[j++] = (char)s1[i++];
+		str[j++] = (char)s1[i++];
 	i = 0;
 	while (s2 && n >= 0 && s2[i] && i <= n)
-	str[j++] = (char)s2[i++];
+		str[j++] = (char)s2[i++];
 	str[j] = '\0';
-	return (free(s1) ,str);
-}
-
-int	my_isdigit(int c)
-{
-	return (c >= '0' && c <= '9');
-}
-
-int	my_isalpha(int c)
-{
-	return ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'));
-}
-int	my_isalnum(int c)
-{
-	return ((my_isalpha(c)) || (my_isdigit(c)));
-}
-char	*my_substr(char const *s, unsigned int start, size_t len)
-{
-	int		j;
-	size_t	i;
-	char	*str;
-	size_t	size;
-
-	j = 0;
-	i = start;
-	
-	if (!s)
-		return (NULL);
-	size = my_strlen(s);
-	if (start > size)
-		return (my_strdup(""));
-	if (len > size - start)
-		len = size - start;
-	str = malloc((sizeof(char) * len) + 1);
-	if (str == NULL)
-		return (NULL);
-	while (s[i] && i < (start + len))
-		str[j++] = s[i++];
-	str[j] = '\0';
-	return (str);
+	return (free(s1), str);
 }

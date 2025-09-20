@@ -3,53 +3,53 @@
 /*                                                        :::      ::::::::   */
 /*   delimiters.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 13:41:27 by mdakni            #+#    #+#             */
-/*   Updated: 2025/07/01 14:56:40 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/09/20 13:38:55 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/header.h"
 
-int handle_par(t_input **list, char *line)
+int	handle_par(t_input **list, char *line)
 {
-	t_input *tmp;
+	t_input	*tmp;
 
-	if(line[0] == '(')
+	if (line[0] == '(')
 	{
 		ft_lstadd_back(list, my_strdup("("));
 		tmp = ft_lstlast(*list);
 		tmp->type = TOKEN_O_PAR;
 		tmp->category = TOKEN_DELIMITER;
-		return 1;
+		return (1);
 	}
-	else if(line[0] == ')')
+	else if (line[0] == ')')
 	{
 		ft_lstadd_back(list, my_strdup(")"));
 		tmp = ft_lstlast(*list);
 		tmp->type = TOKEN_C_PAR;
 		tmp->category = TOKEN_DELIMITER;
-		return 1;
+		return (1);
 	}
-	return 0;
+	return (0);
 }
 
-int handle_word_quotes(t_input **list, char *line, bool s_quote, int i)
+int	handle_word_quotes(t_input **list, char *line, bool s_quote, int i)
 {
-	while(line[i])
+	while (line[i])
 	{
 		if (s_quote && line[i] == '\'')
-			break;
+			break ;
 		else if (!s_quote && line[i] == '"')
-			break;
+			break ;
 		i++;
 	}
-	if(!line[i])
+	if (!line[i])
 	{
 		ft_lstadd_back(list, NULL);
 		ft_lstlast(*list)->type = TOKEN_EOF;
-		return i;
+		return (i);
 	}
 	i++;
 	ft_lstadd_back(list, my_strndup(line, i));
@@ -57,55 +57,35 @@ int handle_word_quotes(t_input **list, char *line, bool s_quote, int i)
 	return (i);
 }
 
-int handle_quotes(t_input **list, char *line)
+void	handle_helper(t_input **list, char *line, int *i, bool *check)
 {
-	int i;
-	bool check;
+	if (line[(*i)] == '\'')
+	{
+		(*i)++;
+		(*check) = true;
+		(*i) = handle_word_quotes(list, line, true, *i);
+	}
+	if (line[(*i)] == '"')
+	{
+		(*i)++;
+		(*check) = true;
+		(*i) = handle_word_quotes(list, line, false, *i);
+	}
+}
+
+int	handle_quotes(t_input **list, char *line)
+{
+	int		i;
+	bool	check;
 
 	i = 0;
 	check = false;
-	while(line[i] && !is_space(line[i]))
-	{	
-		if(line[i] == '\'')
-		{
-			i++;
-			check = true;
-			i = handle_word_quotes(list, line, true, i);
-		}
-		if(line[i] == '"')
-		{
-			i++;
-			check = true;
-			i = handle_word_quotes(list, line, false, i);
-		}
-	}
-	if(check == true)
+	while (line[i] && !is_space(line[i]))
+		handle_helper(list, line, &i, &check);
+	if (check == true)
 	{
 		ft_lstadd_back(list, my_strndup(line, i));
 		ft_lstlast(*list)->category = TOKEN_WORD;
 	}
-	return i;
+	return (i);
 }
-
-// int handle_quotes(t_input **list, char *line)
-// {
-// 	t_input *tmp;
-
-// 	if(line[0] == '\'')
-// 	{
-// 		ft_lstadd_back(list, my_strdup("\'"));
-// 		tmp = ft_lstlast(*list);
-// 		tmp->type = TOKEN_S_QUOTE;
-// 		tmp->category = TOKEN_DELIMITER;
-// 		return 1;
-// 	}
-// 	else if(line[0] == '"')
-// 	{
-// 		ft_lstadd_back(list, my_strdup("\""));
-// 		tmp = ft_lstlast(*list);
-// 		tmp->type = TOKEN_D_QUOTE;
-// 		tmp->category = TOKEN_DELIMITER;
-// 		return 1;
-// 	}
-// 	return 0;
-// }

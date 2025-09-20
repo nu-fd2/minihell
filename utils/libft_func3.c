@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft_func3.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skully <skully@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 20:22:32 by skully            #+#    #+#             */
-/*   Updated: 2025/09/19 16:33:45 by skully           ###   ########.fr       */
+/*   Updated: 2025/09/20 14:27:45 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,17 @@
 
 static int	word_count(const char *s)
 {
-	int i = 0, count = 2;
-	bool in_word = false, in_quote = false;
-	char quote = 0;
+	int		i;
+	int		count;
+	bool	in_word;
+	bool	in_quote;
+	char	quote;
 
+	i = 0;
+	count = 2;
+	in_word = false;
+	in_quote = false;
+	quote = 0;
 	while (s[i])
 	{
 		if ((s[i] == '\'' || s[i] == '"') && (!in_quote || s[i] == quote))
@@ -38,11 +45,16 @@ static int	word_count(const char *s)
 
 char	*copy_word(const char *s, int *i)
 {
-	int start = *i;
-	int len = 0;
-	bool in_quote = false;
-	char quote = 0;
+	int		start;
+	int		len;
+	bool	in_quote;
+	char	quote;
+	char	*word;
 
+	start = *i;
+	len = 0;
+	in_quote = false;
+	quote = 0;
 	while (s[*i])
 	{
 		if ((s[*i] == '\'' || s[*i] == '"') && (!in_quote || s[*i] == quote))
@@ -53,11 +65,11 @@ char	*copy_word(const char *s, int *i)
 				in_quote = false;
 		}
 		else if (!in_quote && s[*i] == ' ')
-			break;
+			break ;
 		(*i)++;
 	}
 	len = *i - start;
-	char *word = ft_calloc(len + 1, 1);
+	word = ft_calloc(len + 1, 1);
 	if (!word)
 		return (NULL);
 	for (int j = 0; j < len; j++)
@@ -67,9 +79,12 @@ char	*copy_word(const char *s, int *i)
 
 char	**my_split(const char *s)
 {
-	char **result;
-	int i = 0, j = 0;
+	char	**result;
+	int		i;
+	int		j;
 
+	i = 0;
+	j = 0;
 	result = ft_calloc(sizeof(char *), (word_count(s) + 1));
 	if (!result)
 		return (NULL);
@@ -80,7 +95,7 @@ char	**my_split(const char *s)
 		if (s[i])
 			result[j++] = copy_word(s, &i);
 	}
-	if(s[0] == '\0')
+	if (s[0] == '\0')
 	{
 		result[j] = ft_strdup(s);
 		j++;
@@ -89,14 +104,15 @@ char	**my_split(const char *s)
 	return (result);
 }
 
-void ft_clear_empty(t_input *list)
+void	ft_clear_empty(t_input *list)
 {
-	t_input *lst_tmp;
+	t_input	*lst_tmp;
 
 	lst_tmp = list;
-    while(lst_tmp)
-    {
-		if(lst_tmp->type != TOKEN_FILE && lst_tmp->type != TOKEN_EOF && lst_tmp->value == NULL)
+	while (lst_tmp)
+	{
+		if (lst_tmp->type != TOKEN_FILE && lst_tmp->type != TOKEN_EOF
+			&& lst_tmp->value == NULL)
 		{
 			printf("before 1\n");
 			remove_middle_node(&list, &lst_tmp);
@@ -108,6 +124,5 @@ void ft_clear_empty(t_input *list)
 			lst_tmp = lst_tmp->next;
 			printf("after 4\n");
 		}
-    }
-	// lst_print(list);
+	}
 }
