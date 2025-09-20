@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   money_expansion.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 14:50:07 by skully            #+#    #+#             */
-/*   Updated: 2025/09/20 16:12:48 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/09/21 00:05:38 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ t_input	*money_expansion(t_input *list, t_data *data)
 	t_input	*iter;
 
 	iter = list;
-	while (iter->value)
+	while (iter->next)
 	{
 		if (iter->type == TOKEN_HEREDOC)
 		{
@@ -118,6 +118,7 @@ t_input	*money_expansion(t_input *list, t_data *data)
 			continue ;
 		}
 		node_mod(iter, data);
+		ft_remove_spaces(iter->value);
 		list = split_and_add(&list, &iter);
 		iter = iter->next;
 	}

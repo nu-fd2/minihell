@@ -268,7 +268,7 @@ void					ft_replace(t_input *add, t_input **iter,
 int						skip_spaces(char *line, int i);
 void					check_additionals(char *line, t_quotes *check);
 void					node_check(t_input *list, t_flags *check, t_data *data);
-
+void ft_remove_spaces(char *tmp);
 
 //================================================
 
