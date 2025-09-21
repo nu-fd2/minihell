@@ -6,65 +6,50 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 10:47:13 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/09/20 01:55:45 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/09/21 23:48:51 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/header.h"
 
-char	*n_path(t_data *data, char *opeth)
+char *p_diddy(t_data *data, char *g_o)
 {
-	char	*path;
-	char	*tmpp;
-	char	*home;
+	char *pwd;
+	char *tmp;
 
-	tmpp = NULL;
-	if (opeth[0] != '~')
-	{
-		path = ft_strdup(opeth);
-		return (path);
-	}
-	home = gky_env(data, "HOME");
-	if (!home)
-		return (NULL);
-	if (opeth[1] == '/')
-		path = ft_sstrjoin(home, &opeth[1]);
-	else
-	{
-		if (opeth[2] == '\0')
-			tmpp = ft_strdup(home);
-		else
-			tmpp = ft_sstrjoin(home, "/");
-		path = ft_sstrjoin(tmpp, &opeth[1]);
-		free(tmpp);
-	}
-	return (path);
+	pwd = getcwd(NULL, 0);
+	if (!pwd)
+		pwd = "";
+	pwd = ft_sstrjoin(pwd, "/");
+	tmp = ft_sstrjoin(pwd, g_o);
+	return tmp;
 }
 
 int	cmd_cd(t_data *data, char **arg)
 {
-	t_env	*pwd;
+	char	*nu_pwd;
+	char	*og_pwd;
+	int		s;
 
-	char (*tmp), (*pmt);
+	s = 0;
 	if (!data || !data->env)
 		return (1);
 	if (!arg[0] || arg[0][0] == '\0')
 	{
-		pmt = getenv("HOME");
-		if (!pmt)
-			return (1);
-		tmp = ft_strdup(pmt);
+		s = 1;
+		nu_pwd = ft_strdup(gky_env(data, "HOME"));
+		if (!nu_pwd[0])
+			return (m_perror("cd", arg[0], "HOME not set"));
 	}
-	else if (arg[1])
-		return (m_perror("cd", NULL, "too many arguments"), 2);
+	else if (arg[0][0] == '/')
+		nu_pwd = ft_strdup(arg[0]);
 	else
-		tmp = n_path(data, arg[0]);
-	pwd = grp_env(data->env, "PWD");
-	if (!pwd)
-		return (free(tmp), 1);
-	if (chdir(tmp))
-		return (m_perror("cd", tmp, "No such file or directory"), free(tmp), 1);
-	add_env(data->env, "OLDPWD", pwd->value, 1);
-	add_env(data->env, "PWD", tmp, 1);
-	return (free(tmp), 0);
+		nu_pwd = p_diddy(data, arg[0]);
+	og_pwd = gky_env(data, "PWD");
+	if (chdir(nu_pwd))
+		return (free(nu_pwd), m_perror("cd", arg[0], "No such file or directory"));
+	nu_pwd = getcwd(NULL, 0);
+	add_env(data->env, "OLDPWD", og_pwd, 1);
+	add_env(data->env, "PWD", nu_pwd, 1);
+	return (free(nu_pwd), 0);
 }
