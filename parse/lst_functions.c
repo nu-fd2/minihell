@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lst_functions.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
+/*   By: skully <skully@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 13:42:16 by mdakni            #+#    #+#             */
-/*   Updated: 2025/09/21 00:06:09 by mdakni           ###   ########.fr       */
+/*   Updated: 2025/09/21 11:37:44 by skully           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -266,7 +266,7 @@ bool ft_nb_words(char *tmp)
 		quote = ft_checker(tmp[i], quote);
 		while(tmp[i] && isspace(tmp[i]) && quote == 0)
 			i++;
-		if(!is_space(tmp[i]) || quote != 0)
+		if((!is_space(tmp[i]) || quote != 0) && (tmp[i] != '"' && tmp[i] != '\''))
 			words++;
 		while(tmp[i] && (!is_space(tmp[i]) || quote != 0))
 			i++;
