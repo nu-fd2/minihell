@@ -245,7 +245,6 @@ bool					check_limit(char *line, t_quotes *check);
 char					*my_substr(char const *s, unsigned int start,
 							size_t len);
 void					remove_middle_node(t_input **list, t_input **list_tmp);
-void					ft_clear_empty(t_input *list);
 void					node_mod(t_input *list, t_data *data);
 void					free_split(char **split);
 void					split_and_add_h(t_input **list, t_input **iter,
