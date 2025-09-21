@@ -6,7 +6,7 @@
 /*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 13:47:52 by mdakni            #+#    #+#             */
-/*   Updated: 2025/09/20 14:08:40 by mdakni           ###   ########.fr       */
+/*   Updated: 2025/09/21 17:31:11 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,4 +75,19 @@ int	ft_checker(char c, int quote_flag)
 			quote_flag = 1;
 	}
 	return (quote_flag);
+}
+
+void	ft_lstfree(t_input *lst)
+{
+	t_input	*tmp;
+
+	while (lst)
+	{
+		free(lst->value);
+		tmp = lst;
+		lst = lst->next;
+		free(tmp);
+	}
+	free(lst);
+	lst = NULL;
 }

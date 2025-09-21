@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft_func3.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skully <skully@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 20:22:32 by skully            #+#    #+#             */
-/*   Updated: 2025/09/21 17:09:16 by skully           ###   ########.fr       */
+/*   Updated: 2025/09/21 17:45:09 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,37 +14,38 @@
 
 static int	word_count(const char *s)
 {
-	int i;
-	int quote;
-	int words;
+	int	i;
+	int	quote;
+	int	words;
 
 	i = 0;
 	quote = 0;
 	words = 0;
-	while(s[i])
+	while (s[i])
 	{
 		quote = ft_checker(s[i], quote);
-		while(s[i] && isspace(s[i]) && quote == 0)
+		while (s[i] && isspace(s[i]) && quote == 0)
 			i++;
-		if((!is_space(s[i]) || quote != 0) && (s[i] != '"' && s[i] != '\''))
+		if (s[i] && (!is_space(s[i]) || quote != 0) && (s[i] != '"'
+				&& s[i] != '\''))
 			words++;
-		while(s[i] && (!is_space(s[i]) || quote != 0))
+		while (s[i] && (!is_space(s[i]) || quote != 0))
 			i++;
 	}
-	return(words + 2);
+	return (words + 2);
 }
 
-char *copy_word_h(int start, int i, char *word, const char *s)
+char	*copy_word_h(int start, int i, char *word, const char *s)
 {
-	int j;
-	int len;
+	int	j;
+	int	len;
 
 	j = 0;
 	len = i - start;
 	word = ft_calloc(len + 1, 1);
 	if (!word)
 		return (NULL);
-	while(j < len)
+	while (j < len)
 	{
 		word[j] = s[start + j];
 		j++;
@@ -67,7 +68,10 @@ char	*copy_word(const char *s, int *i)
 		if ((s[*i] == '\'' || s[*i] == '"') && (!in_quote || s[*i] == quote))
 		{
 			if (!in_quote)
-				quote = s[*i], in_quote = true;
+			{
+				quote = s[*i];
+				in_quote = true;
+			}
 			else
 				in_quote = false;
 		}
@@ -75,7 +79,7 @@ char	*copy_word(const char *s, int *i)
 			break ;
 		(*i)++;
 	}
-	return(copy_word_h(start, *i, word, s));
+	return (copy_word_h(start, *i, word, s));
 }
 
 char	**my_split(const char *s)
