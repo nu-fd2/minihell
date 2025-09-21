@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   man_dog.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 06:41:04 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/09/20 01:50:03 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/09/21 22:40:16 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,9 +166,6 @@ char *expand_env_vars(char *raw_line, t_env *env) {
     return expansion.output;
 }
 
-
-
-
 void exer(t_data *data, t_short *shart, int stat)
 {
     int ex;
@@ -183,33 +180,54 @@ void exer(t_data *data, t_short *shart, int stat)
 	exit(ex);
 }
 
-void f_dog_pip(t_data *data, t_short *ts, int p_in)
+void f_dog_pip(t_data *data, t_short *ts, t_dog dog)
 {
     char *s;
 
-    s = get_next_line(p_in);
+    s = get_next_line(dog.p_in);
     while (s)
     {
-        
-        s = expand_env_vars(s, data->env);
+        if (data && !dog.quote)
+            s = ft_expand_str(s, data);
+        // s = expand_env_vars(s, data->env);
         ft_putstr_fd(s, ts->pip[1]);
         free(s);
-        s = get_next_line(p_in);
+        s = get_next_line(dog.p_in);
     }
-    close(p_in);
+    close(dog.p_in);
     close(ts->pip[1]);
 }
 
-int red_dog(t_data *data, t_short *ts, char *key)
+bool check_quotes(char *s)
+{
+    int i;
+
+    i = 0;
+    while(s[i])
+    {
+        if(s[i] == '"' || s[i] == '\'')
+            return (true);
+        i++;
+    }
+    return (false);
+}
+
+t_dog red_dog(t_data *data, t_short *ts, char *key)
 {
     char *s;
     int pip[2];
+    t_dog dog;
 
     if (pipe(pip) == -1)
-        return -1;
+        return (dog.p_in = -1, dog);
+    dog.quote = check_quotes(key);
+    key = tmp_assignment(key, ft_calculate_size(key));
+    if(!key)
+        key = ft_strdup("");
     while (1)
     {
         s = readline("\e[1;34m>\e[0m ");
+        printf("s : %s, key : %s\n", s, key);
         if (!s)
             break;
         if (ft_strcmp(key, s) == 0)
@@ -222,31 +240,33 @@ int red_dog(t_data *data, t_short *ts, char *key)
         free(s);
     }
     close(pip[1]);
-    return (pip[0]);
+    return (dog.p_in = pip[0], dog);
 }
 
 int hot_dog(t_data *data, t_short *ts)
 {
     int i;
     int ret;
-    int p_in;
+    t_dog dog;
+    
 
     i = 0;
     ret = 0;
-    p_in = 0;
+    dog.p_in = 0;
     if (ts->reds)
     {
         while (ts->reds[i])
         {
-            if (p_in)
-                close(p_in);
+            if (dog.p_in)
+                close(dog.p_in);
             if (ft_strcmp(ts->reds[i], "<<") == 0)
             {
                 i++;
-                if (p_in != 0)
-                    close(p_in);
-                p_in = red_dog(data, ts, ts->reds[i]);
-                if (p_in == -1)
+                if (dog.p_in != 0)
+                    close(dog.p_in);
+                // p_in = red_dog(data, ts, ts->reds[i]);
+                dog = red_dog(data, ts, ts->reds[i]);
+                if (dog.p_in == -1)
                 {
                     ret = 1;
                     break;
@@ -254,7 +274,7 @@ int hot_dog(t_data *data, t_short *ts)
             }
             i++;
         }
-        f_dog_pip(data, ts, p_in);
+        f_dog_pip(data, ts, dog);
     }
     return ret;
 }

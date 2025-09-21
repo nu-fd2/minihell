@@ -41,23 +41,23 @@
 // R : right, L : left, S : single, D : double, O : opened, C : closed.
 typedef enum s_tokens
 {
-    TOKEN_WORD,
-    TOKEN_OP,
-    TOKEN_RED_APP,
-    TOKEN_DELIMITER,
-    TOKEN_CMD,
-    TOKEN_ARG,
-    TOKEN_FILE,
-    TOKEN_R_RED,
-    TOKEN_L_RED,
-    TOKEN_R_APP,
-    TOKEN_HEREDOC,
-    TOKEN_PIPE,
-    TOKEN_O_PAR,
-    TOKEN_C_PAR,
-    TOKEN_AND,
-    TOKEN_OR,
-    TOKEN_EOF
+	TOKEN_WORD,
+	TOKEN_OP,
+	TOKEN_RED_APP,
+	TOKEN_DELIMITER,
+	TOKEN_CMD,
+	TOKEN_ARG,
+	TOKEN_FILE,
+	TOKEN_R_RED,
+	TOKEN_L_RED,
+	TOKEN_R_APP,
+	TOKEN_HEREDOC,
+	TOKEN_PIPE,
+	TOKEN_O_PAR,
+	TOKEN_C_PAR,
+	TOKEN_AND,
+	TOKEN_OR,
+	TOKEN_EOF
 }   t_token;
 
 // AaaaaaaaaaaaaaaaaaaaaA
@@ -112,6 +112,11 @@ typedef struct s_kids
 	struct s_kids		*next;
 }						t_kids;
 
+typedef struct s_dog
+{
+	int  p_in;
+	bool quote;
+} t_dog;
 typedef struct s_nodes
 {
 	int					index;
@@ -130,16 +135,16 @@ typedef struct s_nodes
 
 typedef struct s_latest
 {
-    char **args; // this mf
-    char **reds; // ls -la | grep 'x' > outfile  -------- args == [ls] [la]
-    struct s_latest *next;
-    struct s_latest *prev;
-    struct s_latest *tail;
-    bool ambiguous;
-    int red_size;
-    bool expanded;
-    int pip[2];
-    int has_dog;
+	char **args; // this mf
+	char **reds; // ls -la | grep 'x' > outfile  -------- args == [ls] [la]
+	struct s_latest *next;
+	struct s_latest *prev;
+	struct s_latest *tail;
+	bool ambiguous;
+	int red_size;
+	bool expanded;
+	int pip[2];
+	int has_dog;
 }   t_short;
 
 typedef struct s_size
@@ -171,22 +176,22 @@ typedef struct s_flags
 typedef struct s_blah
 {
 // <<<<<<< HEAD
-    int args;
-    int reds;
-    int args_i;
-    int reds_i;
-    char **args2;
-    char **reds2;
-    bool ambiguous;
-    int size;
-    bool expanded;
+	int args;
+	int reds;
+	int args_i;
+	int reds_i;
+	char **args2;
+	char **reds2;
+	bool ambiguous;
+	int size;
+	bool expanded;
 } t_blah;
 
 typedef struct s_star
 {
-    struct dirent *data;
-    struct s_star *next;
-    
+	struct dirent *data;
+	struct s_star *next;
+	
 }   t_star;
 
 
@@ -200,14 +205,14 @@ typedef struct s_data
 	int				ex;
 	int				exm;
 	int				pmo;
-    int             p_in;
-    int             p_ot;
-    int             dog_kid;
+	int             p_in;
+	int             p_ot;
+	int             dog_kid;
 	char			**chr_env;
 	t_env			*env;
-    t_kids          *kids;
-    t_input         *input;
-    t_short         *shart;
+	t_kids          *kids;
+	t_input         *input;
+	t_short         *shart;
 }					t_data;
 
 
@@ -268,6 +273,9 @@ int						skip_spaces(char *line, int i);
 void					check_additionals(char *line, t_quotes *check);
 void					node_check(t_input *list, t_flags *check, t_data *data);
 void ft_remove_spaces(char *tmp);
+char *ft_expand_str(char *str, t_data *data);
+char	*tmp_assignment(char *list, int size);
+int	ft_calculate_size(char *str);
 
 //================================================
 

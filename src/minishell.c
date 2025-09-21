@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skully <skully@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 13:16:23 by mdakni            #+#    #+#             */
-/*   Updated: 2025/09/21 11:32:08 by skully           ###   ########.fr       */
+/*   Updated: 2025/09/21 22:15:27 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ void manager(t_data *data, char *line)
     data->input = input;
     data->shart = shart;
     pmo = 1;
+    // lst_print(input);
+    // lst_print2(shart);
     main_exc(data, shart);
     pmo = 0;
     ft_lstfree(input);

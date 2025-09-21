@@ -6,11 +6,16 @@
 /*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 13:42:16 by mdakni            #+#    #+#             */
-/*   Updated: 2025/09/21 17:42:47 by mdakni           ###   ########.fr       */
+/*   Updated: 2025/09/21 22:15:16 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/header.h"
+
+bool	ft_is_space(char c)
+{
+	return (c == ' ' || (c == 9) || (c > 10 && c <= 13));
+}
 
 bool	ft_nb_words(char *tmp)
 {
@@ -24,15 +29,14 @@ bool	ft_nb_words(char *tmp)
 	while (tmp[i])
 	{
 		quote = ft_checker(tmp[i], quote);
-		while (tmp[i] && isspace(tmp[i]) && quote == 0)
+		while (tmp[i] && ft_is_space(tmp[i]) && quote == 0)
 			i++;
-		if (tmp[i] && (!is_space(tmp[i]) || quote != 0) && (tmp[i] != '"'
+		if (tmp[i] && (!ft_is_space(tmp[i]) || quote != 0) && (tmp[i] != '"'
 				&& tmp[i] != '\''))
 			words++;
-		while (tmp[i] && (!is_space(tmp[i]) || quote != 0))
+		while (tmp[i] && (!ft_is_space(tmp[i]) || quote != 0))
 			i++;
 	}
-	printf("str : %s, words : %d\n", tmp, words);
 	if (words != 1)
 		return (true);
 	return (false);
@@ -52,7 +56,7 @@ void	ft_remove_spaces(char *tmp)
 	while (tmp[i])
 	{
 		quote = ft_checker(tmp[i], quote);
-		if (!is_space(tmp[i]) || quote != 0)
+		if (!ft_is_space(tmp[i]) || quote != 0)
 		{
 			tmp[j] = tmp[i];
 			j++;

@@ -6,13 +6,13 @@
 /*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 20:35:13 by mdakni            #+#    #+#             */
-/*   Updated: 2025/09/20 15:08:59 by mdakni           ###   ########.fr       */
+/*   Updated: 2025/09/21 22:23:21 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/header.h"
 
-int	calculate_size_blyat(char *str)
+int	ft_calculate_size(char *str)
 {
 	int	i;
 	int	size;
@@ -36,7 +36,7 @@ int	calculate_size_blyat(char *str)
 	return (size + 1);
 }
 
-char	*tmp_assignment(t_input *list, int size)
+char	*tmp_assignment(char *list, int size)
 {
 	char	*tmp;
 	int		quote_flag;
@@ -49,16 +49,16 @@ char	*tmp_assignment(t_input *list, int size)
 	tmp = my_calloc(size, 1);
 	if (tmp == NULL)
 		return (NULL);
-	while (list->value[i])
+	while (list[i])
 	{
-		quote_flag = ft_checker(list->value[i], quote_flag);
-		if ((list->value[i] == '"' && quote_flag != 1)
-			|| (list->value[i] == '\'' && quote_flag != 2))
+		quote_flag = ft_checker(list[i], quote_flag);
+		if ((list[i] == '"' && quote_flag != 1)
+			|| (list[i] == '\'' && quote_flag != 2))
 		{
 			i++;
 			continue ;
 		}
-		tmp[j++] = list->value[i++];
+		tmp[j++] = list[i++];
 	}
 	if (j > 0)
 		return (tmp[j] = '\0', tmp);
@@ -108,13 +108,13 @@ t_input	*striper(t_input *list)
 	list_tmp = list;
 	while (list_tmp && list_tmp->value)
 	{
-		size = calculate_size_blyat(list_tmp->value);
-		if (size == 0)
+		size = ft_calculate_size(list_tmp->value);
+		if (size == 0 || ((list_tmp->prev && list_tmp->prev->type == TOKEN_HEREDOC)))
 		{
 			list_tmp = list_tmp->next;
 			continue ;
 		}
-		tmp = tmp_assignment(list_tmp, size + 1);
+		tmp = tmp_assignment(list_tmp->value, size + 1);
 		if (remove_or_ignore(tmp, &list_tmp) == 0)
 			continue ;
 		free(list_tmp->value);
