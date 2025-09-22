@@ -6,7 +6,7 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 16:17:57 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/09/11 17:25:34 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/09/22 22:51:49 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,10 @@ int	cmd_export(t_data *data, char **arg)
 		{
 			s = prt_gen(arg[i]);
 			val = val_gen(arg[i]);
-			add_env(data->env, key, val, s);
+			if (!data->env)
+				data->env = add_env(data->env, key, val, s);
+			else
+				add_env(data->env, key, val, s);
 		}
 		else
 			ret = 1;

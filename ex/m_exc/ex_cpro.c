@@ -6,7 +6,7 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 01:56:16 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/09/20 23:43:32 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/09/22 23:15:24 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	ex_cpro(t_data *data, char *cmd, char **arg)
 	pmo = 1;
 	kid = fork();
 	if (kid < 0)
-		return (m_perror(NULL, NULL, "forkn't"));
+		return (m_perror(NULL, NULL, "can\'t fork"));
 	if (kid == 0)
 	{
 		signal(SIGQUIT, SIG_DFL);
@@ -80,7 +80,7 @@ int	ex_cpro_bult(t_data *data, char **arg, int bc)
 	pmo = 1;
 	kid = fork();
 	if (kid < 0)
-		return (m_perror(NULL, NULL, "forkn't"), -1);
+		return (m_perror(NULL, NULL, "can\'t fork"), -1);
 	if (kid == 0)
 	{
 		signal(SIGQUIT, SIG_DFL);

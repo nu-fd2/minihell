@@ -6,7 +6,7 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 20:06:48 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/09/20 23:46:37 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/09/23 00:20:02 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int clr_kids(t_data *data)
 	while (data->kids)
 	{
 		ts = data->kids;
+		data->exm = ts->ex;
 		data->kids = data->kids->next;
 		free(ts);
 	}
@@ -45,18 +46,18 @@ int pip_exc(t_data *data, t_short *shart, int in, int ot)
 		ret = man_red(data, shart, shart->reds);
 	if (!ret)
 	{
-		if (!shart->ambiguous)
-		{
+		// if (!shart->ambiguous)
+		// {
 			if (shart->args)
 			{
 				if (!shart->args[0] && !shart->expanded)
 					m_perror(NULL, "", "command not found");
 				else if (!shart->expanded || shart->args[0])
-					ret = ex_rish_pip(data, shart->args);
+					ex_rish_pip(data, shart->args);
 			}
-		}
-		else
-			m_perror(NULL, shart->args[1], "ambiguous redirect");
+		// }
+		// else
+		// 	m_perror(NULL, shart->args[1], "ambiguous redirect");
 	}
 	else
 		data->exm = ret;
@@ -84,8 +85,8 @@ int sec_exc(t_data *data, t_short *shart, int in, int ot)
 		ret = man_red(data, shart, shart->reds);
 	if (!ret)
 	{
-		if (!shart->ambiguous)
-		{
+		// if (!shart->ambiguous)
+		// {
 			if (shart->args)
 			{
 				if (!shart->args[0] && !shart->expanded)
@@ -93,9 +94,9 @@ int sec_exc(t_data *data, t_short *shart, int in, int ot)
 				else if (!shart->expanded || shart->args[0])
 					ex_rish(data, shart->args);
 			}
-		}
-		else
-			m_perror(NULL, shart->args[1], "ambiguous redirect");
+		// }
+		// else
+		// 	m_perror(NULL, shart->args[1], "ambiguous redirect");
 	}
 	else
 		data->exm = ret;
@@ -156,7 +157,7 @@ int main_exc(t_data *data, t_short *shart)
 			return clr_kids(data);
 		}
 		else
-			return (m_perror(NULL, NULL, "ambiguous redirect"));
+			return (data->exm = 1, m_perror(NULL, NULL, "ambiguous redirect"));
 	}
 	while (fart)
 	{
