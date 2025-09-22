@@ -6,11 +6,25 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 10:47:13 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/09/21 23:48:51 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/09/22 00:23:02 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/header.h"
+
+int sta(char *path)
+{
+	struct stat sat;
+
+	if (!path)
+		return 0;
+	stat(path, &sat);
+	if (!(S_ISDIR(sat.st_mode)))
+		return (m_perror("cd", path, "Not a directory"));
+	else if (access(path, X_OK) == -1)
+		return (m_perror("cd", path, "Permission denied"));
+	return 0;
+}
 
 char *p_diddy(t_data *data, char *g_o)
 {
@@ -45,6 +59,8 @@ int	cmd_cd(t_data *data, char **arg)
 		nu_pwd = ft_strdup(arg[0]);
 	else
 		nu_pwd = p_diddy(data, arg[0]);
+	if (sta(arg[0]))
+		return (free(nu_pwd), 1);
 	og_pwd = gky_env(data, "PWD");
 	if (chdir(nu_pwd))
 		return (free(nu_pwd), m_perror("cd", arg[0], "No such file or directory"));
