@@ -6,7 +6,7 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 20:06:48 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/09/19 15:38:30 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/09/20 23:46:37 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,7 @@ int pip_exc(t_data *data, t_short *shart, int in, int ot)
 				if (!shart->args[0] && !shart->expanded)
 					m_perror(NULL, "", "command not found");
 				else if (!shart->expanded || shart->args[0])
-				{
-					if (ex_rish_pip(data, shart->args) == -1)
-						ret = 1;
-				}
+					ret = ex_rish_pip(data, shart->args);
 			}
 		}
 		else
@@ -159,7 +156,7 @@ int main_exc(t_data *data, t_short *shart)
 			return clr_kids(data);
 		}
 		else
-			return (m_perror(NULL, shart->args[1], "ambiguous redirect"));
+			return (m_perror(NULL, NULL, "ambiguous redirect"));
 	}
 	while (fart)
 	{
@@ -170,7 +167,7 @@ int main_exc(t_data *data, t_short *shart)
 				break ;
 		}
 		else
-			data->exm = m_perror(NULL, shart->args[1], "ambiguous redirect");
+			data->exm = m_perror(NULL, NULL, "ambiguous redirect");
 		if (!s && fart->next)
 			in = pip1[0];
 		else if (s && fart->next)
