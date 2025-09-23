@@ -98,6 +98,15 @@ extern int pmo;
 //     t_short         *shart;
 // }					t_data;
 
+typedef struct s_star_h
+{
+	int i;
+	int quote_flag;
+	int star_flag;
+	int slash_flag;
+	int hidden;
+} t_star_h;
+
 typedef struct s_env
 {
 	char				*key;

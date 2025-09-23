@@ -6,7 +6,7 @@
 /*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 13:16:23 by mdakni            #+#    #+#             */
-/*   Updated: 2025/09/23 10:09:16 by mdakni           ###   ########.fr       */
+/*   Updated: 2025/09/23 12:21:04 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,8 @@ int ft_skip_spaces(t_data *data, char *line)
 int prompt_msg(t_data *data)
 {
     char *line;
-        line = readline("\e[1;32m❯ \e[0m");
+        // line = readline("\e[1;32m❯ \e[0m");
+        line = readline("❯ ");
     if (!line)
     {
         write(1, "exit\n", 5);
@@ -109,7 +110,7 @@ int main(int ac, char **av, char **env)
     t_data  *data;
     int     ret;
 
-    atexit(t);
+    // atexit(t);
     (void)ac;
     (void)av;
     ret = 1;

@@ -6,7 +6,7 @@
 /*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 15:41:23 by mdakni            #+#    #+#             */
-/*   Updated: 2025/09/20 14:15:34 by mdakni           ###   ########.fr       */
+/*   Updated: 2025/09/23 13:31:27 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,17 +77,15 @@ void	read_and_create(t_input **iter, int q_flag, int s_flag, t_input **list)
 
 void	create_and_replace(t_input **iter, t_input **list)
 {
-	int	i;
-	int	quote_flag;
-	int	star_flag;
-	int	slash_flag;
-
+	int (i), (quote_flag), (star_flag), (slash_flag), (hidden);
 	i = 0;
 	quote_flag = 0;
 	star_flag = 0;
 	slash_flag = 0;
+	hidden = 0;
 	if ((*iter)->value[i] == '.')
-		return ;
+		// return ;
+		hidden = 1;
 	if ((*iter)->type == TOKEN_HEREDOC)
 		return ((void)((*iter) = (*iter)->next));
 	while ((*iter)->value[i])
