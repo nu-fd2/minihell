@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_cd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 10:47:13 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/09/22 00:23:02 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/09/23 13:40:40 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,15 @@ char *p_diddy(t_data *data, char *g_o)
 {
 	char *pwd;
 	char *tmp;
+	char *pmt;
 
 	pwd = getcwd(NULL, 0);
 	if (!pwd)
-		pwd = "";
-	pwd = ft_sstrjoin(pwd, "/");
-	tmp = ft_sstrjoin(pwd, g_o);
+		pwd = ft_strdup("");
+	pmt = ft_sstrjoin(pwd, "/");
+	tmp = ft_sstrjoin(pmt, g_o);
+	free(pmt);
+    free(pwd);
 	return tmp;
 }
 
@@ -64,6 +67,7 @@ int	cmd_cd(t_data *data, char **arg)
 	og_pwd = gky_env(data, "PWD");
 	if (chdir(nu_pwd))
 		return (free(nu_pwd), m_perror("cd", arg[0], "No such file or directory"));
+	free(nu_pwd);
 	nu_pwd = getcwd(NULL, 0);
 	add_env(data->env, "OLDPWD", og_pwd, 1);
 	add_env(data->env, "PWD", nu_pwd, 1);
