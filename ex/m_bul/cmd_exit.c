@@ -6,7 +6,7 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 19:50:09 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/09/23 01:44:15 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/09/23 18:21:20 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ int	is_alldigit(char *arg)
 
 long long	ft_aoi(const char *str)
 {
-	int		sg;
+	int			i;
+	int			sg;
 	long long	nb;
-	int		i;
 
 	i = 0;
 	sg = 1;
@@ -66,7 +66,7 @@ long	get_out(char *num)
 		m_perror("exit", num, "numeric argument required");
 		return (255);
 	}
-	return((unsigned char)ts);
+	return ((unsigned char)ts);
 }
 
 int	cmd_exit(t_data *data, char **arg)
@@ -96,6 +96,3 @@ int	cmd_exit(t_data *data, char **arg)
 	free(data);
 	exit(x);
 }
-
-
-

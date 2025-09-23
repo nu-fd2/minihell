@@ -263,7 +263,7 @@ int	ft_isalpha(int c);
 int	ft_isalnum(int c);
 char	*ft_strndup(const char *s1, size_t n);
 
-int	cmd_export(t_data *data, char **arg);
+int	cmd_export(t_data *data, char **arg, char *key, char *val);
 int	cmd_unset(t_data *data, char **arg);
 int	cmd_echo(t_data *data, char **arg);
 int	cmd_exit(t_data *data, char **arg);

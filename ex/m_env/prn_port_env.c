@@ -6,18 +6,29 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 21:55:21 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/09/11 17:38:16 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/09/23 18:53:21 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/header.h"
 
+void	cp_envv(t_env *nu_env, t_env *og_env)
+{
+	nu_env->key = ft_strdup(og_env->key);
+	nu_env->value = ft_strdup(og_env->value);
+	nu_env->ported = og_env->ported;
+	nu_env->next = NULL;
+}
+
 t_env	*cpy_env(t_data *data)
 {
-	int	i;
+	t_env	*hd_env;
+	t_env	*nu_env;
+	t_env	*tm_env;
+	t_env	*og_env;
+	int		i;
 
 	i = 0;
-	t_env (*hd_env), (*nu_env), (*tm_env), (*og_env);
 	nu_env = NULL;
 	if (!data || !data->env || !data->env->key)
 		return (NULL);
@@ -25,10 +36,7 @@ t_env	*cpy_env(t_data *data)
 	while (og_env)
 	{
 		nu_env = ft_calloc(sizeof(t_env), 1);
-		nu_env->key = ft_strdup(og_env->key);
-		nu_env->value = ft_strdup(og_env->value);
-		nu_env->ported = og_env->ported;
-		nu_env->next = NULL;
+		cp_envv(nu_env, og_env);
 		if (i == 0)
 			hd_env = nu_env;
 		else
@@ -73,8 +81,8 @@ t_env	*srt_env(t_data *data)
 		c_env = n_env;
 		while (c_env && c_env->next)
 		{
-			if (c_env->next->key
-				&& (ft_strcmp(c_env->key, c_env->next->key) > 0))
+			if (c_env->next->key && (ft_strcmp(c_env->key,
+						c_env->next->key) > 0))
 			{
 				swp_env(c_env, c_env->next);
 				s = 0;
@@ -87,7 +95,9 @@ t_env	*srt_env(t_data *data)
 
 int	prn_port_env(t_data *data)
 {
-	t_env (*h_env), (*n_env);
+	t_env	*h_env;
+	t_env	*n_env;
+
 	h_env = srt_env(data);
 	if (!h_env)
 		return (1);
@@ -101,11 +111,8 @@ int	prn_port_env(t_data *data)
 			ft_putstr_fd("declare -x ", data->fd);
 			ft_putstr_fd(n_env->key, data->fd);
 			if (n_env->ported == 1)
-			{
-				ft_putstr_fd("=\"", data->fd);
-				ft_putstr_fd(n_env->value, data->fd);
-				ft_putstr_fd("\"", data->fd);
-			}
+				(ft_putstr_fd("=\"", data->fd), ft_putstr_fd(n_env->value,
+						data->fd), ft_putstr_fd("\"", data->fd));
 			ft_putstr_fd("\n", data->fd);
 			n_env = n_env->next;
 		}

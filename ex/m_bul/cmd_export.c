@@ -6,11 +6,30 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 16:17:57 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/09/22 22:51:49 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/09/23 18:31:15 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/header.h"
+
+char	*key_gen_h(char *arg, char *key, int s, int i)
+{
+	if (key)
+	{
+		if (!ft_isalpha(key[0]) && key[0] != '_')
+			s = m_perror("export", key, "not a valid identifier");
+		else
+		{
+			while (key[i] && (ft_isalnum(key[i]) || key[i] == '_'))
+				i++;
+			if (key[i] != '=' && key[i] != '\0')
+				s = m_perror("export", key, "not a valid identifier");
+		}
+		if (s)
+			return (free(key), NULL);
+	}
+	return (key);
+}
 
 char	*key_gen(char *arg)
 {
@@ -28,21 +47,7 @@ char	*key_gen(char *arg)
 		i++;
 	key = ft_strndup(arg, i);
 	i = 0;
-	if (key)
-	{
-		if (!ft_isalpha(key[0]) && key[0] != '_')
-			s = m_perror("export", key, "not a valid identifier");
-		else
-		{
-			while (key[i] && (ft_isalnum(key[i]) || key[i] == '_'))
-				i++;
-			if (key[i] != '=' && key[i] != '\0')
-				s = m_perror("export", key, "not a valid identifier");
-		}
-		if (s)
-			return (free(key), NULL);
-	}
-	return (key);
+	return (key_gen_h(arg, key, s, i));
 }
 
 char	*val_gen(char *arg)
@@ -75,20 +80,15 @@ int	prt_gen(char *arg)
 	return (0);
 }
 
-int	cmd_export(t_data *data, char **arg)
+int	cmd_export(t_data *data, char **arg, char *key, char *val)
 {
-	char	*key;
-	char	*val;
-
-	int (i), (s);
-	int (j), (ret);
+	int (i), (s), (ret);
 	i = 0;
 	ret = 0;
 	if (!arg[0])
 		return (prn_port_env(data), 0);
 	while (arg[i])
 	{
-		j = 0;
 		key = NULL;
 		val = NULL;
 		key = key_gen(arg[i]);
