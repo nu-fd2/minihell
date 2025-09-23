@@ -6,7 +6,7 @@
 /*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 14:50:07 by skully            #+#    #+#             */
-/*   Updated: 2025/09/23 20:18:28 by mdakni           ###   ########.fr       */
+/*   Updated: 2025/09/23 20:31:28 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	node_check(t_input *list, t_flags *check, t_data *data)
 		else
 			check->quotes = 1;
 	}
-	if (list->value[check->end] == '$' && check->quotes != 1)
+	if (list->value[check->end] == '$' && list->value[check->end + 1] != '\0' && check->quotes != 1)
 		expand_and_append(list, check, data);
 	else
 		check->end++;
