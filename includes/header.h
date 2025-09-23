@@ -38,8 +38,6 @@
 
 #include "../get_next_line/get_next_line_bonus.h"
 
-// Tokens used to categorise each word in the input string.
-// R : right, L : left, S : single, D : double, O : opened, C : closed.
 typedef enum s_tokens
 {
 	TOKEN_WORD,
@@ -61,42 +59,7 @@ typedef enum s_tokens
 	TOKEN_EOF
 }   t_token;
 
-// AaaaaaaaaaaaaaaaaaaaaA
-
 extern int pmo;
-
-// volatile sig_atomic_t g_sig = 0;
-
-// extern int g_sig;
-
-// typedef struct s_latest t_short;
-
-// typedef struct s_data t_data;
-
-// typedef struct s_env t_env;
-
-// typedef struct s_kids t_kids;
-
-// typedef struct s_nodes t_input;
-
-// typedef struct s_latest t_short;
-
-// typedef struct s_data
-// {
-// 	int				fd; // out 1
-// 	int				fd2; // in 0
-// 	int				ex;
-// 	int				exm;
-// 	int				pmo;
-//     int             p_in;
-//     int             p_ot;
-//     int             dog_kid;
-// 	char			**chr_env;
-// 	t_env			*env;
-//     t_kids          *kids;
-//     t_input         *input;
-//     t_short         *shart;
-// }					t_data;
 
 typedef struct s_star_h
 {
@@ -145,8 +108,8 @@ typedef struct s_nodes
 
 typedef struct s_latest
 {
-	char **args; // this mf
-	char **reds; // ls -la | grep 'x' > outfile  -------- args == [ls] [la]
+	char **args;
+	char **reds;
 	struct s_latest *next;
 	struct s_latest *prev;
 	struct s_latest *tail;
@@ -204,10 +167,6 @@ typedef struct s_star
 	
 }   t_star;
 
-
-// //////////////////////////////////////////////////////////
-
-
 typedef struct s_data
 {
 	int				fd; // out 1
@@ -224,11 +183,6 @@ typedef struct s_data
 	t_input         *input;
 	t_short         *shart;
 }					t_data;
-
-
-// ///////////////////////////////////////////////////////////
-
-
 
 t_input					*tokenize(char *line);
 void					*my_calloc(size_t count, size_t size);
@@ -267,7 +221,6 @@ void					split_and_add_h(t_input **list, t_input **iter,
 int						filter(t_input *list);
 void					checker(char *line);
 void					seperator(t_input *list);
-// t_short					*transformer(t_input *list);
 t_input					*money_expansion(t_input *list, t_data *data);
 t_input					*star_expansion(t_input *list);
 char					**my_split(char const *s);
@@ -287,8 +240,6 @@ char *ft_expand_str(char *str, t_data *data);
 char	*tmp_assignment(char *list, int size);
 int	ft_calculate_size(char *str);
 bool	ft_is_space(char c);
-
-//================================================
 
 size_t		ft_strlen(const char *who);//
 size_t		ft_strlcpy(char *dst, const char *src, size_t n);//
@@ -358,91 +309,6 @@ int clr_kids(t_data *data);
 
 int	m_perror(char *cmd, char *arg, char *msg);
 
-#endif // HEADER_H
-
-
-// =======
-// 	int					args;
-// 	int					reds;
-// 	int					args_i;
-// 	int					reds_i;
-// 	char				**args2;
-// 	char				**reds2;
-// 	bool				ambiguous;
-// 	int					size;
-// 	bool				expanded;
-// }						t_blah;
-// typedef struct s_star
-// {
-// 	struct dirent		*data;
-// 	struct s_star		*next;
-
-// }						t_star;
-
-// size_t					ft_strlen(const char *who);
-// size_t					ft_strlcpy(char *dst, const char *src, size_t n);
-// size_t					ft_strlcat(char *dst, const char *src, size_t n);
-// void					*ft_memset(void *ptr, int n, size_t num);
-// void					ft_bzero(void *s, size_t len);
-// int						ft_isdigit(int c);
-// int						ft_strncmp(const char *s1, const char *s2, size_t n);
-// int						ft_strcmp(const char *s1, const char *s2);
-// char					*ft_strchr(const char *str, int c);
-// int						ft_atoi(const char *str);
-// char					*ft_itoa(int n);
-// char					*ft_strdup(const char *s1);
-// char					**ft_ssplit(char const *s, char c);
-// void					*ft_calloc(size_t count, size_t size);
-// char					*ft_ssubstr(char const *s, unsigned int start,
-// 							size_t len);
-// char					*ft_sstrjoin(char const *s1, char const *s2);
-// void					ft_putchar_fd(char c, int fd);
-// void					ft_putstr_fd(char *s, int fd);
-// int						ft_isalpha(int c);
-// int						ft_isalnum(int c);
-// char					*ft_strndup(const char *s1, size_t n);
-
-
-// int						cmd_export(t_data *data, char **arg);
-// int						cmd_unset(t_data *data, char **arg);
-// int						cmd_echo(t_data *data, char **arg);
-// int						cmd_exit(t_data *data, char **arg);
-// int						cmd_env(t_data *data);
-// int						cmd_pwd(t_data *data);
-// int						cmd_cd(t_data *data, char **path);
-
-// t_env					*int_env(char **env);
-// int						prn_env(t_data *data);
-// int						prn_port_env(t_data *data);
-// int						fre_env(t_env *env);
-// int						del_env(t_env *env, char *key);
-// t_env					*grp_env(t_env *env, char *key);
-// char					*gky_env(t_data *data, char *key);
-// t_env					*add_env(t_env *env, char *key, char *value,
-// 							bool ported);
-// int						lvl_env(t_data *data);
-// char					**int_chr_env(t_data *data);
-// void					fre_chr_env(char **env);
-
-// int						ex_rish(t_data *data, char **arg);
-// int						ex_bults(t_data *data, char **arg);
-// char					*ex_there(t_data *data, char *cmd);
-// char					*ex_crnt(t_data *data, char *cmd);
-// int						ex_cpro(t_data *data, char *cmd, char **arg);
-
-// int						man_red(t_data *data, char **red);
-// int						src_red(t_data *data, char **red);
-// int						red_red(t_data *data, char *red);
-// int						apn_red(t_data *data, char *red);
-// int						inn_red(t_data *data, char *red);
-
-// int						main_exc(t_data *data, t_short *shart);
-// int						int_pip(t_data *data, t_short *shart);
-// void					clr_pip(t_data *data);
-// int						ex_waitkid(t_kids *kids);
-
-// int						m_perror(char *cmd, char *arg, char *msg);
-
-// #endif
+#endif
 
 

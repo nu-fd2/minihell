@@ -6,7 +6,7 @@
 /*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 15:41:23 by mdakni            #+#    #+#             */
-/*   Updated: 2025/09/23 14:46:31 by mdakni           ###   ########.fr       */
+/*   Updated: 2025/09/23 15:33:48 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ void	add_and_assign_token(t_input **iter, struct dirent *read, t_input **add)
 	(*iter)->value = tmp_str;
 }
 
-// void	read_and_create(t_input **iter, int q_flag, int s_flag, t_input **list)
 void	read_and_create(t_input **iter, t_star_h flags, t_input **list)
 {
 	DIR				*dir;
@@ -62,7 +61,8 @@ void	read_and_create(t_input **iter, t_star_h flags, t_input **list)
 	read = readdir(dir);
 	while (read)
 	{
-		if (((!flags.hidden) && (read->d_name[0] == '.')) || (flags.slash_flag && read->d_type != DT_DIR))
+		if (((!flags.hidden) && (read->d_name[0] == '.')) || (flags.slash_flag
+				&& read->d_type != DT_DIR))
 		{
 			read = readdir(dir);
 			continue ;
@@ -77,7 +77,7 @@ void	read_and_create(t_input **iter, t_star_h flags, t_input **list)
 
 void	create_and_replace(t_input **iter, t_input **list)
 {
-	t_star_h flags;
+	t_star_h	flags;
 
 	flags.i = 0;
 	flags.quote_flag = 0;
@@ -85,16 +85,17 @@ void	create_and_replace(t_input **iter, t_input **list)
 	flags.slash_flag = 0;
 	flags.hidden = 0;
 	if ((*iter)->value[flags.i] == '.')
-		// return ;
 		flags.hidden = 1;
 	if ((*iter)->type == TOKEN_HEREDOC)
 		return ((void)((*iter) = (*iter)->next));
 	while ((*iter)->value[flags.i])
 	{
-		flags.quote_flag = ft_checker((*iter)->value[flags.i], flags.quote_flag);
+		flags.quote_flag = ft_checker((*iter)->value[flags.i],
+				flags.quote_flag);
 		if ((*iter)->value[flags.i] == '*' && flags.quote_flag == 0)
 			flags.star_flag = 1;
-		else if ((*iter)->value[flags.i] == '/' && (*iter)->value[flags.i + 1] == '\0')
+		else if ((*iter)->value[flags.i] == '/'
+			&& (*iter)->value[flags.i + 1] == '\0')
 			flags.slash_flag = 1;
 		flags.i++;
 	}
