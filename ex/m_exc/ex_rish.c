@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ex_rish.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 16:50:59 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/09/23 00:09:55 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/09/23 15:06:32 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int	ex_rish_pip(t_data *data, char **arg)
 	else
 		cmd = ex_there(data, arg[0]);
 	if (cmd == NULL)
-		return (1);
+		return (127);
 	else
 	{
 		data->chr_env = int_chr_env(data);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ex_there.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 07:12:00 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/09/23 00:15:26 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/09/23 15:02:38 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,10 @@ char	*ex_there(t_data *data, char *cmd)
 		i++;
 	}
 	if (!ult)
+	{
+		data->exm = 127;
 		m_perror(cmd, NULL, "command not found");
+	}
 	free(n_cmd);
 	cln_splt(hed_path);
 	return (ult);

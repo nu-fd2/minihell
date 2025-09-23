@@ -6,7 +6,7 @@
 /*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 15:41:23 by mdakni            #+#    #+#             */
-/*   Updated: 2025/09/23 13:31:27 by mdakni           ###   ########.fr       */
+/*   Updated: 2025/09/23 14:46:31 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,19 +50,19 @@ void	add_and_assign_token(t_input **iter, struct dirent *read, t_input **add)
 	(*iter)->value = tmp_str;
 }
 
-void	read_and_create(t_input **iter, int q_flag, int s_flag, t_input **list)
+// void	read_and_create(t_input **iter, int q_flag, int s_flag, t_input **list)
+void	read_and_create(t_input **iter, t_star_h flags, t_input **list)
 {
 	DIR				*dir;
 	struct dirent	*read;
 	t_input			*add;
 
-	(void)q_flag;
 	add = NULL;
 	dir = opendir(".");
 	read = readdir(dir);
 	while (read)
 	{
-		if (read->d_name[0] == '.' || (s_flag && read->d_type != DT_DIR))
+		if (((!flags.hidden) && (read->d_name[0] == '.')) || (flags.slash_flag && read->d_type != DT_DIR))
 		{
 			read = readdir(dir);
 			continue ;
@@ -77,28 +77,29 @@ void	read_and_create(t_input **iter, int q_flag, int s_flag, t_input **list)
 
 void	create_and_replace(t_input **iter, t_input **list)
 {
-	int (i), (quote_flag), (star_flag), (slash_flag), (hidden);
-	i = 0;
-	quote_flag = 0;
-	star_flag = 0;
-	slash_flag = 0;
-	hidden = 0;
-	if ((*iter)->value[i] == '.')
+	t_star_h flags;
+
+	flags.i = 0;
+	flags.quote_flag = 0;
+	flags.star_flag = 0;
+	flags.slash_flag = 0;
+	flags.hidden = 0;
+	if ((*iter)->value[flags.i] == '.')
 		// return ;
-		hidden = 1;
+		flags.hidden = 1;
 	if ((*iter)->type == TOKEN_HEREDOC)
 		return ((void)((*iter) = (*iter)->next));
-	while ((*iter)->value[i])
+	while ((*iter)->value[flags.i])
 	{
-		quote_flag = ft_checker((*iter)->value[i], quote_flag);
-		if ((*iter)->value[i] == '*' && quote_flag == 0)
-			star_flag = 1;
-		else if ((*iter)->value[i] == '/' && (*iter)->value[i + 1] == '\0')
-			slash_flag = 1;
-		i++;
+		flags.quote_flag = ft_checker((*iter)->value[flags.i], flags.quote_flag);
+		if ((*iter)->value[flags.i] == '*' && flags.quote_flag == 0)
+			flags.star_flag = 1;
+		else if ((*iter)->value[flags.i] == '/' && (*iter)->value[flags.i + 1] == '\0')
+			flags.slash_flag = 1;
+		flags.i++;
 	}
-	if (star_flag == 1)
-		read_and_create(iter, quote_flag, slash_flag, list);
+	if (flags.star_flag == 1)
+		read_and_create(iter, flags, list);
 }
 
 t_input	*star_expansion(t_input *list)

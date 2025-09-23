@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_exc.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 20:06:48 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/09/23 00:20:02 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/09/23 15:05:58 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int pip_exc(t_data *data, t_short *shart, int in, int ot)
 				if (!shart->args[0] && !shart->expanded)
 					m_perror(NULL, "", "command not found");
 				else if (!shart->expanded || shart->args[0])
-					ex_rish_pip(data, shart->args);
+					data->exm = ex_rish_pip(data, shart->args);
 			}
 		// }
 		// else

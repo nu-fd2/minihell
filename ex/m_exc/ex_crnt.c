@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ex_crnt.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 13:55:27 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/09/22 23:02:18 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/09/23 14:55:30 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,10 @@ char	*ex_crnt(t_data *data, char *cmd)
 	ult = NULL;
 	stat(cmd, &sat);
 	if (access(cmd, F_OK) == -1)
+	{
+		data->exm = 127;
 		m_perror(NULL, cmd, "no such file or directory");
+	}
 	else if (S_ISDIR(sat.st_mode))
 	{
 		m_perror(NULL, cmd, "is a directory");
