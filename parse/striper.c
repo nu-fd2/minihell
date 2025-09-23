@@ -6,7 +6,7 @@
 /*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 20:35:13 by mdakni            #+#    #+#             */
-/*   Updated: 2025/09/23 10:05:47 by mdakni           ###   ########.fr       */
+/*   Updated: 2025/09/23 20:16:22 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,10 +109,9 @@ t_input	*striper(t_input *list)
 	while (list_tmp && list_tmp->value)
 	{
 		size = ft_calculate_size(list_tmp->value);
-		if (size == 0 || ((list_tmp->prev
-					&& list_tmp->prev->type == TOKEN_HEREDOC)))
+		if (size == 0 || ((list_tmp->type == TOKEN_HEREDOC)))
 		{
-			list_tmp = list_tmp->next;
+			list_tmp = list_tmp->next->next;
 			continue ;
 		}
 		tmp = tmp_assignment(list_tmp->value, size + 1);
