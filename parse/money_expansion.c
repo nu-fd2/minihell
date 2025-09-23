@@ -6,7 +6,7 @@
 /*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 14:50:07 by skully            #+#    #+#             */
-/*   Updated: 2025/09/23 20:31:28 by mdakni           ###   ########.fr       */
+/*   Updated: 2025/09/23 20:53:21 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	expand_and_append(t_input *list, t_flags *check, t_data *data)
 	if (!my_isalpha(list->value[check->end]) && list->value[check->end] != '_')
 	{
 		if (list->value[check->end] != '?')
-			return ;
+			return (check->start++, (void)(check->end++));
 	}
 	while (my_isalnum(list->value[check->end])
 		|| list->value[check->end] == '_')
