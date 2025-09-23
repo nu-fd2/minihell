@@ -6,16 +6,11 @@
 /*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 13:42:16 by mdakni            #+#    #+#             */
-/*   Updated: 2025/09/21 22:15:16 by mdakni           ###   ########.fr       */
+/*   Updated: 2025/09/23 10:04:29 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/header.h"
-
-bool	ft_is_space(char c)
-{
-	return (c == ' ' || (c == 9) || (c > 10 && c <= 13));
-}
 
 bool	ft_nb_words(char *tmp)
 {

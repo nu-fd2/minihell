@@ -6,7 +6,7 @@
 /*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 13:16:23 by mdakni            #+#    #+#             */
-/*   Updated: 2025/09/21 22:15:27 by mdakni           ###   ########.fr       */
+/*   Updated: 2025/09/23 10:09:16 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,17 +99,17 @@ static void hnd_sig(int sig)
 	rl_redisplay();
 }
 
-// void t()
-// {
-//     system("leaks minishell");
-// }
+void t()
+{
+    system("leaks minishell");
+}
 
 int main(int ac, char **av, char **env)
 {
     t_data  *data;
     int     ret;
 
-    // atexit(t);
+    atexit(t);
     (void)ac;
     (void)av;
     ret = 1;

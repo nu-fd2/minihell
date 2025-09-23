@@ -6,7 +6,7 @@
 /*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 20:22:32 by skully            #+#    #+#             */
-/*   Updated: 2025/09/21 17:45:09 by mdakni           ###   ########.fr       */
+/*   Updated: 2025/09/23 10:04:16 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,4 +107,9 @@ char	**my_split(const char *s)
 	}
 	result[j] = NULL;
 	return (result);
+}
+
+bool	ft_is_space(char c)
+{
+	return (c == ' ' || (c == 9) || (c > 10 && c <= 13));
 }

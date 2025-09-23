@@ -6,7 +6,7 @@
 /*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 20:35:13 by mdakni            #+#    #+#             */
-/*   Updated: 2025/09/21 22:23:21 by mdakni           ###   ########.fr       */
+/*   Updated: 2025/09/23 10:05:47 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ char	*tmp_assignment(char *list, int size)
 	while (list[i])
 	{
 		quote_flag = ft_checker(list[i], quote_flag);
-		if ((list[i] == '"' && quote_flag != 1)
-			|| (list[i] == '\'' && quote_flag != 2))
+		if ((list[i] == '"' && quote_flag != 1) || (list[i] == '\''
+				&& quote_flag != 2))
 		{
 			i++;
 			continue ;
@@ -109,7 +109,8 @@ t_input	*striper(t_input *list)
 	while (list_tmp && list_tmp->value)
 	{
 		size = ft_calculate_size(list_tmp->value);
-		if (size == 0 || ((list_tmp->prev && list_tmp->prev->type == TOKEN_HEREDOC)))
+		if (size == 0 || ((list_tmp->prev
+					&& list_tmp->prev->type == TOKEN_HEREDOC)))
 		{
 			list_tmp = list_tmp->next;
 			continue ;

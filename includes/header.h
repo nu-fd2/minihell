@@ -277,6 +277,7 @@ void ft_remove_spaces(char *tmp);
 char *ft_expand_str(char *str, t_data *data);
 char	*tmp_assignment(char *list, int size);
 int	ft_calculate_size(char *str);
+bool	ft_is_space(char c);
 
 //================================================
 
