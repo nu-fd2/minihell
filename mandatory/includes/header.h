@@ -1,0 +1,317 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   header.h                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/26 23:27:37 by mdakni            #+#    #+#             */
+/*   Updated: 2025/07/01 14:55:22 by oel-mado         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef HEADER_H
+# define HEADER_H
+
+# include <dirent.h>
+# include <fcntl.h>
+# include <limits.h>
+# include <signal.h>
+# include <stdbool.h>
+# include <stdint.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <string.h>
+# include <sys/stat.h>
+# include <sys/wait.h>
+# include <termios.h>
+# include <unistd.h>
+
+# ifdef linux
+#  include <readline/history.h>
+#  include <readline/readline.h>
+# else
+#  include "../readline/history.h"
+#  include "../readline/readline.h"
+# endif
+
+# include "get_next_line/get_next_line_bonus.h"
+
+typedef enum s_tokens
+{
+	TOKEN_WORD,
+	TOKEN_OP,
+	TOKEN_RED_APP,
+	TOKEN_DELIMITER,
+	TOKEN_CMD,
+	TOKEN_ARG,
+	TOKEN_FILE,
+	TOKEN_R_RED,
+	TOKEN_L_RED,
+	TOKEN_R_APP,
+	TOKEN_HEREDOC,
+	TOKEN_PIPE,
+	TOKEN_O_PAR,
+	TOKEN_C_PAR,
+	TOKEN_AND,
+	TOKEN_OR,
+	TOKEN_EOF
+}					t_token;
+
+extern int			g_pmo;
+
+typedef struct s_star_h
+{
+	int				i;
+	int				quote_flag;
+	int				star_flag;
+	int				slash_flag;
+	int				hidden;
+}					t_star_h;
+
+typedef struct s_env
+{
+	char			*key;
+	char			*value;
+	bool			ported;
+	struct s_env	*next;
+}					t_env;
+
+typedef struct s_kids
+{
+	pid_t			kid;
+	int				ex;
+	struct s_kids	*next;
+}					t_kids;
+
+typedef struct s_dog
+{
+	int				p_in;
+	bool			quote;
+}					t_dog;
+typedef struct s_nodes
+{
+	int				index;
+	int				quotes;
+	int				strip;
+	bool			star;
+	t_token			type;
+	t_token			category;
+	bool			red_app;
+	bool			expand;
+	char			*value;
+	struct s_nodes	*next;
+	struct s_nodes	*prev;
+	struct s_nodes	*tail;
+}					t_input;
+
+typedef struct s_latest
+{
+	char			**args;
+	char			**reds;
+	struct s_latest	*next;
+	struct s_latest	*prev;
+	struct s_latest	*tail;
+	bool			ambiguous;
+	int				red_size;
+	bool			expanded;
+	int				pip[2];
+	int				has_dog;
+}					t_short;
+
+typedef struct s_size
+{
+	int				nodes;
+	int				size_cmd;
+	int				size_red;
+}					t_size;
+
+typedef struct s_quotes
+{
+	int				i;
+	int				quotes;
+	int				remove;
+	bool			expand;
+}					t_quotes;
+
+typedef struct s_flags
+{
+	char			*string;
+	char			*expand;
+	int				quotes;
+	int				start;
+	int				end;
+	int				d_start;
+	int				d_end;
+}					t_flags;
+
+typedef struct s_blah
+{
+	int				args;
+	int				reds;
+	int				args_i;
+	int				reds_i;
+	char			**args2;
+	char			**reds2;
+	bool			ambiguous;
+	int				size;
+	bool			expanded;
+}					t_blah;
+
+typedef struct s_star
+{
+	struct dirent	*data;
+	struct s_star	*next;
+
+}					t_star;
+
+typedef struct s_data
+{
+	int				fd;
+	int				fd2;
+	int				ex;
+	int				exm;
+	int				g_pmo;
+	int				p_in;
+	int				p_ot;
+	int				dog_kid;
+	int				pip1[2];
+	int				pip2[2];
+	char			**chr_env;
+	t_env			*env;
+	t_kids			*kids;
+	t_input			*input;
+	t_short			*shart;
+}					t_data;
+
+t_input				*tokenize(char *line);
+void				*my_calloc(size_t count, size_t size);
+char				*my_strdup(const char *s1);
+char				*my_strndup(const char *s1, int n);
+int					my_strcmp(const char *s1, const char *s2);
+void				ft_lstadd_back(t_input **lst, char *content);
+void				ft_lstadd_back_2(t_short **lst, t_blah blah);
+t_input				*ft_lstlast(t_input *lst);
+size_t				my_strlen(const char *s);
+void				ft_lstfree(t_input *lst);
+bool				is_space(char c);
+void				lst_print(t_input *bruh);
+int					prompt_msg(t_data *data);
+void				ft_lstfree_2(t_short *lst);
+t_short				*ft_lstlast_2(t_short *lst);
+void				ft_lstadd_back_2(t_short **lst, t_blah blah);
+void				lst_assign_2(t_short **new, t_short **lst);
+char				*my_strjoin(char *s1, char *s2);
+char				*my_strnjoin(char *s1, char *s2, int n);
+int					my_isalpha(int c);
+int					my_isalnum(int c);
+int					handle_pipe(t_input **list, char *line);
+int					handle_red(t_input **list, char *line);
+int					handle_app(t_input **list, char *line);
+int					handle_quotes(t_input **list, char *line);
+int					handle_word(t_input **list, char *line);
+bool				check_limit(char *line, t_quotes *check);
+char				*my_substr(char const *s, unsigned int start, size_t len);
+void				remove_middle_node(t_input **list, t_input **list_tmp);
+void				node_mod(t_input *list, t_data *data);
+void				free_split(char **split);
+void				split_and_add_h(t_input **list, t_input **iter,
+						t_input *lst_tmp);
+int					filter(t_input *list);
+void				checker(char *line);
+void				seperator(t_input *list);
+t_input				*money_expansion(t_input *list, t_data *data);
+char				**my_split(char const *s);
+t_input				*striper(t_input *list);
+void				lst_print2(t_short *list);
+int					ft_checker(char c, int quote_flag);
+t_short				*last_lst_creater(t_input *lst);
+void				handle_clear(t_input *list, t_blah *blah);
+void				alpha_sort(t_input *iter);
+void				ft_replace(t_input *add, t_input **iter, t_input **list);
+int					skip_spaces(char *line, int i);
+void				check_additionals(char *line, t_quotes *check);
+void				node_check(t_input *list, t_flags *check, t_data *data);
+void				ft_remove_spaces(char *tmp);
+char				*ft_expand_str(char *str, t_data *data);
+char				*tmp_assignment(char *list, int size);
+int					ft_calculate_size(char *str);
+bool				ft_is_space(char c);
+int					ft_skip_spaces(t_data *data, char *line);
+
+size_t				ft_strlen(const char *who);
+size_t				ft_strlcpy(char *dst, const char *src, size_t n);
+size_t				ft_strlcat(char *dst, const char *src, size_t n);
+void				*ft_memset(void *ptr, int n, size_t num);
+void				ft_bzero(void *s, size_t len);
+int					ft_isdigit(int c);
+int					ft_strncmp(const char *s1, const char *s2, size_t n);
+int					ft_strcmp(const char *s1, const char *s2);
+char				*ft_strchr(const char *str, int c);
+int					ft_atoi(const char *str);
+char				*ft_itoa(int n);
+char				*ft_strdup(const char *s1);
+char				**ft_ssplit(char const *s, char c);
+void				*ft_calloc(size_t count, size_t size);
+char				*ft_ssubstr(char const *s, unsigned int start, size_t len);
+char				*ft_sstrjoin(char const *s1, char const *s2);
+void				ft_putchar_fd(char c, int fd);
+void				ft_putstr_fd(char *s, int fd);
+int					ft_isalpha(int c);
+int					ft_isalnum(int c);
+char				*ft_strndup(const char *s1, size_t n);
+
+int					cmd_export(t_data *data, char **arg, char *key, char *val);
+int					cmd_unset(t_data *data, char **arg);
+int					cmd_echo(t_data *data, char **arg);
+int					cmd_exit(t_data *data, char **arg);
+int					cmd_env(t_data *data);
+int					cmd_pwd(t_data *data);
+int					cmd_cd(t_data *data, char **path);
+
+t_env				*int_env(char **env);
+int					prn_env(t_data *data);
+int					prn_port_env(t_data *data);
+int					fre_env(t_env *env);
+int					del_env(t_data *data, char *key);
+t_env				*grp_env(t_env *env, char *key);
+char				*gky_env(t_data *data, char *key);
+t_env				*add_env(t_env *env, char *key, char *value, bool ported);
+int					lvl_env(t_data *data);
+char				**int_chr_env(t_data *data);
+void				fre_chr_env(char **env);
+
+int					ex_rish(t_data *data, char **arg);
+int					ex_rish_pip(t_data *data, char **arg);
+int					ex_bults(t_data *data, char **arg);
+int					ex_bults_pip(t_data *data, char **arg, int bc);
+int					ex_bults_chk(char **arg);
+char				*ex_there(t_data *data, char *cmd);
+char				*ex_crnt(t_data *data, char *cmd);
+int					ex_cpro(t_data *data, char *cmd, char **arg);
+int					ex_cpro_bult(t_data *data, char **arg, int bc);
+
+int					man_red(t_data *data, t_short *shart, char **red);
+int					src_red(t_data *data, t_short *shart, char **red);
+int					red_red(t_data *data, char *red);
+int					apn_red(t_data *data, char *red);
+int					inn_red(t_data *data, char *red);
+int					man_dog(t_data *data, t_short *shart);
+void				cls_dog_pip(t_short *shart);
+int					cnt_dog(t_data *data, t_short *shart);
+int					flavored_water(t_data *data, t_short *ts);
+t_dog				red_dog(char *key);
+void				exer(t_data *data, int stat);
+void				f_dog_pip(t_data *data, t_short *ts, t_dog dog);
+
+int					main_exc(t_data *data, t_short *shart);
+void				main_exc_h(t_data *data, t_short *fart, int in, int ot);
+int					ex_waitkid(t_data *data);
+int					clr_kids(t_data *data);
+int					pip_exc(t_data *data, t_short *shart, int in, int ot);
+int					sec_exc(t_data *data, t_short *shart, int in, int ot);
+int					set_pipe(t_data *data, int s, t_short *fart);
+
+int					m_perror(char *cmd, char *arg, char *msg);
+
+#endif
