@@ -1,9 +1,9 @@
 {
-  "C_Cpp_Runner_bonus.cCompilerPath": "clang",
-  "C_Cpp_Runner_bonus.cppCompilerPath": "clang++",
+  "C_Cpp_Runner.cCompilerPath": "clang",
+  "C_Cpp_Runner.cppCompilerPath": "clang++",
   "C_Cpp_Runner.debuggerPath": "lldb",
-  "C_Cpp_Runner_bonus.cStandard": "",
-  "C_Cpp_Runner_bonus.cppStandard": "",
+  "C_Cpp_Runner.cStandard": "",
+  "C_Cpp_Runner.cppStandard": "",
   "C_Cpp_Runner.msvcBatchPath": "",
   "C_Cpp_Runner.useMsvc": false,
   "C_Cpp_Runner.warnings": [
@@ -35,7 +35,7 @@
   ],
   "C_Cpp_Runner.enableWarnings": true,
   "C_Cpp_Runner.warningsAsError": false,
-  "C_Cpp_Runner_bonus.compilerArgs": [],
+  "C_Cpp_Runner.compilerArgs": [],
   "C_Cpp_Runner.linkerArgs": [],
   "C_Cpp_Runner.includePaths": [],
   "C_Cpp_Runner.includeSearch": [
@@ -55,8 +55,5 @@
   "C_Cpp_Runner.useLeakSanitizer": false,
   "C_Cpp_Runner.showCompilationTime": false,
   "C_Cpp_Runner.useLinkTimeOptimization": false,
-  "C_Cpp_Runner.msvcSecureNoWarnings": false,
-  "files.associations": {
-    "get_next_line_bonus.h": "c"
-  }
+  "C_Cpp_Runner.msvcSecureNoWarnings": false
 }

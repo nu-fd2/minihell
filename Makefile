@@ -1,5 +1,5 @@
 NAME = minishell
-NAME = minishell_bonus
+BNAME = minishell_bonus
 CFLAGS = -Wall -Werror -Wextra -I./readline/include
 RDFLAGS = -lreadline -lncurses
 SRC = mandatory/src/minishell.c \
@@ -163,8 +163,8 @@ bonus/ex/libft/ft_isalpha_bonus.c \
 bonus/ex/libft/ft_memset_bonus.c \
 bonus/ex/libft/ft_strcmp_bonus.c \
 	\
-bonus/includes/get_next_line/get_next_line_bonus_bonus.c \
-bonus/includes/get_next_line/get_next_line_utils_bonus_bonus.c \
+bonus/includes/get_next_line/get_next_line_bonus.c \
+bonus/includes/get_next_line/get_next_line_utils_bonus.c \
 	\
 
 OBJ = $(SRC:.c=.o)

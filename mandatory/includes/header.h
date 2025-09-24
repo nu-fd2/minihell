@@ -31,8 +31,8 @@
 #  include <readline/history.h>
 #  include <readline/readline.h>
 # else
-#  include "../readline/history.h"
-#  include "../readline/readline.h"
+#  include "../../readline/history.h"
+#  include "../../readline/readline.h"
 # endif
 
 # include "get_next_line/get_next_line_bonus.h"
@@ -195,7 +195,6 @@ t_input				*ft_lstlast(t_input *lst);
 size_t				my_strlen(const char *s);
 void				ft_lstfree(t_input *lst);
 bool				is_space(char c);
-void				lst_print(t_input *bruh);
 int					prompt_msg(t_data *data);
 void				ft_lstfree_2(t_short *lst);
 t_short				*ft_lstlast_2(t_short *lst);
@@ -223,7 +222,6 @@ void				seperator(t_input *list);
 t_input				*money_expansion(t_input *list, t_data *data);
 char				**my_split(char const *s);
 t_input				*striper(t_input *list);
-void				lst_print2(t_short *list);
 int					ft_checker(char c, int quote_flag);
 t_short				*last_lst_creater(t_input *lst);
 void				handle_clear(t_input *list, t_blah *blah);
