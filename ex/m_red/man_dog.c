@@ -6,13 +6,13 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 06:41:04 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/09/24 00:40:07 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/09/24 02:11:33 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/header.h"
 
-void	exer(t_data *data, t_short *shart, int stat)
+void	exer(t_data *data, int stat)
 {
 	int	ex;
 
@@ -57,7 +57,7 @@ bool	check_quotes(char *s)
 	return (false);
 }
 
-t_dog	red_dog(t_data *data, t_short *ts, char *key)
+t_dog	red_dog(char *key)
 {
 	char	*s;
 	int		pip[2];

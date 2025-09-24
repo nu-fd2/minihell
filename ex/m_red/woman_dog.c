@@ -6,13 +6,13 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 23:47:38 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/09/24 00:38:34 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/09/24 02:17:13 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/header.h"
 
-int	chocolate_starfish(t_data *data, t_short *ts, t_dog *dog)
+int	chocolate_starfish(t_short *ts, t_dog *dog)
 {
 	int	i;
 	int	ret;
@@ -28,7 +28,7 @@ int	chocolate_starfish(t_data *data, t_short *ts, t_dog *dog)
 			i++;
 			if (dog->p_in != 0)
 				close(dog->p_in);
-			*dog = red_dog(data, ts, ts->reds[i]);
+			*dog = red_dog(ts->reds[i]);
 			if (dog->p_in == -1)
 			{
 				ret = 1;
@@ -49,7 +49,7 @@ int	hot_dog(t_data *data, t_short *ts)
 	dog.p_in = 0;
 	if (ts->reds)
 	{
-		ret = chocolate_starfish(data, ts, &dog);
+		ret = chocolate_starfish(ts, &dog);
 		f_dog_pip(data, ts, dog);
 	}
 	return (ret);
@@ -68,7 +68,7 @@ int	flavored_water(t_data *data, t_short *ts)
 	{
 		signal(SIGINT, SIG_DFL);
 		data->exm = hot_dog(data, ts);
-		exer(data, ts, 1);
+		exer(data, 1);
 	}
 	else
 	{

@@ -6,7 +6,7 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 10:47:13 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/09/24 00:42:00 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/09/24 02:09:20 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	sta(char *path)
 	return (0);
 }
 
-char	*p_diddy(t_data *data, char *g_o)
+char	*p_diddy(char *g_o)
 {
 	char	*pwd;
 	char	*tmp;
@@ -55,7 +55,7 @@ char	*get_nu_pwd(t_data *data, char *arg)
 	else if (arg[0] == '/')
 		nu_pwd = ft_strdup(arg);
 	else
-		nu_pwd = p_diddy(data, arg);
+		nu_pwd = p_diddy(arg);
 	return (nu_pwd);
 }
 

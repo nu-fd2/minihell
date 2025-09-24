@@ -6,7 +6,7 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 17:36:40 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/09/24 00:40:43 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/09/24 02:10:32 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	ex_bults_pip(t_data *data, char **arg, int bc)
 	return (1);
 }
 
-int	ex_bults_chk(t_data *data, char **arg)
+int	ex_bults_chk(char **arg)
 {
 	if (ft_strncmp(arg[0], "env", 4) == 0)
 		return (1);

@@ -6,7 +6,7 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 20:22:32 by skully            #+#    #+#             */
-/*   Updated: 2025/09/24 00:41:54 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/09/24 02:06:47 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,11 @@ static int	word_count(const char *s)
 	return (words + 2);
 }
 
-char	*copy_word_h(int start, int i, char *word, const char *s)
+char	*copy_word_h(int start, int i, const char *s)
 {
 	int	j;
 	int	len;
+	char *word;
 
 	j = 0;
 	len = i - start;
@@ -58,7 +59,6 @@ char	*copy_word(const char *s, int *i)
 	int		start;
 	bool	in_quote;
 	char	quote;
-	char	*word;
 
 	start = *i;
 	in_quote = false;
@@ -79,7 +79,7 @@ char	*copy_word(const char *s, int *i)
 			break ;
 		(*i)++;
 	}
-	return (copy_word_h(start, *i, word, s));
+	return (copy_word_h(start, *i, s));
 }
 
 char	**my_split(const char *s)

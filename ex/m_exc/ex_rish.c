@@ -6,7 +6,7 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 16:50:59 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/09/24 00:40:36 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/09/24 02:12:08 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ int	ex_rish(t_data *data, char **arg)
 {
 	int		i;
 	char	*cmd;
-	t_kids	*kids;
 
 	cmd = NULL;
 	i = 0;
@@ -77,14 +76,13 @@ int	ex_rish_pip(t_data *data, char **arg)
 	int		bc;
 	int		ret;
 	char	*cmd;
-	t_kids	*kids;
 
 	cmd = NULL;
 	bc = 0;
 	ret = 0;
 	if (!is_allspace(arg[0]))
 		return (0);
-	bc = ex_bults_chk(data, arg);
+	bc = ex_bults_chk(arg);
 	if (bc)
 		return (ex_cpro_bult(data, arg, bc));
 	if ((arg[0][0] == '/') || (arg[0][0] == '.' && arg[0][1] == '/')

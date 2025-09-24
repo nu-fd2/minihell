@@ -6,13 +6,13 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 16:17:57 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/09/23 18:31:15 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/09/24 02:09:46 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/header.h"
 
-char	*key_gen_h(char *arg, char *key, int s, int i)
+char	*key_gen_h(char *key, int s, int i)
 {
 	if (key)
 	{
@@ -47,7 +47,7 @@ char	*key_gen(char *arg)
 		i++;
 	key = ft_strndup(arg, i);
 	i = 0;
-	return (key_gen_h(arg, key, s, i));
+	return (key_gen_h(key, s, i));
 }
 
 char	*val_gen(char *arg)
