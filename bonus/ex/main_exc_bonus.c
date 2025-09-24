@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_exc_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 20:06:48 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/09/24 18:30:35 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/09/24 19:41:33 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,16 +80,16 @@ int	sec_exc(t_data *data, t_short *shart, int in, int ot)
 	return (ret);
 }
 
-int	set_pipe(t_data *data, int s, t_short *fart)
+int	set_pipe(t_data *data, int s, t_short *tool)
 {
-	if (!s && fart->next)
+	if (!s && tool->next)
 	{
 		pipe(data->pip1);
 		data->p_in = data->pip1[0];
 		data->p_ot = data->pip1[1];
 		return (data->pip1[1]);
 	}
-	else if (s && fart->next)
+	else if (s && tool->next)
 	{
 		pipe(data->pip2);
 		data->p_in = data->pip2[0];
@@ -101,27 +101,27 @@ int	set_pipe(t_data *data, int s, t_short *fart)
 
 int	main_exc(t_data *data, t_short *shart)
 {
-	t_short	*fart;
+	t_short	*tool;
 
 	int (in), (ot);
 	in = 0;
 	ot = 1;
-	fart = shart;
+	tool = shart;
 	data->dog_kid = 0;
 	cnt_dog(data, shart);
 	if (man_dog(data, shart))
 		return (1);
-	if (!fart->next)
+	if (!tool->next)
 	{
-		if (!fart->ambiguous)
+		if (!tool->ambiguous)
 		{
-			sec_exc(data, fart, in, ot);
+			sec_exc(data, tool, in, ot);
 			cls_dog_pip(shart);
 			return (clr_kids(data));
 		}
 		else
 			return (data->exm = 1, m_perror(NULL, NULL, "ambiguous redirect"));
 	}
-	main_exc_h(data, fart, in, ot);
+	main_exc_h(data, tool, in, ot);
 	return (cls_dog_pip(shart), clr_kids(data), 0);
 }

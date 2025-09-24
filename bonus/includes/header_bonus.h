@@ -6,7 +6,7 @@
 /*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 18:24:35 by mdakni            #+#    #+#             */
-/*   Updated: 2025/09/24 18:25:44 by mdakni           ###   ########.fr       */
+/*   Updated: 2025/09/24 19:41:33 by mdakni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -304,12 +304,12 @@ void				exer(t_data *data, int stat);
 void				f_dog_pip(t_data *data, t_short *ts, t_dog dog);
 
 int					main_exc(t_data *data, t_short *shart);
-void				main_exc_h(t_data *data, t_short *fart, int in, int ot);
+void				main_exc_h(t_data *data, t_short *tool, int in, int ot);
 int					ex_waitkid(t_data *data);
 int					clr_kids(t_data *data);
 int					pip_exc(t_data *data, t_short *shart, int in, int ot);
 int					sec_exc(t_data *data, t_short *shart, int in, int ot);
-int					set_pipe(t_data *data, int s, t_short *fart);
+int					set_pipe(t_data *data, int s, t_short *tool);
 
 int					m_perror(char *cmd, char *arg, char *msg);
 
