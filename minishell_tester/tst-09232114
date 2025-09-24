@@ -22,8 +22,8 @@
 [0m[0;33mTest  11: ✅[38;5;244m echo 'aspas ->"' 
 [0m[0;33mTest  12: ✅[38;5;244m echo 'aspas -> " ' 
 [0m[0;33mTest  13: ❌[38;5;244m echo "> >> < * ? [ ] | ; [ ] || && ( ) & # $  <<" 
-[0mmini output = (> >> < README.md bash.supp bash_outfiles bonus bonus_bonus builtins extras local.supp loop.out manual_tests mini_outfiles os_specific outfiles pipes redirects syntax test_files tester tst-09232004 wildcards ? [ ] | ; [ ] || && ( ) & # <<)
-bash output = (> >> < README.md bash.supp bash_outfiles bonus bonus_bonus builtins extras local.supp loop.out manual_tests mini_outfiles os_specific outfiles pipes redirects syntax test_files tester tst-09232004 wildcards ? [ ] | ; [ ] || && ( ) & # $ <<)
+[0mmini output = (> >> < README.md bash.supp bash_outfiles bonus bonus_bonus builtins extras local.supp loop.out manual_tests mini_outfiles os_specific outfiles pipes redirects syntax test_files tester tst-09232019 tst-09232033 tst-09232055 tst-09232114 wildcards ? [ ] | ; [ ] || && ( ) & # <<)
+bash output = (> >> < README.md bash.supp bash_outfiles bonus bonus_bonus builtins extras local.supp loop.out manual_tests mini_outfiles os_specific outfiles pipes redirects syntax test_files tester tst-09232019 tst-09232033 tst-09232055 tst-09232114 wildcards ? [ ] | ; [ ] || && ( ) & # $ <<)
 [0;33mTest  14: ✅[38;5;244m echo '> >> < * ? [ ] | ; [ ] || && ( ) & # $  <<' 
 [0m[0;33mTest  15: ✅[38;5;244m echo "exit_code ->$? user ->$USER home -> $HOME" 
 [0m[0;33mTest  16: ✅[38;5;244m echo 'exit_code ->$? user ->$USER home -> $HOME' 
@@ -31,14 +31,8 @@ bash output = (> >> < README.md bash.supp bash_outfiles bonus bonus_bonus builti
 [0mmini output = ()
 bash output = ($)
 [0;33mTest  18: ✅[38;5;244m echo '$' 
-[0m[0;33mTest  19: ❌[38;5;244m echo $ 
-[0mmini output = ()
-bash output = ($)
-mini exit code = 134
-bash exit code = 0
-mini error = (================================================================= heap-buffer-overflow on address 0x602000002f12 at pc 0x000104a8d5be bp 0x7ffeeb17cf20 sp 0x7ffeeb17cf18 READ of size 1 at 0x602000002f12 thread T0 x86_64+0x10000b5bd) x86_64+0x10001630b) x86_64+0x10000c3f1) x86_64+0x10000165c) x86_64+0x100001b14) x86_64+0x100002042) x86_64+0x1acc8) 0x602000002f12 is located 0 bytes to the right of 2-byte region [0x602000002f10,0x602000002f12) x86_64h+0x61793) x86_64+0x100008153) x86_64+0x10000359c) x86_64+0x100003b84) x86_64+0x100003cb3) x86_64+0x10000161b) x86_64+0x100001b14) x86_64+0x100002042) x86_64+0x1acc8) x86_64+0x10000b5bd) in node_check fa fa fd fa fa fa fd fd fa fa fd fd fa fa fd fd fa fa fd fd fa fa fd fd fa fa fd fd fa fa fd fd fa fa fd fd fa fa fd fd fa fa fd fd fa fa fd fd fa fa fd fd fa fa fd fd fa fa fd fd fa fa 00 00 fa fa 07 fa fa fa 00 04 fa fa 07 fa fa fa fd fa fa fa[02]fa fa fa 05 fa fa fa fd fa fa fa 02 fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa 00 01 02 03 04 05 06 07 fa fd f1 f2 f3 f5 f8 f9 f6 f7 fc ac bb fe ca cb cc ==13286==ABORTING)
-bash error = ()
-[0;33mTest  20: ✅[38;5;244m echo $? 
+[0m[0;33mTest  19: ✅[38;5;244m echo $ 
+[0m[0;33mTest  20: ✅[38;5;244m echo $? 
 [0m[0;33mTest  21: ✅[38;5;244m echo $?HELLO 
 [0m[0;33mTest  22: ✅[38;5;244m pwd 
 [0m[0;33mTest  23: ✅[38;5;244m pwd oi 
@@ -76,12 +70,8 @@ bash error = ( No such file or directory)
 [0m[0;31m———————————— pipes
 [0;33mTest  53: ✅[38;5;244m env | sort | grep -v SHLVL | grep -v ^_ 
 [0m[0;33mTest  54: ✅[38;5;244m cat ./test_files/infile_big | grep oi 
-[0m[0;33mTest  55: ❌[38;5;244m cat minishell.h | grep ");"$ 
-[0mmini exit code = 134
-bash exit code = 1
-mini error = (================================================================= heap-buffer-overflow on address 0x602000002ef6 at pc 0x0001056705be bp 0x7ffeea599f20 sp 0x7ffeea599f18 READ of size 1 at 0x602000002ef6 thread T0 x86_64+0x10000b5bd) x86_64+0x10001630b) x86_64+0x10000c3f1) x86_64+0x10000165c) x86_64+0x100001b14) x86_64+0x100002042) x86_64+0x1acc8) 0x602000002ef6 is located 0 bytes to the right of 6-byte region [0x602000002ef0,0x602000002ef6) x86_64h+0x61793) x86_64+0x100008153) x86_64+0x10000359c) x86_64+0x100003b84) x86_64+0x100003cb3) x86_64+0x10000161b) x86_64+0x100001b14) x86_64+0x100002042) x86_64+0x1acc8) x86_64+0x10000b5bd) in node_check fa fa fd fa fa fa fd fa fa fa fd fa fa fa fd fa fa fa fd fa fa fa fd fd fa fa fd fd fa fa fd fd fa fa fd fd fa fa fd fd fa fa fd fd fa fa fd fd fa fa fd fd fa fa fd fd fa fa fd fd fa fa fd fd fa fa fd fd fa fa fd fd fa fa fd fd fa fa 00 00 fa fa 00 04 fa fa fd fa fa fa fd fd fa fa[06]fa fa fa 04 fa fa fa fd fa fa fa 00 04 fa fa fd fd fa fa 02 fa fa fa fd fa fa fa 05 fa fa fa fd fa fa fa 06 fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa 00 01 02 03 04 05 06 07 fa fd f1 f2 f3 f5 f8 f9 f6 f7 fc ac bb fe ca cb cc ==14615==ABORTING)
-bash error = ( No such file or directory)
-[0;33mTest  56: ✅[38;5;244m export GHOST=123 | env | grep GHOST 
+[0m[0;33mTest  55: ✅[38;5;244m cat minishell.h | grep ");"$ 
+[0m[0;33mTest  56: ✅[38;5;244m export GHOST=123 | env | grep GHOST 
 [0m[0;31m———————————— redirects
 [0;33mTest  57: ✅[38;5;244m grep hi <./test_files/infile 
 [0m[0;33mTest  58: ✅[38;5;244m grep hi "<infile" <         ./test_files/infile 
@@ -105,25 +95,11 @@ bash error = ( Broken pipe)
 [0;33mTest  74: ✅[38;5;244m cat <"./test_files/infile" | grep hello 
 [0m[0;33mTest  75: ✅[38;5;244m cat <"./test_files/infile_big" | echo hi 
 [0m[0;33mTest  76: ✅[38;5;244m cat <missing 
-[0m[0;33mTest  77: ❌[38;5;244m cat <missing | cat 
-[0mmini exit code = 1
-bash exit code = 0
-[0;33mTest  78: ❌[38;5;244m cat <missing | echo oi 
-[0mmini output = ()
-bash output = (oi)
-mini exit code = 1
-bash exit code = 0
-[0;33mTest  79: ❌[38;5;244m cat <missing | cat <"./test_files/infile" 
-[0mmini output = ()
-bash output = (hi hello world 42)
-mini exit code = 1
-bash exit code = 0
-[0;33mTest  80: ❌[38;5;244m echo <123 <456 hi | echo 42 
-[0mmini output = ()
-bash output = (42)
-mini exit code = 1
-bash exit code = 0
-[0;33mTest  81: ✅[38;5;244m ls >./outfiles/outfile01 
+[0m[0;33mTest  77: ✅[38;5;244m cat <missing | cat 
+[0m[0;33mTest  78: ✅[38;5;244m cat <missing | echo oi 
+[0m[0;33mTest  79: ✅[38;5;244m cat <missing | cat <"./test_files/infile" 
+[0m[0;33mTest  80: ✅[38;5;244m echo <123 <456 hi | echo 42 
+[0m[0;33mTest  81: ✅[38;5;244m ls >./outfiles/outfile01 
 [0m[0;33mTest  82: ✅[38;5;244m ls >         ./outfiles/outfile01 
 [0m[0;33mTest  83: ✅[38;5;244m echo hi >         ./outfiles/outfile01 bye 
 [0m[0;33mTest  84: ✅[38;5;244m ls >./outfiles/outfile01 >./outfiles/outfile02 
@@ -138,22 +114,10 @@ bash exit code = 0
 [0m[0;33mTest  93: ✅[38;5;244m echo hi | echo >./outfiles/outfile01 bye 
 [0m[0;33mTest  94: ✅[38;5;244m echo hi | echo bye >./outfiles/outfile01 >./outfiles/outfile02 
 [0m[0;33mTest  95: ✅[38;5;244m echo hi >./outfiles/outfile01 | echo bye >./outfiles/outfile02 
-[0m[0;33mTest  96: ❌[38;5;244m echo hi >./outfiles/outfile01 >./test_files/invalid_permission | echo bye 
-[0mmini output = ()
-bash output = (bye)
-mini exit code = 1
-bash exit code = 0
-[0;33mTest  97: ❌[38;5;244m echo hi >./test_files/invalid_permission | echo bye 
-[0mmini output = ()
-bash output = (bye)
-mini exit code = 1
-bash exit code = 0
-[0;33mTest  98: ❌[38;5;244m echo hi >./test_files/invalid_permission >./outfiles/outfile01 | echo bye 
-[0mmini output = ()
-bash output = (bye)
-mini exit code = 1
-bash exit code = 0
-[0;33mTest  99: ❌[38;5;244m echo hi | echo bye >./test_files/invalid_permission 
+[0m[0;33mTest  96: ✅[38;5;244m echo hi >./outfiles/outfile01 >./test_files/invalid_permission | echo bye 
+[0m[0;33mTest  97: ✅[38;5;244m echo hi >./test_files/invalid_permission | echo bye 
+[0m[0;33mTest  98: ✅[38;5;244m echo hi >./test_files/invalid_permission >./outfiles/outfile01 | echo bye 
+[0m[0;33mTest  99: ❌[38;5;244m echo hi | echo bye >./test_files/invalid_permission 
 [0mmini exit code = 0
 bash exit code = 1
 [0;33mTest 100: ❌[38;5;244m echo hi | >./outfiles/outfile01 echo bye >./test_files/invalid_permission 
@@ -186,29 +150,17 @@ bash exit code = 1
 [0m[0;33mTest 123: ✅[38;5;244m echo hi | echo >>./outfiles/outfile01 bye 
 [0m[0;33mTest 124: ✅[38;5;244m echo hi | echo bye >>./outfiles/outfile01 >>./outfiles/outfile02 
 [0m[0;33mTest 125: ✅[38;5;244m echo hi >>./outfiles/outfile01 | echo bye >>./outfiles/outfile02 
-[0m[0;33mTest 126: ❌[38;5;244m echo hi >>./test_files/invalid_permission | echo bye 
-[0mmini output = ()
-bash output = (bye)
-mini exit code = 1
-bash exit code = 0
-[0;33mTest 127: ❌[38;5;244m echo hi >>./test_files/invalid_permission >./outfiles/outfile01 | echo bye 
-[0mmini output = ()
-bash output = (bye)
-mini exit code = 1
-bash exit code = 0
-[0;33mTest 128: ❌[38;5;244m echo hi | echo bye >>./test_files/invalid_permission 
+[0m[0;33mTest 126: ✅[38;5;244m echo hi >>./test_files/invalid_permission | echo bye 
+[0m[0;33mTest 127: ✅[38;5;244m echo hi >>./test_files/invalid_permission >./outfiles/outfile01 | echo bye 
+[0m[0;33mTest 128: ❌[38;5;244m echo hi | echo bye >>./test_files/invalid_permission 
 [0mmini exit code = 0
 bash exit code = 1
 [0;33mTest 129: ❌[38;5;244m echo hi | echo >>./outfiles/outfile01 bye >./test_files/invalid_permission 
 [0mmini exit code = 0
 bash exit code = 1
 [0;33mTest 130: ✅[38;5;244m cat <minishell.h>./outfiles/outfile 
-[0m[0;33mTest 131: ❌[38;5;244m cat <minishell.h|ls 
-[0mmini output = ()
-bash output = (README.md bash.supp bash_outfiles bonus bonus_bonus builtins extras local.supp loop.out manual_tests mini_outfiles os_specific outfiles pipes redirects syntax test_files tester tst-09232004 wildcards)
-mini exit code = 1
-bash exit code = 0
-[0;31m———————————— extras
+[0m[0;33mTest 131: ✅[38;5;244m cat <minishell.h|ls 
+[0m[0;31m———————————— extras
 [0;33mTest 132: ✅[38;5;244m  
 [0m[0;33mTest 133: ✅[38;5;244m $PWD 
 [0m[0;33mTest 134: ✅[38;5;244m $EMPTY 
@@ -227,12 +179,8 @@ bash error = ( No such file or directory)
 [0mmini error = ( no such file or directory)
 bash error = ( No such file or directory)
 [0;33mTest 143: ✅[38;5;244m minishell.h 
-[0m[0;33mTest 144: ❌[38;5;244m $ 
-[0mmini exit code = 134
-bash exit code = 127
-mini error = (================================================================= heap-buffer-overflow on address 0x602000002ef2 at pc 0x00010bd435be bp 0x7ffee3ec6f20 sp 0x7ffee3ec6f18 READ of size 1 at 0x602000002ef2 thread T0 x86_64+0x10000b5bd) x86_64+0x10001630b) x86_64+0x10000c3f1) x86_64+0x10000165c) x86_64+0x100001b14) x86_64+0x100002042) x86_64+0x1acc8) 0x602000002ef2 is located 0 bytes to the right of 2-byte region [0x602000002ef0,0x602000002ef2) x86_64h+0x61793) x86_64+0x100008153) x86_64+0x10000359c) x86_64+0x100003b84) x86_64+0x100003cb3) x86_64+0x10000161b) x86_64+0x100001b14) x86_64+0x100002042) x86_64+0x1acc8) x86_64+0x10000b5bd) in node_check fa fa fd fa fa fa fd fa fa fa fd fa fa fa fd fa fa fa fd fa fa fa fd fd fa fa fd fd fa fa fd fd fa fa fd fd fa fa fd fd fa fa fd fd fa fa fd fd fa fa fd fd fa fa fd fd fa fa fd fd fa fa fd fd fa fa fd fd fa fa fd fd fa fa fd fd fa fa 00 00 fa fa 02 fa fa fa 00 04 fa fa 02 fa fa fa[02]fa fa fa 02 fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa 00 01 02 03 04 05 06 07 fa fd f1 f2 f3 f5 f8 f9 f6 f7 fc ac bb fe ca cb cc ==18251==ABORTING)
-bash error = ( command not found)
-[0;33mTest 145: ✅[38;5;244m $? 
+[0m[0;33mTest 144: ✅[38;5;244m $ 
+[0m[0;33mTest 145: ✅[38;5;244m $? 
 [0m[0;33mTest 146: ✅[38;5;244m README.md 
-[0m[0;35m[1m126/146
+[0m[0;35m[1m139/146
 [0m😭 😭 😭

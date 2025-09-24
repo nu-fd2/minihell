@@ -6,16 +6,15 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 10:25:17 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/09/18 17:11:37 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/09/23 23:42:17 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/header.h"
 
-
 int	inn_red(t_data *data, char *red)
 {
-	int neo;
+	int	neo;
 
 	neo = -1;
 	if (!red)
@@ -27,5 +26,5 @@ int	inn_red(t_data *data, char *red)
 	else
 		neo = open(red, O_RDONLY);
 	data->fd2 = neo;
-	return 0;
+	return (0);
 }

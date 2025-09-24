@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ex_rish.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
+/*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 16:50:59 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/09/23 15:30:06 by mdakni           ###   ########.fr       */
+/*   Updated: 2025/09/24 00:40:36 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	ex_rish(t_data *data, char **arg)
 {
 	int		i;
 	char	*cmd;
-	t_kids	* kids;
+	t_kids	*kids;
 
 	cmd = NULL;
 	i = 0;
@@ -39,7 +39,7 @@ int	ex_rish(t_data *data, char **arg)
 	if (ex_bults(data, arg) != 69)
 		return (0);
 	if ((arg[0][0] == '/') || (arg[0][0] == '.' && arg[0][1] == '/')
-			|| (arg[0][0] == '.' && arg[0][1] == '.'&& arg[0][2] == '/'))
+		|| (arg[0][0] == '.' && arg[0][1] == '.' && arg[0][2] == '/'))
 		cmd = ex_crnt(data, arg[0]);
 	else
 		cmd = ex_there(data, arg[0]);
@@ -52,6 +52,24 @@ int	ex_rish(t_data *data, char **arg)
 		fre_chr_env(data->chr_env);
 	}
 	return (free(cmd), 0);
+}
+
+int	ex_loo(t_data *data, int ret, char *cmd, char **arg)
+{
+	data->chr_env = int_chr_env(data);
+	ret = ex_cpro(data, cmd, arg);
+	if (data->fd2 != 0)
+	{
+		close(data->fd2);
+		data->fd2 = 0;
+	}
+	if (data->fd != 1)
+	{
+		close(data->fd);
+		data->fd = 1;
+	}
+	fre_chr_env(data->chr_env);
+	return (ret);
 }
 
 int	ex_rish_pip(t_data *data, char **arg)
@@ -70,27 +88,13 @@ int	ex_rish_pip(t_data *data, char **arg)
 	if (bc)
 		return (ex_cpro_bult(data, arg, bc));
 	if ((arg[0][0] == '/') || (arg[0][0] == '.' && arg[0][1] == '/')
-			|| (arg[0][0] == '.' && arg[0][1] == '.'&& arg[0][2] == '/'))
+		|| (arg[0][0] == '.' && arg[0][1] == '.' && arg[0][2] == '/'))
 		cmd = ex_crnt(data, arg[0]);
 	else
 		cmd = ex_there(data, arg[0]);
 	if (cmd == NULL)
 		return (127);
 	else
-	{
-		data->chr_env = int_chr_env(data);
-		ret = ex_cpro(data, cmd, arg);
-		if (data->fd2 != 0)
-		{
-			close(data->fd2);
-			data->fd2 = 0;
-		}
-		if (data->fd != 1)
-		{
-			close(data->fd);
-			data->fd = 1;
-		}
-		fre_chr_env(data->chr_env);
-	}
+		ret = ex_loo(data, ret, cmd, arg);
 	return (free(cmd), ret);
 }

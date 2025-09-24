@@ -6,7 +6,7 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 01:56:16 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/09/22 23:15:24 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/09/23 23:35:41 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,24 @@ int	lastkid(t_data *data, pid_t kid)
 	return (neo->ex);
 }
 
+void	ex_kid_pro(t_data *data, char *cmd, char **arg)
+{
+	signal(SIGQUIT, SIG_DFL);
+	dup2(data->fd2, 0);
+	dup2(data->fd, 1);
+	if (data->fd2 != data->p_in && data->p_in != 0)
+		close(data->p_in);
+	if (data->fd != data->p_ot && data->p_ot != 1)
+		close(data->p_ot);
+	execve(cmd, arg, data->chr_env);
+	if (data->fd2 != 0)
+		close(data->fd2);
+	if (data->fd != 1)
+		close(data->fd);
+	m_perror(NULL, NULL, "Exec format error");
+	exit(1);
+}
+
 int	ex_cpro(t_data *data, char *cmd, char **arg)
 {
 	pid_t	kid;
@@ -42,23 +60,7 @@ int	ex_cpro(t_data *data, char *cmd, char **arg)
 	if (kid < 0)
 		return (m_perror(NULL, NULL, "can\'t fork"));
 	if (kid == 0)
-	{
-		signal(SIGQUIT, SIG_DFL);
-		// signal(SIGINT, SIG_DFL);
-		dup2(data->fd2, 0);
-		dup2(data->fd, 1);
-		if (data->fd2 != data->p_in && data->p_in != 0)
-			close(data->p_in);
-		if (data->fd != data->p_ot && data->p_ot != 1)
-			close(data->p_ot);
-		execve(cmd, arg, data->chr_env);
-		if (data->fd2 != 0)
-			close(data->fd2);
-		if (data->fd != 1)
-			close(data->fd);
-		m_perror(NULL , NULL, "Exec format error");
-		exit(1);
-	}
+		ex_kid_pro(data, cmd, arg);
 	else
 	{
 		if (data->fd2 != 0)
@@ -84,7 +86,6 @@ int	ex_cpro_bult(t_data *data, char **arg, int bc)
 	if (kid == 0)
 	{
 		signal(SIGQUIT, SIG_DFL);
-		// signal(SIGINT, SIG_DFL);
 		dup2(data->fd, 1);
 		dup2(data->fd2, 0);
 		out = ex_bults_pip(data, arg, bc);
@@ -96,9 +97,6 @@ int	ex_cpro_bult(t_data *data, char **arg, int bc)
 		exit(out);
 	}
 	else
-	{
-		lastkid(data, kid);
-		return (kid);
-	}
+		return (lastkid(data, kid), kid);
 	return (0);
 }

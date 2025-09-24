@@ -6,7 +6,7 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/21 16:38:53 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/09/16 22:47:11 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/09/24 00:00:29 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,10 @@ int	man_red(t_data *data, t_short *shart, char **red)
 	while (red[i])
 	{
 		ret = src_red(data, shart, &red[i]);
+		data->exm = ret;
 		i += 2;
 		if (ret)
-			return 1;
+			break ;
 	}
-	return ret;
+	return (ret);
 }

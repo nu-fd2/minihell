@@ -6,7 +6,7 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 12:20:09 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/09/11 17:31:34 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/09/23 22:56:09 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,20 @@ int	alldigit(char *num)
 	return (0);
 }
 
+int	lvl_env_h(t_data *data, t_env *env, long *lvl)
+{
+	if (!env || !env->value)
+		return (add_env(data->env, "SHLVL", "1", 1), 1);
+	if (alldigit(env->value))
+		return (add_env(data->env, "SHLVL", "1", 1), 1);
+	*lvl = ft_attol(env->value);
+	if (*lvl < 0)
+		return (add_env(data->env, "SHLVL", "0", 1), 1);
+	if (*lvl == 69696969696969)
+		return (add_env(data->env, "SHLVL", "1", 1), 1);
+	return (0);
+}
+
 int	lvl_env(t_data *data)
 {
 	t_env	*env;
@@ -69,15 +83,8 @@ int	lvl_env(t_data *data)
 		return (1);
 	}
 	env = grp_env(data->env, "SHLVL");
-	if (!env || !env->value)
-		return (add_env(data->env, "SHLVL", "1", 1), 1);
-	if (alldigit(env->value))
-		return (add_env(data->env, "SHLVL", "1", 1), 1);
-	lvl = ft_attol(env->value);
-	if (lvl < 0)
-		return (add_env(data->env, "SHLVL", "0", 1), 1);
-	if (lvl == 69696969696969)
-		return (add_env(data->env, "SHLVL", "1", 1), 1);
+	if (lvl_env_h(data, env, &lvl) == 1)
+		return (1);
 	lvl += 1;
 	if (lvl > 999 || lvl < 0)
 	{

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_str.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
+/*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/21 18:38:47 by mdakni            #+#    #+#             */
-/*   Updated: 2025/09/21 22:12:23 by mdakni           ###   ########.fr       */
+/*   Updated: 2025/09/23 23:41:11 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	ft_str_check(char *str, t_flags *check, t_data *data)
 				(check->end - 1) - check->start);
 }
 
-char *ft_expand_str(char *str, t_data *data)
+char	*ft_expand_str(char *str, t_data *data)
 {
 	t_flags	check;
 
@@ -78,7 +78,7 @@ char *ft_expand_str(char *str, t_data *data)
 	check.quotes = 0;
 	while (str[check.end])
 		ft_str_check(str, &check, data);
-    free(str);
-    ft_remove_spaces(check.string);
-    return (check.string);
+	free(str);
+	ft_remove_spaces(check.string);
+	return (check.string);
 }

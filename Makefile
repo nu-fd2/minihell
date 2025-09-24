@@ -45,8 +45,10 @@ ex/m_red/apn_red.c \
 ex/m_red/inn_red.c \
 ex/m_red/man_red.c \
 ex/m_red/man_dog.c \
+ex/m_red/woman_dog.c \
 ex/m_red/dog_pip.c \
 ex/main_exc.c \
+ex/main_exc_h.c \
 ex/m_perror.c \
 	  \
 ex/libft/ft_atoi.c \

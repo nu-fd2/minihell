@@ -177,6 +177,8 @@ typedef struct s_data
 	int             p_in;
 	int             p_ot;
 	int             dog_kid;
+	int				pip1[2];
+	int				pip2[2];
 	char			**chr_env;
 	t_env			*env;
 	t_kids          *kids;
@@ -298,17 +300,22 @@ int	src_red(t_data *data, t_short *shart, char **red);
 int	red_red(t_data *data, char *red);
 int	apn_red(t_data *data, char *red);
 int	inn_red(t_data *data, char *red);
-int frk_dog(t_data *data, t_short *shart);
 int man_dog(t_data *data, t_short *shart);
 void cls_dog_pip(t_short *shart);
 int cnt_dog(t_data *data, t_short *shart);
+int flavored_water(t_data *data, t_short *ts);
+t_dog	red_dog(t_data *data, t_short *ts, char *key);
+void	exer(t_data *data, t_short *shart, int stat);
+void	f_dog_pip(t_data *data, t_short *ts, t_dog dog);
 
 int main_exc(t_data *data, t_short *shart);
+void	main_exc_h(t_data *data, t_short *fart, int in, int ot);
 int	ex_waitkid(t_data *data);
 int clr_kids(t_data *data);
+int	pip_exc(t_data *data, t_short *shart, int in, int ot);
+int	sec_exc(t_data *data, t_short *shart, int in, int ot);
+int	set_pipe(t_data *data, int s, t_short *fart);
 
 int	m_perror(char *cmd, char *arg, char *msg);
 
 #endif
-
-

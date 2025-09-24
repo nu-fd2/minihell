@@ -6,13 +6,13 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/10 15:48:44 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/09/16 23:35:45 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/09/23 23:39:54 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/header.h"
 
-void 	extt(t_data *data, int c)
+void	extt(t_data *data, int c)
 {
 	if (c < 17)
 		return ;
@@ -34,7 +34,6 @@ int	cnt_dog(t_data *data, t_short *shart)
 
 	int (i), (c);
 	ts = shart;
-	i = 0;
 	c = 0;
 	while (ts)
 	{
@@ -48,30 +47,25 @@ int	cnt_dog(t_data *data, t_short *shart)
 				{
 					i++;
 					ts->has_dog = 1;
-					c++; // lol
+					c++;
 				}
 				i++;
 			}
 		}
 		ts = ts->next;
 	}
-	extt(data, c);
-	return (c);
+	return (extt(data, c), c);
 }
 
-void cls_dog_pip(t_short *shart)
+void	cls_dog_pip(t_short *shart)
 {
-	t_short *ts;
+	t_short	*ts;
 
 	ts = shart;
 	while (ts)
 	{
 		if (ts->has_dog)
-		{
-			// printf("closin %d>%d\n", ts->pip[0], ts->pip[1]);
 			close(ts->pip[0]);
-			// close(ts->pip[1]);
-		}
 		ts = ts->next;
 	}
 }

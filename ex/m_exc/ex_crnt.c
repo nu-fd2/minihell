@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ex_crnt.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
+/*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 13:55:27 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/09/23 14:55:30 by mdakni           ###   ########.fr       */
+/*   Updated: 2025/09/23 23:09:34 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 char	*ex_crnt(t_data *data, char *cmd)
 {
-	char	*ult;
-	struct stat sat;
+	char		*ult;
+	struct stat	sat;
 
 	ult = NULL;
 	stat(cmd, &sat);
