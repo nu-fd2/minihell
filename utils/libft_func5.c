@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft_func5.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
+/*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 14:09:40 by mdakni            #+#    #+#             */
-/*   Updated: 2025/09/20 14:23:59 by mdakni           ###   ########.fr       */
+/*   Updated: 2025/09/24 02:41:12 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,4 +71,19 @@ void	check_additionals(char *line, t_quotes *check)
 		check->expand = true;
 		check->remove = check->quotes;
 	}
+}
+
+int	ft_skip_spaces(t_data *data, char *line)
+{
+	int	i;
+
+	i = 0;
+	while (is_space(line[i]) && line[i])
+		i++;
+	if (line[i] == '\0')
+	{
+		data->exm = 0;
+		return (1);
+	}
+	return (0);
 }

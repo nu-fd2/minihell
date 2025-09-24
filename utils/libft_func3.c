@@ -6,7 +6,7 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 20:22:32 by skully            #+#    #+#             */
-/*   Updated: 2025/09/24 02:06:47 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/09/24 02:33:48 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ static int	word_count(const char *s)
 
 char	*copy_word_h(int start, int i, const char *s)
 {
-	int	j;
-	int	len;
-	char *word;
+	int		j;
+	int		len;
+	char	*word;
 
 	j = 0;
 	len = i - start;

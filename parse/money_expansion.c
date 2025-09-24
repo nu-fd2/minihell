@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   money_expansion.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mdakni <mdakni@student.42.fr>              +#+  +:+       +#+        */
+/*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 14:50:07 by skully            #+#    #+#             */
-/*   Updated: 2025/09/23 20:53:21 by mdakni           ###   ########.fr       */
+/*   Updated: 2025/09/24 02:34:19 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,8 @@ void	node_check(t_input *list, t_flags *check, t_data *data)
 		else
 			check->quotes = 1;
 	}
-	if (list->value[check->end] == '$' && list->value[check->end + 1] != '\0' && check->quotes != 1)
+	if (list->value[check->end] == '$' && list->value[check->end + 1] != '\0'
+		&& check->quotes != 1)
 		expand_and_append(list, check, data);
 	else
 		check->end++;

@@ -11,7 +11,7 @@ RDFLAGS = -lreadline -lncurses
 SRC = src/minishell.c parse/tokenize.c parse/delimiters.c \
 	  parse/filter.c parse/checker.c parse/lst_functions.c \
 	  parse/operators.c utils/libft_func.c utils/libft_func2.c \
-	  parse/seperator.c parse/money_expansion.c test_print/lst_print.c \
+	  parse/seperator.c parse/money_expansion.c \
 	  utils/libft_func3.c parse/star_expansion.c parse/striper.c \
 	  parse/last_lst_creater.c parse/lst_functions_2.c \
 	  utils/libft_func4.c utils/libft_func5.c  utils/libft_func6.c \

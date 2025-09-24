@@ -6,7 +6,7 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 23:47:38 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/09/24 02:17:13 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/09/24 02:35:50 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	flavored_water(t_data *data, t_short *ts)
 	pid_t	lil_vro;
 	int		stat;
 
-	pmo = 1;
+	g_pmo = 1;
 	lil_vro = fork();
 	if (lil_vro < 0)
 		return (m_perror(NULL, NULL, "can\'t fork"), -1);
