@@ -1,6 +1,6 @@
 NAME = minishell
 
-CFLAGS = -Wall -Werror -Wextra -I./readline/include
+# CFLAGS = -Wall -Werror -Wextra -I./readline/include
 # CFLAGS = -Wall -Wextra -I./readline/include
 CFLAGS = -fsanitize=address -g -I./readline/include
 # CFLAGS = -fsanitize=address -I./readline/include
@@ -85,8 +85,8 @@ CC = cc
 
 t:
 	@make re
-	# @make clean
-	# @clear
+	@make clean
+	@clear
 
 all:$(NAME)
 
