@@ -1,18 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero_bonus.c                                         :+:      :+:    :+:   */
+/*   ft_isalnum_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/24 18:54:55 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/09/24 15:43:47 by oel-mado         ###   ########.fr       */
+/*   Created: 2025/09/24 18:25:20 by oel-mado          #+#    #+#             */
+/*   Updated: 2025/09/24 18:25:21 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/header_bonus.h"
 
-void	ft_bzero(void *s, size_t len)
+int	ft_isalnum(int c)
 {
-	ft_memset(s, 0, len);
+	return ((c >= '0' && c <= '9') || (c >= 'A' && c <= 'Z')
+		|| (c >= 'a' && c <= 'z'));
 }

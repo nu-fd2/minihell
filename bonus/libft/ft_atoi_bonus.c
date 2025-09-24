@@ -1,42 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp_bonus.c                                       :+:      :+:    :+:   */
+/*   ft_atoi_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/26 19:03:31 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/09/24 15:46:02 by oel-mado         ###   ########.fr       */
+/*   Created: 2025/09/24 18:24:49 by oel-mado          #+#    #+#             */
+/*   Updated: 2025/09/24 18:24:51 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/header_bonus.h"
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+int	ft_atoi(const char *str)
 {
-	size_t			i;
-	unsigned char	*p1;
-	unsigned char	*p2;
+	int	sg;
+	int	nb;
+	int	i;
 
 	i = 0;
-	if (n == 0)
-		return (0);
-	if (s1 == NULL || s2 == NULL)
+	sg = 1;
+	nb = 0;
+	while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
+		i++;
+	if (str[i] == '-' || str[i] == '+')
 	{
-		if (s1 == NULL && s2 == NULL)
-			return (0);
-		else if (s1 == NULL)
-			return (-1);
-		else
-			return (1);
-	}
-	p1 = (unsigned char *)s1;
-	p2 = (unsigned char *)s2;
-	while ((p1[i] || p2[i]) && i < n)
-	{
-		if (p1[i] != p2[i])
-			return (p1[i] - p2[i]);
+		if (str[i] == '-')
+			sg = -sg;
 		i++;
 	}
-	return (0);
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		nb = (nb * 10) + (str[i] - 48);
+		i++;
+	}
+	return (nb * sg);
 }

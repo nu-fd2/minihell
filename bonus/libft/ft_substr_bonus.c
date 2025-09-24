@@ -1,38 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi_bonus.c                                          :+:      :+:    :+:   */
+/*   ft_substr_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/25 18:10:01 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/09/24 15:43:38 by oel-mado         ###   ########.fr       */
+/*   Created: 2024/11/06 05:23:21 by oel-mado          #+#    #+#             */
+/*   Updated: 2025/09/24 18:27:25 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/header_bonus.h"
 
-int	ft_atoi(const char *str)
+char	*ft_ssubstr(char const *s, unsigned int start, size_t len)
 {
-	int	sg;
-	int	nb;
-	int	i;
+	size_t	n;
+	char	*str;
 
-	i = 0;
-	sg = 1;
-	nb = 0;
-	while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
-		i++;
-	if (str[i] == '-' || str[i] == '+')
+	if (!s)
+		return (NULL);
+	if (start > ft_strlen(s))
 	{
-		if (str[i] == '-')
-			sg = -sg;
-		i++;
+		str = ft_calloc(sizeof(char), 1);
+		if (!str)
+			return (NULL);
+		ft_strlcpy(str, s, 1);
+		return (str);
 	}
-	while (str[i] >= '0' && str[i] <= '9')
+	else
 	{
-		nb = (nb * 10) + (str[i] - 48);
-		i++;
+		if (len < ft_strlen(&s[start]))
+			n = len;
+		else
+			n = ft_strlen(&s[start]);
 	}
-	return (nb * sg);
+	str = ft_calloc(sizeof(char), n + 1);
+	if (!str)
+		return (NULL);
+	ft_strlcpy(str, s + start, n + 1);
+	return (str);
 }

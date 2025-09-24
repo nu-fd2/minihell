@@ -1,37 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcat_bonus.c                                       :+:      :+:    :+:   */
+/*   ft_strlen_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/26 02:56:44 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/09/24 15:47:12 by oel-mado         ###   ########.fr       */
+/*   Created: 2024/10/24 14:42:08 by oel-mado          #+#    #+#             */
+/*   Updated: 2025/09/24 18:27:14 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/header_bonus.h"
 
-size_t	ft_strlcat(char *dst, const char *src, size_t n)
+size_t	ft_strlen(const char *who)
 {
-	size_t	i;
-	size_t	j;
-	size_t	k;
+	size_t	ask;
 
-	i = 0;
-	j = 0;
-	if (!dst && !n)
-		return (ft_strlen(src));
-	k = ft_strlen((const char *)dst);
-	if (n < ft_strlen(dst))
-		return (ft_strlen(src) + n);
-	while (dst[i] && i + 1 < n)
-		i++;
-	while (src[j] && i + j + 1 < n)
-	{
-		dst[i + j] = src[j];
-		j++;
-		dst[i + j] = '\0';
-	}
-	return (k + ft_strlen(src));
+	ask = 0;
+	if (!who)
+		return (0);
+	while (who[ask])
+		ask++;
+	return (ask);
 }

@@ -1,38 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   prn_env_bonus.c                                    :+:      :+:    :+:   */
+/*   ft_strncmp_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/17 21:55:21 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/09/24 18:28:47 by oel-mado         ###   ########.fr       */
+/*   Created: 2024/10/26 19:03:31 by oel-mado          #+#    #+#             */
+/*   Updated: 2025/09/24 18:27:18 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/header_bonus.h"
 
-int	prn_env(t_data *data)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	t_env	*n_env;
+	size_t			i;
+	unsigned char	*p1;
+	unsigned char	*p2;
 
-	if (!data || !data->env)
-		return (1);
-	n_env = data->env;
-	while (n_env)
+	i = 0;
+	if (n == 0)
+		return (0);
+	if (s1 == NULL || s2 == NULL)
 	{
-		if (n_env->ported == 1)
-		{
-			if (n_env->key)
-			{
-				ft_putstr_fd(n_env->key, data->fd);
-				ft_putstr_fd("=", data->fd);
-				if (n_env->value)
-					ft_putstr_fd(n_env->value, data->fd);
-				ft_putstr_fd("\n", data->fd);
-			}
-		}
-		n_env = n_env->next;
+		if (s1 == NULL && s2 == NULL)
+			return (0);
+		else if (s1 == NULL)
+			return (-1);
+		else
+			return (1);
+	}
+	p1 = (unsigned char *)s1;
+	p2 = (unsigned char *)s2;
+	while ((p1[i] || p2[i]) && i < n)
+	{
+		if (p1[i] != p2[i])
+			return (p1[i] - p2[i]);
+		i++;
 	}
 	return (0);
 }

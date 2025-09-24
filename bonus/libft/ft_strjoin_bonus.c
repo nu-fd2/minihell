@@ -1,42 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr_bonus.c                                        :+:      :+:    :+:   */
+/*   ft_strjoin_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/06 05:23:21 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/09/24 15:48:26 by oel-mado         ###   ########.fr       */
+/*   Created: 2024/11/03 17:47:37 by oel-mado          #+#    #+#             */
+/*   Updated: 2025/09/24 18:27:01 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/header_bonus.h"
 
-char	*ft_ssubstr(char const *s, unsigned int start, size_t len)
+char	*ft_sstrjoin(char const *s1, char const *s2)
 {
-	size_t	n;
+	size_t	i;
 	char	*str;
 
-	if (!s)
+	if (!s1 || !s2)
 		return (NULL);
-	if (start > ft_strlen(s))
-	{
-		str = ft_calloc(sizeof(char), 1);
-		if (!str)
-			return (NULL);
-		ft_strlcpy(str, s, 1);
-		return (str);
-	}
-	else
-	{
-		if (len < ft_strlen(&s[start]))
-			n = len;
-		else
-			n = ft_strlen(&s[start]);
-	}
-	str = ft_calloc(sizeof(char), n + 1);
+	i = ft_strlen(s1) + ft_strlen(s2) + 1;
+	str = ft_calloc(sizeof(char), i);
 	if (!str)
 		return (NULL);
-	ft_strlcpy(str, s + start, n + 1);
+	ft_strlcpy(str, (char *)s1, i);
+	ft_strlcat(str, (char *)s2, i);
 	return (str);
 }

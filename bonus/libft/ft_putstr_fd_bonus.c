@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr_bonus.c                                        :+:      :+:    :+:   */
+/*   ft_putstr_fd_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/26 05:53:19 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/09/24 15:47:50 by oel-mado         ###   ########.fr       */
+/*   Created: 2025/09/24 18:26:05 by oel-mado          #+#    #+#             */
+/*   Updated: 2025/09/24 18:26:07 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/header_bonus.h"
 
-char	*ft_strchr(const char *str, int c)
+void	ft_putstr_fd(char *s, int fd)
 {
-	while (*str)
+	int	i;
+
+	i = 0;
+	if (!s)
+		return ;
+	while (s[i])
 	{
-		if (*str == (unsigned char)c)
-			return ((char *)str);
-		str++;
+		ft_putchar_fd(s[i], fd);
+		i++;
 	}
-	if ((unsigned char)c == '\0')
-		return ((char *)str);
-	return (NULL);
 }

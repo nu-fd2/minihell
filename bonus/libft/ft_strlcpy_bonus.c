@@ -1,28 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strndup_bonus.c                                       :+:      :+:    :+:   */
+/*   ft_strlcpy_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/28 03:07:09 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/09/24 15:49:03 by oel-mado         ###   ########.fr       */
+/*   Created: 2024/10/26 05:22:13 by oel-mado          #+#    #+#             */
+/*   Updated: 2025/09/24 18:27:10 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/header_bonus.h"
 
-char	*ft_strndup(const char *s1, size_t n)
+size_t	ft_strlcpy(char *dst, const char *src, size_t n)
 {
-	size_t	ln;
-	char	*s2;
+	size_t	i;
 
-	ln = ft_strlen(s1);
-	if (n < ln)
-		ln = n;
-	s2 = ft_calloc(sizeof(char), ln + 1);
-	if (!s2)
-		return (NULL);
-	ft_strlcpy(s2, s1, ln + 1);
-	return (s2);
+	i = 0;
+	if (n == 0)
+		return (ft_strlen(src));
+	while (src[i] && i + 1 < n)
+	{
+		dst[i] = src[i];
+		i++;
+	}
+	if (n > 0)
+		dst[i] = '\0';
+	return (ft_strlen(src));
 }
