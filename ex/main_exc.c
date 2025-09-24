@@ -6,7 +6,7 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 20:06:48 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/09/24 01:21:46 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/09/24 16:35:20 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	pip_exc(t_data *data, t_short *shart, int in, int ot)
 			if (!shart->args[0] && !shart->expanded)
 				m_perror(NULL, "", "command not found");
 			else if (!shart->expanded || shart->args[0])
-				data->exm = ex_rish_pip(data, shart->args);
+				ret = ex_rish_pip(data, shart->args);
 		}
 	}
 	else

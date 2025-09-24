@@ -6,11 +6,11 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 18:54:55 by oel-mado          #+#    #+#             */
-/*   Updated: 2024/11/14 15:09:59 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/09/24 15:43:47 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../includes/header.h"
 
 void	ft_bzero(void *s, size_t len)
 {

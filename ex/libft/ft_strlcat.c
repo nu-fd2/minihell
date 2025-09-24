@@ -6,11 +6,11 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 02:56:44 by oel-mado          #+#    #+#             */
-/*   Updated: 2024/11/15 16:12:15 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/09/24 15:47:12 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../includes/header.h"
 
 size_t	ft_strlcat(char *dst, const char *src, size_t n)
 {

@@ -6,11 +6,11 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 18:55:07 by oel-mado          #+#    #+#             */
-/*   Updated: 2024/11/11 18:04:14 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/09/24 15:50:35 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../includes/header.h"
 
 void	*ft_memset(void *ptr, int n, size_t num)
 {

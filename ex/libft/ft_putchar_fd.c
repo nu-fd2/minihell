@@ -6,11 +6,11 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 01:45:28 by oel-mado          #+#    #+#             */
-/*   Updated: 2024/11/14 00:02:48 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/09/24 15:45:15 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../includes/header.h"
 
 void	ft_putchar_fd(char c, int fd)
 {

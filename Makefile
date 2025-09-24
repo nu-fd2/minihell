@@ -1,21 +1,41 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2025/09/24 16:40:56 by oel-mado          #+#    #+#              #
+#    Updated: 2025/09/24 16:45:43 by oel-mado         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+
+
 NAME = minishell
-
-# CFLAGS = -Wall -Werror -Wextra -I./readline/include
-# CFLAGS = -Wall -Wextra -I./readline/include
-CFLAGS = -fsanitize=address -g -I./readline/include
-# CFLAGS = -fsanitize=address -I./readline/include
-# CFLAGS = -I./readline/include
-
+CFLAGS = -Wall -Werror -Wextra -I./readline/include
 RDFLAGS = -lreadline -lncurses
-
-SRC = src/minishell.c parse/tokenize.c parse/delimiters.c \
-	  parse/filter.c parse/checker.c parse/lst_functions.c \
-	  parse/operators.c utils/libft_func.c utils/libft_func2.c \
-	  parse/seperator.c parse/money_expansion.c \
-	  utils/libft_func3.c parse/star_expansion.c parse/striper.c \
-	  parse/last_lst_creater.c parse/lst_functions_2.c \
-	  utils/libft_func4.c utils/libft_func5.c  utils/libft_func6.c \
-	  ex/m_red/expand_str.c \
+SRC = src/minishell.c \
+parse/tokenize.c \
+parse/delimiters.c \
+parse/filter.c \
+parse/checker.c \
+parse/lst_functions.c \
+parse/operators.c \
+utils/libft_func.c \
+utils/libft_func2.c \
+parse/seperator.c \
+parse/money_expansion.c \
+utils/libft_func3.c \
+parse/star_expansion.c \
+parse/striper.c \
+parse/last_lst_creater.c \
+parse/lst_functions_2.c \
+utils/libft_func4.c \
+utils/libft_func5.c \
+utils/libft_func6.c \
+ex/m_red/expand_str.c \
+	\
 ex/m_bul/cmd_exit.c \
 ex/m_bul/cmd_cd.c \
 ex/m_bul/cmd_echo.c \
@@ -51,7 +71,7 @@ ex/m_red/dog_pip.c \
 ex/main_exc.c \
 ex/main_exc_h.c \
 ex/m_perror.c \
-	  \
+	\
 ex/libft/ft_atoi.c \
 ex/libft/ft_itoa.c \
 ex/libft/ft_putchar_fd.c \
@@ -79,33 +99,49 @@ get_next_line/get_next_line_utils_bonus.c \
 	\
 
 OBJ = $(SRC:.c=.o)
-# nnn -Wall -Wextra -Werror -g3 -fsanitize=address
-CC = cc
-# CC = cc -Wall -Wextra -Werror
 
-t:
-	@make re
-	@make clean
-	@clear
+CC = cc
+RED = \033[1;31m
+GREEN = \033[1;32m
+YELLOW = \033[1;33m
+BLUE = \033[1;34m
+PURPLE = \033[1;35m
+CYAN = \033[1;36m
+RESET = \033[0m
 
 all:$(NAME)
 
-# $(LBFT):
-# 	make -C ex/libft
+banner:
+		@echo "$(CYAN)"
+		@echo "    ███╗   ███╗██╗███╗   ██╗██╗██╗  ██╗███████╗██╗     ██╗      "
+		@echo "    ████╗ ████║██║████╗  ██║██║██║  ██║██╔════╝██║     ██║      "
+		@echo "    ██╔████╔██║██║██╔██╗ ██║██║███████║█████╗  ██║     ██║      "
+		@echo "    ██║╚██╔╝██║██║██║╚██╗██║██║██╔══██║██╔══╝  ██║     ██║      "
+		@echo "    ██║ ╚═╝ ██║██║██║ ╚████║██║██║  ██║███████╗███████╗███████╗"
+		@echo "    ╚═╝     ╚═╝╚═╝╚═╝  ╚═══╝╚═╝╚═╝  ╚═╝╚══════╝╚══════╝╚══════╝$(RESET)"
+		@echo "$(RESET)"
 
-$(NAME):$(OBJ) $(LBFT)
-	$(CC) $(CFLAGS) $(OBJ) readline/libreadline.a readline/libhistory.a -o $(NAME) $(RDFLAGS)
+msg:
+	@echo "$(YELLOW)Compiling...🛠$(RESET)"
 
-%.o: %.c includes/header.h
-	$(CC) $(CFLAGS) -c $< -o $@
+$(NAME):$(OBJ) $(banner)
+	@echo "$(YELLOW)Linking...⛓$(RESET)"
+	@$(CC) $(CFLAGS) $(OBJ) readline/libreadline.a readline/libhistory.a -o $(NAME) $(RDFLAGS)
+	@echo "$(GREEN)Finished Compilation!✅$(RESET)"
+
+%.o: %.c includes/header.h banner msg
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(OBJ)
+	@echo "$(YELLOW)Cleaning...🧹$(RESET)"
+	@rm -f $(OBJ)
+	@echo "$(GREEN)Its Clean! ✅$(RESET)"
 
 fclean: clean
-	rm -f $(NAME)
+	@echo "$(YELLOW)Super Cleaning...🧼$(RESET)"
+	@rm -f $(NAME)
+	@echo "$(GREEN)Its SUPER Clean! ✅$(RESET)"
 
 re: fclean all
 
-.PHONY: clean
-
+.PHONY: clean banner

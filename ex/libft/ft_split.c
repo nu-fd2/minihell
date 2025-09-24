@@ -6,11 +6,11 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 19:56:25 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/06/14 01:07:33 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/09/24 15:47:01 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../includes/header.h"
 
 static char	**frre(char **arr, int i)
 {

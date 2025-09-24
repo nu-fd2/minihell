@@ -6,7 +6,7 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 01:56:16 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/09/24 02:35:50 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/09/24 16:34:01 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	ex_cpro(t_data *data, char *cmd, char **arg)
 	g_pmo = 1;
 	kid = fork();
 	if (kid < 0)
-		return (m_perror(NULL, NULL, "can\'t fork"));
+		return (m_perror(NULL, NULL, "can\'t fork"), -1);
 	if (kid == 0)
 		ex_kid_pro(data, cmd, arg);
 	else

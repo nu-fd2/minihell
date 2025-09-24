@@ -6,11 +6,11 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 17:47:37 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/06/12 20:01:34 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/09/24 15:47:09 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../includes/header.h"
 
 char	*ft_sstrjoin(char const *s1, char const *s2)
 {

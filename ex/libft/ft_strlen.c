@@ -6,11 +6,11 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 14:42:08 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/07/16 00:39:42 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/09/24 15:47:19 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../includes/header.h"
 
 size_t	ft_strlen(const char *who)
 {

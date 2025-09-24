@@ -6,11 +6,11 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 03:07:09 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/06/14 01:07:53 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/09/24 15:49:03 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../includes/header.h"
 
 char	*ft_strndup(const char *s1, size_t n)
 {

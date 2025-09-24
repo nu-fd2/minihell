@@ -6,7 +6,7 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 01:17:27 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/09/24 01:18:16 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/09/24 16:31:48 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,10 @@ void	main_exc_h(t_data *data, t_short *fart, int in, int ot)
 	{
 		ot = set_pipe(data, s, fart);
 		if (!fart->ambiguous)
-			pip_exc(data, fart, in, ot);
+		{
+			if (pip_exc(data, fart, in, ot) == -1)
+				break ;
+		}
 		else
 			data->exm = m_perror(NULL, NULL, "ambiguous redirect");
 		if (!s && fart->next)

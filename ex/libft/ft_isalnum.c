@@ -6,11 +6,11 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 16:02:07 by oel-mado          #+#    #+#             */
-/*   Updated: 2024/11/09 13:11:54 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/09/24 15:49:50 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../includes/header.h"
 
 int	ft_isalnum(int c)
 {

@@ -6,7 +6,7 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 17:24:43 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/07/09 22:06:42 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/09/24 16:44:13 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,4 @@ char	*ftg_strjoin(char const *s1, char const *s2);
 size_t	ftg_strlen(const char *who);
 size_t	ftg_strlcpy(char *dst, const char *src, size_t n);
 
-#endif //GET_NEXT_LINE_BONUS_H
+#endif
