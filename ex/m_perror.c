@@ -6,7 +6,7 @@
 /*   By: oel-mado <oel-mado@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 23:52:30 by oel-mado          #+#    #+#             */
-/*   Updated: 2025/07/04 00:01:58 by oel-mado         ###   ########.fr       */
+/*   Updated: 2025/09/24 16:55:46 by oel-mado         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	m_perror(char *cmd, char *arg, char *msg)
 {
-	ft_putstr_fd("tih: ", 2);
+	ft_putstr_fd("ts_ahh: ", 2);
 	if (cmd)
 	{
 		ft_putstr_fd(cmd, 2);
